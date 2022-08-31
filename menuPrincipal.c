@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-char verMenuPrincipal();
-void verMenuSobre();
+char verMenuPrincipal(void);
+void verMenuSobre(void);
 
 int main(void) {
     //verMenuPrincipal();//
@@ -38,10 +39,13 @@ int main(void) {
 
         else{
             printf("Opção inválida!");
-
-        char esc = verMenuPrincipal();
         
         }
+
+        printf("Tecle ENTER para continuar");
+        getchar();
+
+        char esc = verMenuPrincipal();
     }
         
         /*while (esc!='0') {
@@ -82,7 +86,7 @@ int main(void) {
     return 0;
 }
 
-char verMenuPrincipal() {
+char verMenuPrincipal(void) {
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
@@ -101,13 +105,14 @@ char verMenuPrincipal() {
     printf("Selecione sua opção:");
     char esc;
     scanf("%c" , &esc);
+    getchar();
 
     return esc;
 
 }
 
 
-void verMenuSobre() {
+void verMenuSobre(void) {
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
