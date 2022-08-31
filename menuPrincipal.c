@@ -9,38 +9,42 @@ int main(void) {
 
     char esc = verMenuPrincipal();
 
-    /*while (esc!="0"){
+    while (esc!='0'){
 
-        if (esc=="1"){
+        if (esc=='1'){
             printf("Módulo em desenvolvimento!1");
 
         }
 
-        else if (esc=="2"){
+        else if (esc=='2'){
             printf("Módulo em desenvolvimento!2");
 
         }
 
-        else if (esc=="3"){
+        else if (esc=='3'){
             printf("Módulo em desenvolvimento!3");
 
         }
 
-        else if (esc=="4"){
+        else if (esc=='4'){
             printf("Módulo em desenvolvimento!4");
 
         }
 
-        else if (esc=="5"){
+        else if (esc=='5'){
             verMenuSobre();
 
         }
 
         else{
             printf("Opção inválida!");
-        }*/
+
+        char esc = verMenuPrincipal();
         
-        while (esc!='0') {
+        }
+    }
+        
+        /*while (esc!='0') {
 
             switch (esc)
                 {
@@ -71,7 +75,7 @@ int main(void) {
                     char esc = verMenuPrincipal();
             } 
 
-        }
+        }*/
 
     printf("Programa finalizado!");
 
