@@ -40,27 +40,27 @@ int main(void) {
             printf("Opção inválida!");
         }*/
         
-        while (esc!="0") {
+        while (esc!='0') {
 
             switch (esc)
                 {
-                    case 1:
+                    case '1':
                         printf("Módulo em desenvolvimento!1");
                         break;
 
-                    case 2:
+                    case '2':
                         printf("Módulo em desenvolvimento!2");
                         break;
                     
-                    case 3:
+                    case '3':
                         printf("Módulo em desenvolvimento!3");
                         break;
                     
-                    case 4:
+                    case '4':
                         printf("Módulo em desenvolvimento!4");
                         break;
 
-                    case 5:
+                    case '5':
                         verMenuSobre();
                         break;
 
