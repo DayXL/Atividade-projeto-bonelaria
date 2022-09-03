@@ -4,6 +4,7 @@
 char verMenuPrincipal(void);
 char verMenuBone(void);
 char verMenuFornecedor(void);
+char verMenuCliente(void);
 void verMenuSobre(void);
 
 int main(void) {
@@ -23,7 +24,7 @@ int main(void) {
         }
 
         else if (esc=='3'){
-            printf("Módulo Cliente");
+            verMenuCliente();
 
         }
 
@@ -113,6 +114,22 @@ char verMenuFornecedor(void) {
 
 }
 
+char verMenuCliente(void) {
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Menu Cliente = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Cadastrar cliente                                    ===\n");
+    printf("===                 2. Editar cliente                                       ===\n");
+    printf("===                 3. Excluir cliente                                      ===\n");
+    printf("===                 4. Pesquisar cliente                                    ===\n");
+    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
 
 void verMenuSobre(void) {
     printf("\n");
