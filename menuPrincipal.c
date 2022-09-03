@@ -2,11 +2,17 @@
 #include <stdlib.h>
 
 char verMenuPrincipal(void);
+
 void moduloBone(void);
 char verMenuBone(void);
+
+void moduloFornecedor(void);
 char verMenuFornecedor(void);
+
 char verMenuCliente(void);
+
 char verMenuRelatorio(void);
+
 void verMenuSobre(void);
 
 int main(void) {
@@ -21,7 +27,7 @@ int main(void) {
         }
 
         else if (esc=='2'){
-            verMenuFornecedor();
+            moduloFornecedor();
 
         }
 
@@ -142,6 +148,46 @@ char verMenuBone(void) {
     getchar();
 
     return esc;
+
+}
+
+void moduloFornecedor(void) {
+
+    char esc = verMenuFornecedor();
+
+    while (esc!='0'){
+
+        if (esc=='1'){
+            printf("Cadastrar fornecedor\n");
+
+        }
+
+        else if (esc=='2'){
+            printf("Editar fornecedor\n");
+
+        }
+
+        else if (esc=='3'){
+            printf("Excluir fornecedor\n");
+
+        }
+
+        else if (esc=='4'){
+            printf("Pesquisar fornecedor\n");
+
+        }
+
+        else{
+            printf("Opção inválida!\n");
+        
+        }
+
+        printf("Tecle ENTER para continuar");
+        getchar();
+
+        esc = verMenuFornecedor();
+    }
+
 }
 
 char verMenuFornecedor(void) {
@@ -158,6 +204,13 @@ char verMenuFornecedor(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+    printf("Selecione sua opção:");
+    char esc;
+    scanf("%c" , &esc);
+    getchar();
+
+    return esc;
 
 }
 
