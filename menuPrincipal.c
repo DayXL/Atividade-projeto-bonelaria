@@ -260,6 +260,11 @@ void moduloCliente(void) {
 
         }
 
+        else if (esc=='5'){
+            printf("Fechar pedido para cliente\n");
+
+        }
+
         else{
             printf("Opção inválida!\n");
         
@@ -283,6 +288,7 @@ char verMenuCliente(void) {
     printf("===                 2. Editar cliente                                       ===\n");
     printf("===                 3. Excluir cliente                                      ===\n");
     printf("===                 4. Pesquisar cliente                                    ===\n");
+    printf("===                 5. Fechar pedido para cliente                           ===\n");
     printf("===                 0. Voltar ao menu principal                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
