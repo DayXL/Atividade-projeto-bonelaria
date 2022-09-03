@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 char verMenuPrincipal(void);
+void moduloBone(void);
 char verMenuBone(void);
 char verMenuFornecedor(void);
 char verMenuCliente(void);
@@ -15,7 +16,7 @@ int main(void) {
     while (esc!='0'){
 
         if (esc=='1'){
-            verMenuBone();
+            moduloBone();
 
         }
 
@@ -81,6 +82,45 @@ char verMenuPrincipal(void) {
 
 }
 
+void moduloBone(void) {
+
+    char esc = verMenuBone();
+
+    while (esc!='0'){
+
+        if (esc=='1'){
+            printf("Cadastrar modelo\n");
+
+        }
+
+        else if (esc=='2'){
+            printf("Editar modelo\n");
+
+        }
+
+        else if (esc=='3'){
+            printf("Excluir modelo\n");
+
+        }
+
+        else if (esc=='4'){
+            printf("Pesquisar modelo\n");
+
+        }
+
+        else{
+            printf("Opção inválida!\n");
+        
+        }
+
+        printf("Tecle ENTER para continuar");
+        getchar();
+
+        esc = verMenuBone();
+    }
+
+}
+
 char verMenuBone(void) {
     printf("\n");
     printf("===============================================================================\n");
@@ -96,6 +136,12 @@ char verMenuBone(void) {
     printf("===============================================================================\n");
     printf("\n");
 
+    printf("Selecione sua opção:");
+    char esc;
+    scanf("%c" , &esc);
+    getchar();
+
+    return esc;
 }
 
 char verMenuFornecedor(void) {
