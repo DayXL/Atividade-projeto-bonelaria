@@ -12,6 +12,9 @@ char verMenuFornecedor(void);
 void moduloCliente(void);
 char verMenuCliente(void);
 
+void moduloEstoque(void);
+char verMenuEstoque(void);
+
 void moduloRelatorio(void);
 char verMenuRelatorio(void);
 
@@ -41,11 +44,16 @@ int main(void) {
         }
 
         else if (esc=='4'){
-            moduloRelatorio();
+            moduloEstoque();
 
         }
 
         else if (esc=='5'){
+            moduloRelatorio();
+
+        }
+
+        else if (esc=='6'){
             verMenuSobre();
 
         }
@@ -83,8 +91,9 @@ char verMenuPrincipal(void) {
     printf("===                 1. Módulo Boné                                          ===\n");
     printf("===                 2. Módulo Fornecedor                                    ===\n");
     printf("===                 3. Módulo Cliente                                       ===\n");
-    printf("===                 4. Relatórios                                           ===\n");
-    printf("===                 5. Menu Sobre                                           ===\n");
+    printf("===                 4. Módulo Estoque                                       ===\n");
+    printf("===                 5. Relatórios                                           ===\n");
+    printf("===                 6. Menu Sobre                                           ===\n");
     printf("===                 0. Sair                                                 ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -274,6 +283,63 @@ char verMenuCliente(void) {
     printf("===                 2. Editar cliente                                       ===\n");
     printf("===                 3. Excluir cliente                                      ===\n");
     printf("===                 4. Pesquisar cliente                                    ===\n");
+    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+    printf("Selecione sua opção:");
+    char esc;
+    scanf("%c" , &esc);
+    getchar();
+
+    return esc;
+
+}
+
+void moduloEstoque(void) {
+
+    char esc = verMenuEstoque();
+
+    while (esc!='0'){
+
+        if (esc=='1'){
+            printf("Materias em estoque\n");
+
+        }
+
+        else if (esc=='2'){
+            printf("Pesquisar materias em estoque\n");
+
+        }
+
+        else if (esc=='3'){
+            printf("Comprar materias para estoque\n");
+
+        }
+
+        else{
+            printf("Opção inválida!\n");
+        
+        }
+
+        passarEnter();
+
+        esc = verMenuEstoque();
+    }
+
+}
+
+char verMenuEstoque(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===               = = = = = Menu Estoque = = = = =                          ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Ver materiais em estoque                             ===\n");
+    printf("===                 2. Pesquisar materias em estoque                        ===\n");
+    printf("===                 3. Comprar materiais para estoque                       ===\n");
     printf("===                 0. Voltar ao menu principal                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
