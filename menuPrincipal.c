@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 char verMenuPrincipal(void);
+char verMenuBone(void);
 void verMenuSobre(void);
 
 int main(void) {
@@ -11,7 +12,7 @@ int main(void) {
     while (esc!='0'){
 
         if (esc=='1'){
-            printf("Módulo Boné");
+            verMenuBone();
 
         }
 
@@ -74,6 +75,23 @@ char verMenuPrincipal(void) {
     getchar();
 
     return esc;
+
+}
+
+char verMenuBone(void) {
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                 = = = = = Menu Boné = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Cadastrar modelo                                     ===\n");
+    printf("===                 2. Editar modelo                                        ===\n");
+    printf("===                 3. Excluir modelo                                       ===\n");
+    printf("===                 4. Pesquisar modelo                                     ===\n");
+    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
 
