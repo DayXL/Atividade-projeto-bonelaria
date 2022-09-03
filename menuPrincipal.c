@@ -9,6 +9,7 @@ char verMenuBone(void);
 void moduloFornecedor(void);
 char verMenuFornecedor(void);
 
+void moduloCliente(void);
 char verMenuCliente(void);
 
 char verMenuRelatorio(void);
@@ -32,7 +33,7 @@ int main(void) {
         }
 
         else if (esc=='3'){
-            verMenuCliente();
+            moduloCliente();
 
         }
 
@@ -214,6 +215,45 @@ char verMenuFornecedor(void) {
 
 }
 
+void moduloCliente(void) {
+
+    char esc = verMenuCliente();
+
+    while (esc!='0'){
+
+        if (esc=='1'){
+            printf("Cadastrar cliente\n");
+
+        }
+
+        else if (esc=='2'){
+            printf("Editar cliente\n");
+
+        }
+
+        else if (esc=='3'){
+            printf("Excluir cliente\n");
+
+        }
+
+        else if (esc=='4'){
+            printf("Pesquisar cliente\n");
+
+        }
+
+        else{
+            printf("Opção inválida!\n");
+        
+        }
+
+        printf("Tecle ENTER para continuar");
+        getchar();
+
+        esc = verMenuCliente();
+    }
+
+}
+
 char verMenuCliente(void) {
     printf("\n");
     printf("===============================================================================\n");
@@ -228,6 +268,13 @@ char verMenuCliente(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+    printf("Selecione sua opção:");
+    char esc;
+    scanf("%c" , &esc);
+    getchar();
+
+    return esc;
 
 }
 
