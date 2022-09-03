@@ -11,22 +11,22 @@ int main(void) {
     while (esc!='0'){
 
         if (esc=='1'){
-            printf("Módulo em desenvolvimento!1");
+            printf("Módulo Boné");
 
         }
 
         else if (esc=='2'){
-            printf("Módulo em desenvolvimento!2");
+            printf("Módulo Fornecedor");
 
         }
 
         else if (esc=='3'){
-            printf("Módulo em desenvolvimento!3");
+            printf("Módulo Cliente");
 
         }
 
         else if (esc=='4'){
-            printf("Módulo em desenvolvimento!4");
+            printf("Relatórios");
 
         }
 
@@ -58,10 +58,10 @@ char verMenuPrincipal(void) {
     printf("===                                                                         ===\n");
     printf("===                   = = = = = SIG HAT = = = = =                           ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 1. Módulo em desenvolvimento                            ===\n");
-    printf("===                 2. Módulo em desenvolvimento                            ===\n");
-    printf("===                 3. Módulo em desenvolvimento                            ===\n");
-    printf("===                 4. Módulo em desenvolvimento                            ===\n");
+    printf("===                 1. Módulo Boné                                          ===\n");
+    printf("===                 2. Módulo Fornecedor                                    ===\n");
+    printf("===                 3. Módulo Cliente                                       ===\n");
+    printf("===                 4. Relatórios                                           ===\n");
     printf("===                 5. Menu Sobre                                           ===\n");
     printf("===                 0. Sair                                                 ===\n");
     printf("===                                                                         ===\n");
