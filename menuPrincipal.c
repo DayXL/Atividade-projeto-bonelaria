@@ -5,8 +5,6 @@ char verMenuPrincipal(void);
 void verMenuSobre(void);
 
 int main(void) {
-    //verMenuPrincipal();//
-    //verMenuSobre();//
 
     char esc = verMenuPrincipal();
 
@@ -45,41 +43,9 @@ int main(void) {
         printf("Tecle ENTER para continuar");
         getchar();
 
-        char esc = verMenuPrincipal();
+        esc = verMenuPrincipal();
     }
         
-        /*while (esc!='0') {
-
-            switch (esc)
-                {
-                    case '1':
-                        printf("Módulo em desenvolvimento!1");
-                        break;
-
-                    case '2':
-                        printf("Módulo em desenvolvimento!2");
-                        break;
-                    
-                    case '3':
-                        printf("Módulo em desenvolvimento!3");
-                        break;
-                    
-                    case '4':
-                        printf("Módulo em desenvolvimento!4");
-                        break;
-
-                    case '5':
-                        verMenuSobre();
-                        break;
-
-                    default:
-                        printf("Opção inválida!");
-                        break;
-
-                    char esc = verMenuPrincipal();
-            } 
-
-        }*/
 
     printf("Programa finalizado!");
 
