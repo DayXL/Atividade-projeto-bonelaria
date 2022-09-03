@@ -1,6 +1,7 @@
 #ifndef MODULOBONE_H
 #define MODULOBONE_H
 
-void passarEnter(void);
+void moduloBone(void);
+char verMenuBone(void);
 
 #endif

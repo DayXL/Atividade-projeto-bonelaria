@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcaoAux.c"
+#include "moduloBone.c"
 
 char verMenuPrincipal(void);
-
 
 void moduloFornecedor(void);
 char verMenuFornecedor(void);
