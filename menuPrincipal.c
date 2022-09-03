@@ -74,6 +74,7 @@ void passarEnter(void) {
 }
 
 char verMenuPrincipal(void) {
+    system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
@@ -137,6 +138,7 @@ void moduloBone(void) {
 }
 
 char verMenuBone(void) {
+    system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
@@ -199,6 +201,7 @@ void moduloFornecedor(void) {
 }
 
 char verMenuFornecedor(void) {
+    system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
@@ -261,6 +264,7 @@ void moduloCliente(void) {
 }
 
 char verMenuCliente(void) {
+    system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
@@ -318,6 +322,7 @@ void moduloRelatorio(void) {
 }
 
 char verMenuRelatorio(void) {
+    system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
@@ -341,6 +346,7 @@ char verMenuRelatorio(void) {
 }
 
 void verMenuSobre(void) {
+    system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
