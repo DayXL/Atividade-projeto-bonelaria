@@ -17,6 +17,8 @@ char verMenuRelatorio(void);
 
 void verMenuSobre(void);
 
+void passarEnter(void);
+
 int main(void) {
 
     char esc = verMenuPrincipal();
@@ -53,8 +55,7 @@ int main(void) {
         
         }
 
-        printf("Tecle ENTER para continuar");
-        getchar();
+        passarEnter();
 
         esc = verMenuPrincipal();
     }
@@ -63,6 +64,13 @@ int main(void) {
     printf("Programa finalizado!");
 
     return 0;
+}
+
+void passarEnter(void) {
+
+    printf("Tecle ENTER para continuar");
+    getchar();
+
 }
 
 char verMenuPrincipal(void) {
@@ -121,8 +129,7 @@ void moduloBone(void) {
         
         }
 
-        printf("Tecle ENTER para continuar");
-        getchar();
+        passarEnter();
 
         esc = verMenuBone();
     }
@@ -184,8 +191,7 @@ void moduloFornecedor(void) {
         
         }
 
-        printf("Tecle ENTER para continuar");
-        getchar();
+        passarEnter();
 
         esc = verMenuFornecedor();
     }
@@ -247,8 +253,7 @@ void moduloCliente(void) {
         
         }
 
-        printf("Tecle ENTER para continuar");
-        getchar();
+        passarEnter();
 
         esc = verMenuCliente();
     }
@@ -305,8 +310,7 @@ void moduloRelatorio(void) {
         
         }
 
-        printf("Tecle ENTER para continuar");
-        getchar();
+        passarEnter();
 
         esc = verMenuRelatorio();
     }
