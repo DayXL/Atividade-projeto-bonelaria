@@ -12,6 +12,7 @@ char verMenuFornecedor(void);
 void moduloCliente(void);
 char verMenuCliente(void);
 
+void moduloRelatorio(void);
 char verMenuRelatorio(void);
 
 void verMenuSobre(void);
@@ -38,7 +39,7 @@ int main(void) {
         }
 
         else if (esc=='4'){
-            verMenuRelatorio();
+            moduloRelatorio();
 
         }
 
@@ -278,6 +279,40 @@ char verMenuCliente(void) {
 
 }
 
+void moduloRelatorio(void) {
+
+    char esc = verMenuRelatorio();
+
+    while (esc!='0'){
+
+        if (esc=='1'){
+            printf("Relatório Boné\n");
+
+        }
+
+        else if (esc=='2'){
+            printf("Relatório Fornecedor\n");
+
+        }
+
+        else if (esc=='3'){
+            printf("Relatório cliente\n");
+
+        }
+
+        else{
+            printf("Opção inválida!\n");
+        
+        }
+
+        printf("Tecle ENTER para continuar");
+        getchar();
+
+        esc = verMenuRelatorio();
+    }
+
+}
+
 char verMenuRelatorio(void) {
     printf("\n");
     printf("===============================================================================\n");
@@ -291,6 +326,13 @@ char verMenuRelatorio(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+    printf("Selecione sua opção:");
+    char esc;
+    scanf("%c" , &esc);
+    getchar();
+
+    return esc;
 
 }
 
