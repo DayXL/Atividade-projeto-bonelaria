@@ -5,6 +5,7 @@ char verMenuPrincipal(void);
 char verMenuBone(void);
 char verMenuFornecedor(void);
 char verMenuCliente(void);
+char verMenuRelatorio(void);
 void verMenuSobre(void);
 
 int main(void) {
@@ -29,7 +30,7 @@ int main(void) {
         }
 
         else if (esc=='4'){
-            printf("Relatórios");
+            verMenuRelatorio();
 
         }
 
@@ -124,6 +125,22 @@ char verMenuCliente(void) {
     printf("===                 2. Editar cliente                                       ===\n");
     printf("===                 3. Excluir cliente                                      ===\n");
     printf("===                 4. Pesquisar cliente                                    ===\n");
+    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+char verMenuRelatorio(void) {
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Menu Relatórios = = = = =                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Relatório Boné                                       ===\n");
+    printf("===                 2. Relatório Fornecedor                                 ===\n");
+    printf("===                 3. Relatório cliente                                    ===\n");
     printf("===                 0. Voltar ao menu principal                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
