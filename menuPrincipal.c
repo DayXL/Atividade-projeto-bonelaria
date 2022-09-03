@@ -3,6 +3,7 @@
 
 char verMenuPrincipal(void);
 char verMenuBone(void);
+char verMenuFornecedor(void);
 void verMenuSobre(void);
 
 int main(void) {
@@ -17,7 +18,7 @@ int main(void) {
         }
 
         else if (esc=='2'){
-            printf("Módulo Fornecedor");
+            verMenuFornecedor();
 
         }
 
@@ -88,6 +89,23 @@ char verMenuBone(void) {
     printf("===                 2. Editar modelo                                        ===\n");
     printf("===                 3. Excluir modelo                                       ===\n");
     printf("===                 4. Pesquisar modelo                                     ===\n");
+    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+char verMenuFornecedor(void) {
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Menu Fornecedor = = = = =                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Cadastrar fornecedor                                 ===\n");
+    printf("===                 2. Editar fornecedor                                    ===\n");
+    printf("===                 3. Excluir fornecedor                                   ===\n");
+    printf("===                 4. Pesquisar fornecedor                                 ===\n");
     printf("===                 0. Voltar ao menu principal                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
