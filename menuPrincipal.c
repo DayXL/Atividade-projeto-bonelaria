@@ -12,6 +12,10 @@ void pesquisarModelo(void);
 
 void moduloFornecedor(void);
 char verMenuFornecedor(void);
+void cadastrarFornecedor(void);
+void editarFornecedor(void);
+void excluirFornecedor(void);
+void pesquisarFornecedor(void);
 
 void moduloCliente(void);
 char verMenuCliente(void);
@@ -248,22 +252,22 @@ void moduloFornecedor(void) {
     while (esc!='0'){
 
         if (esc=='1'){
-            printf("Cadastrar fornecedor\n");
+            cadastrarFornecedor();
 
         }
 
         else if (esc=='2'){
-            printf("Editar fornecedor\n");
+            editarFornecedor();
 
         }
 
         else if (esc=='3'){
-            printf("Excluir fornecedor\n");
+            excluirFornecedor();
 
         }
 
         else if (esc=='4'){
-            printf("Pesquisar fornecedor\n");
+            pesquisarFornecedor();
 
         }
 
@@ -299,6 +303,65 @@ char verMenuFornecedor(void) {
     esc = auxEscolha();
 
     return esc;
+
+}
+
+void cadastrarFornecedor(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===            = = = = = Cadastrar fornecedor = = = = =                     ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 Nome do fornecedor:                                     ===\n");
+    printf("===                 CNPJ:                                                   ===\n");
+    printf("===                 Contato:                                                ===\n");
+    printf("===                 Item que vende:                                         ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void editarFornecedor(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Editar fornecedor = = = = =                      ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                   Informe o CNPJ:                                       ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void excluirFornecedor(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                = = = = = Excluir fornecedor = = = = =                   ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                   Informe o CNPJ:                                       ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void pesquisarFornecedor(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Pesquisar fornecedor = = = = =                   ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                   Informe o CNPJ:                                       ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
 
