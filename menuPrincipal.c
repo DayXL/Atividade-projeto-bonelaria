@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcoesAux.h"
 
 char verMenuPrincipal(void);
 
@@ -31,9 +32,6 @@ void moduloRelatorio(void);
 char verMenuRelatorio(void);
 
 void verMenuSobre(void);
-
-void auxPassarEnter(void);
-char auxEscolha(void);
 
 int main(void) {
 
