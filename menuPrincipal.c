@@ -24,7 +24,8 @@ char verMenuRelatorio(void);
 
 void verMenuSobre(void);
 
-void passarEnter(void);
+void auxPassarEnter(void);
+char auxEscolha(void);
 
 int main(void) {
 
@@ -85,6 +86,17 @@ void passarEnter(void) {
 
 }
 
+char auxEscolha(void) {
+
+    printf("Selecione sua opção:");
+    char esc;
+    scanf("%c" , &esc);
+    getchar();
+
+    return esc;
+
+}
+
 char verMenuPrincipal(void) {
     system ( " clear||cls " );
     printf("\n");
@@ -103,10 +115,8 @@ char verMenuPrincipal(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    printf("Selecione sua opção:");
     char esc;
-    scanf("%c" , &esc);
-    getchar();
+    esc = auxEscolha();
 
     return esc;
 
@@ -166,10 +176,8 @@ char verMenuBone(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    printf("Selecione sua opção:");
     char esc;
-    scanf("%c" , &esc);
-    getchar();
+    esc = auxEscolha();
 
     return esc;
 
@@ -287,10 +295,8 @@ char verMenuFornecedor(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    printf("Selecione sua opção:");
     char esc;
-    scanf("%c" , &esc);
-    getchar();
+    esc = auxEscolha();
 
     return esc;
 
@@ -356,10 +362,8 @@ char verMenuCliente(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    printf("Selecione sua opção:");
     char esc;
-    scanf("%c" , &esc);
-    getchar();
+    esc = auxEscolha();
 
     return esc;
 
@@ -413,10 +417,8 @@ char verMenuEstoque(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    printf("Selecione sua opção:");
     char esc;
-    scanf("%c" , &esc);
-    getchar();
+    esc = auxEscolha();
 
     return esc;
 
@@ -470,10 +472,8 @@ char verMenuRelatorio(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    printf("Selecione sua opção:");
     char esc;
-    scanf("%c" , &esc);
-    getchar();
+    esc = auxEscolha();
 
     return esc;
 
