@@ -122,7 +122,7 @@ void moduloBone(void) {
         }
 
         else if (esc=='2'){
-            pesquisarModelo();
+            printf("Editar\n");
 
         }
 
@@ -132,7 +132,7 @@ void moduloBone(void) {
         }
 
         else if (esc=='4'){
-            printf("Pesquisar modelo\n");
+            pesquisarModelo();
 
         }
 
