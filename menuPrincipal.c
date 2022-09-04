@@ -5,6 +5,7 @@ char verMenuPrincipal(void);
 
 void moduloBone(void);
 char verMenuBone(void);
+void cadastrarModelo(void);
 
 void moduloFornecedor(void);
 char verMenuFornecedor(void);
@@ -115,7 +116,7 @@ void moduloBone(void) {
     while (esc!='0'){
 
         if (esc=='1'){
-            printf("Cadastrar modelo\n");
+            cadastrarModelo();
 
         }
 
@@ -168,6 +169,22 @@ char verMenuBone(void) {
     getchar();
 
     return esc;
+
+}
+
+void cadastrarModelo(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Cadastrar modelo = = = = =                       ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 Nome do modelo:                                         ===\n");
+    printf("===                 Unidades por metro de tecido:                           ===\n");
+    printf("===                 Unidades por tubo de linha:                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
 
