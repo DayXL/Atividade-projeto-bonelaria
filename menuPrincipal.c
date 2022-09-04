@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "funcaoAux.c"
 
 char verMenuPrincipal(void);
 
@@ -20,6 +19,8 @@ void moduloRelatorio(void);
 char verMenuRelatorio(void);
 
 void verMenuSobre(void);
+
+void passarEnter(void);
 
 int main(void) {
 
@@ -71,6 +72,13 @@ int main(void) {
     printf("Programa finalizado!");
 
     return 0;
+}
+
+void passarEnter(void) {
+
+    printf("Tecle ENTER para continuar");
+    getchar();
+
 }
 
 char verMenuPrincipal(void) {
