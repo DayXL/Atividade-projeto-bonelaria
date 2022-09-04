@@ -6,6 +6,8 @@ char verMenuPrincipal(void);
 void moduloBone(void);
 char verMenuBone(void);
 void cadastrarModelo(void);
+void editarModelo(void);
+
 void pesquisarModelo(void);
 
 void moduloFornecedor(void);
@@ -122,7 +124,7 @@ void moduloBone(void) {
         }
 
         else if (esc=='2'){
-            printf("Editar\n");
+            editarModelo();
 
         }
 
@@ -183,6 +185,20 @@ void cadastrarModelo(void) {
     printf("===                 Nome do modelo:                                         ===\n");
     printf("===                 Unidades por metro de tecido:                           ===\n");
     printf("===                 Unidades por tubo de linha:                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void editarModelo(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                = = = = = Editar modelo = = = = =                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                   Informe o modelo:                                     ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
