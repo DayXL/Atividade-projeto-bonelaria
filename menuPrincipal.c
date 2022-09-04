@@ -19,6 +19,10 @@ void pesquisarFornecedor(void);
 
 void moduloCliente(void);
 char verMenuCliente(void);
+void cadastrarCliente(void);
+void editarCliente(void);
+void excluirCliente(void);
+void pesquisarCliente(void);
 
 void moduloEstoque(void);
 char verMenuEstoque(void);
@@ -372,27 +376,27 @@ void moduloCliente(void) {
     while (esc!='0'){
 
         if (esc=='1'){
-            printf("Cadastrar cliente\n");
+            cadastrarCliente();
 
         }
 
         else if (esc=='2'){
-            printf("Editar cliente\n");
+            editarCliente();
 
         }
 
         else if (esc=='3'){
-            printf("Excluir cliente\n");
+            excluirCliente();
 
         }
 
         else if (esc=='4'){
-            printf("Pesquisar cliente\n");
+            pesquisarCliente();
 
         }
 
         else if (esc=='5'){
-            printf("Fechar pedido para cliente\n");
+            pedidoCliente();
 
         }
 
@@ -429,6 +433,81 @@ char verMenuCliente(void) {
     esc = auxEscolha();
 
     return esc;
+
+}
+
+void cadastrarCliente(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===               = = = = = Cadastrar cliente = = = = =                     ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 Nome do cliente:                                        ===\n");
+    printf("===                 CPF:                                                    ===\n");
+    printf("===                 Contato:                                                ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void editarCliente(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Editar cliente = = = = =                         ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                   Informe o CPF:                                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void excluirCliente(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                = = = = = Excluir cliente = = = = =                      ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                   Informe o CPF:                                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void pesquisarCliente(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===               = = = = = Pesquisar cliente = = = = =                     ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                   Informe o CPF:                                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void pedidoCliente(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===               = = = = = Fechar pedido = = = = =                         ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 Nome do cliente:                                        ===\n");
+    printf("===                 CPF:                                                    ===\n");
+    printf("===                 Modelo de boné:                                         ===\n");
+    printf("===                 Quantidade:                                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
 
