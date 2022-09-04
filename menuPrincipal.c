@@ -7,7 +7,7 @@ void moduloBone(void);
 char verMenuBone(void);
 void cadastrarModelo(void);
 void editarModelo(void);
-
+void excluirModelo(void);
 void pesquisarModelo(void);
 
 void moduloFornecedor(void);
@@ -129,7 +129,7 @@ void moduloBone(void) {
         }
 
         else if (esc=='3'){
-            printf("Excluir modelo\n");
+            excluirModelo();
 
         }
 
@@ -197,6 +197,20 @@ void editarModelo(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                = = = = = Editar modelo = = = = =                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                   Informe o modelo:                                     ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void excluirModelo(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                = = = = = Excluir modelo = = = = =                        ===\n");
     printf("===                                                                         ===\n");
     printf("===                   Informe o modelo:                                     ===\n");
     printf("===                                                                         ===\n");
