@@ -23,6 +23,7 @@ void cadastrarCliente(void);
 void editarCliente(void);
 void excluirCliente(void);
 void pesquisarCliente(void);
+void pedidoCliente(void);
 
 void moduloEstoque(void);
 char verMenuEstoque(void);
