@@ -32,7 +32,7 @@ char verMenuRelatorio(void);
 
 void verMenuSobre(void);
 
-void auxPassarEnter(void);
+void passarEnter(void);
 char auxEscolha(void);
 
 int main(void) {
