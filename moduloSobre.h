@@ -1,0 +1,2 @@
+
+void verMenuSobre(void);
