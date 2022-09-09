@@ -34,7 +34,7 @@ void moduloCliente(void) {
 
         }
 
-        else{
+        else {
             printf("Opção inválida!\n");
         
         }
