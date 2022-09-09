@@ -7,24 +7,24 @@ void moduloRelatorio(void) {
 
     char esc = verMenuRelatorio();
 
-    while (esc!='0'){
+    while (esc!='0') {
 
-        if (esc=='1'){
+        if (esc=='1') {
             printf("Relatório Boné\n");
 
         }
 
-        else if (esc=='2'){
+        else if (esc=='2') {
             printf("Relatório Fornecedor\n");
 
         }
 
-        else if (esc=='3'){
+        else if (esc=='3') {
             printf("Relatório cliente\n");
 
         }
 
-        else{
+        else {
             printf("Opção inválida!\n");
         
         }
