@@ -14,39 +14,39 @@ int main(void) {
 
     char esc = verMenuPrincipal();
 
-    while (esc!='0'){
+    while (esc!='0') {
 
-        if (esc=='1'){
+        if (esc=='1') {
             moduloBone();
 
         }
 
-        else if (esc=='2'){
+        else if (esc=='2') {
             moduloFornecedor();
 
         }
 
-        else if (esc=='3'){
+        else if (esc=='3') {
             moduloCliente();
 
         }
 
-        else if (esc=='4'){
+        else if (esc=='4') {
             moduloEstoque();
 
         }
 
-        else if (esc=='5'){
+        else if (esc=='5') {
             moduloRelatorio();
 
         }
 
-        else if (esc=='6'){
+        else if (esc=='6') {
             verMenuSobre();
 
         }
 
-        else{
+        else {
             printf("Opção inválida!");
         
         }
