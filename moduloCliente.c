@@ -7,29 +7,29 @@ void moduloCliente(void) {
 
     char esc = verMenuCliente();
 
-    while (esc!='0'){
+    while (esc!='0') {
 
-        if (esc=='1'){
+        if (esc=='1') {
             cadastrarCliente();
 
         }
 
-        else if (esc=='2'){
+        else if (esc=='2') {
             editarCliente();
 
         }
 
-        else if (esc=='3'){
+        else if (esc=='3') {
             excluirCliente();
 
         }
 
-        else if (esc=='4'){
+        else if (esc=='4') {
             pesquisarCliente();
 
         }
 
-        else if (esc=='5'){
+        else if (esc=='5') {
             pedidoCliente();
 
         }
