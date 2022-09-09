@@ -7,29 +7,29 @@ void moduloFornecedor(void) {
 
     char esc = verMenuFornecedor();
 
-    while (esc!='0'){
+    while (esc!='0') {
 
-        if (esc=='1'){
+        if (esc=='1') {
             cadastrarFornecedor();
 
         }
 
-        else if (esc=='2'){
+        else if (esc=='2') {
             editarFornecedor();
 
         }
 
-        else if (esc=='3'){
+        else if (esc=='3') {
             excluirFornecedor();
 
         }
 
-        else if (esc=='4'){
+        else if (esc=='4') {
             pesquisarFornecedor();
 
         }
 
-        else{
+        else {
             printf("Opção inválida!\n");
         
         }
