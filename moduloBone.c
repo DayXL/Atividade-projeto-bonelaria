@@ -7,24 +7,24 @@ void moduloBone(void) {
 
     char esc = verMenuBone();
 
-    while (esc!='0'){
+    while (esc!='0') {
 
-        if (esc=='1'){
+        if (esc=='1') {
             cadastrarModelo();
 
         }
 
-        else if (esc=='2'){
+        else if (esc=='2') {
             editarModelo();
 
         }
 
-        else if (esc=='3'){
+        else if (esc=='3') {
             excluirModelo();
 
         }
 
-        else if (esc=='4'){
+        else if (esc=='4') {
             pesquisarModelo();
 
         }
