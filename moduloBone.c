@@ -29,7 +29,7 @@ void moduloBone(void) {
 
         }
 
-        else{
+        else {
             printf("Opção inválida!\n");
         
         }
