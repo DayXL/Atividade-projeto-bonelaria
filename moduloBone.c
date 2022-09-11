@@ -66,6 +66,7 @@ char verMenuBone(void) {
 
 void cadastrarModelo(void) {
 
+    char nomeModelo[11];
     char uniPorMetro[3];
     char uniPorTubo[3];
     
@@ -77,8 +78,9 @@ void cadastrarModelo(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
-
-    verificarModelo();
+    
+    printf("Nome do modelo: ");
+    fgets(nomeModelo, 11, stdin);
 
     printf("Unidades por metro de tecido: ");
     fgets(uniPorMetro, 3, stdin);
@@ -90,21 +92,6 @@ void cadastrarModelo(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
-
-}
-
-void verificarModelo(void) {
-    int a = 0;
-    
-    while (a == 0) {
-        char nomeModelo[11];
-
-        printf("Nome do modelo: ");
-        fgets(nomeModelo, 11, stdin);
-
-        a = validarLetras(nomeModelo);
-
-    }
 
 }
 
