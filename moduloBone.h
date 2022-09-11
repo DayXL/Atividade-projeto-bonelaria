@@ -6,4 +6,3 @@ void cadastrarModelo(void);
 void editarModelo(void);
 void excluirModelo(void);
 void pesquisarModelo(void);
-void verificarModelo(void);
