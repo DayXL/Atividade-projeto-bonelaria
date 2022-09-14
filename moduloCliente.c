@@ -120,7 +120,6 @@ void validarCPF(void) {
 
     while (a == 0) {
         int b = 0;
-        int cpfInt;
 
         printf("CPF(somente números): ");
         fgets(cpf, 13, stdin);
@@ -128,17 +127,24 @@ void validarCPF(void) {
         tam = strlen(cpf);
         cpf[tam - 1] = '\0';
 
-        b = (tam == 1) ? 0 : (validarNumInteiro(cpf));
+        b = ((tam == 1) || (tam < 12)) ? 0 : (validarNumInteiro(cpf));
 
         if (b == 1) {
-            cpfInt = (int) cpf;
-            if (verificarCpf(cpfInt)) {
-                printf("");
+            printf("a");
+
+            if (verificarCpf(cpf[0] - '0', cpf[1] - '0', cpf[2] - '0', cpf[3] - '0',
+                cpf[4] - '0', cpf[5] - '0', cpf[6] - '0', cpf[7] - '0', cpf[8] - '0',
+                cpf[9] - '0', cpf[10] - '0')) {
+
+                printf(" ");
                 printf("CPF válido!\n");
                 a = 1;
+
             }
 
             else {
+                printf(" ");
+                printf("CPF inválido!\n");
                 a = 0;
 
             }
@@ -146,9 +152,10 @@ void validarCPF(void) {
         }
 
         else {
+            printf("b");
             a = 0;
 
-        }
+        } 
 
     }
 
