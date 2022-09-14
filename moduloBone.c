@@ -67,7 +67,6 @@ char verMenuBone(void) {
 
 void cadastrarModelo(void) {
 
-    char uniPorMetro[3];
     char uniPorTubo[3];
     
     system ( " clear||cls " );
@@ -80,9 +79,9 @@ void cadastrarModelo(void) {
     printf("\n");
 
     validarNomeModelo();
+
+    validarUniPorMetro();
     
-    printf("Unidades por metro de tecido: ");
-    fgets(uniPorMetro, 3, stdin);
 
     printf("Unidades por tubo de linha: ");
     fgets(uniPorTubo, 3, stdin);
@@ -108,6 +107,25 @@ void validarNomeModelo(void) {
         nomeModelo[tam - 1] = '\0';
 
         a = (tam == 1) ? 0 : (validarPalavra(nomeModelo));
+
+    }
+
+}
+
+void validarUniPorMetro(void) {
+    int a = 0;
+    int tam;
+    char uniPorMetro[3];
+
+    while (a == 0) {
+
+        printf("Unidades por metro de tecido: ");
+        fgets(uniPorMetro, 3, stdin);
+
+        tam = strlen(uniPorMetro);
+        uniPorMetro[tam - 1] = '\0';
+
+        a = (tam == 1) ? 0 : (validarNumInteiro(uniPorMetro));
 
     }
 
