@@ -119,6 +119,8 @@ void validarCPF(void) {
     char cpf[13];
 
     while (a == 0) {
+        int b = 0;
+        int cpfInt;
 
         printf("CPF(somente números): ");
         fgets(cpf, 13, stdin);
@@ -126,7 +128,27 @@ void validarCPF(void) {
         tam = strlen(cpf);
         cpf[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarNumInteiro(cpf));
+        b = (tam == 1) ? 0 : (validarNumInteiro(cpf));
+
+        if (b == 1) {
+            cpfInt = (int) cpf;
+            if (verificarCpf(cpfInt)) {
+                printf("");
+                printf("CPF válido!\n");
+                a = 1;
+            }
+
+            else {
+                a = 0;
+
+            }
+
+        }
+
+        else {
+            a = 0;
+
+        }
 
     }
 
