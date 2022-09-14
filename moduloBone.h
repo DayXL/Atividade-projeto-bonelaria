@@ -11,3 +11,4 @@ void pesquisarModelo(void);
 //Assinaturas para validacao
 void validarNomeModelo(void);
 void validarUniPorMetro(void);
+void validarUniPorTubo(void);
