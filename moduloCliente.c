@@ -84,7 +84,8 @@ void cadastrarCliente(void) {
 
     validarCPF();
 
-    printf("===                 Contato:                                                ===\n");
+    validarNumeroCelular();
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -124,6 +125,25 @@ void validarCPF(void) {
         cpf[tam - 1] = '\0';
 
         a = (tam == 1) ? 0 : (validarNumInteiro(cpf));
+
+    }
+
+}
+
+void validarNumeroCelular(void) {
+    int a = 0;
+    int tam;
+    char numero[13];
+
+    while (a == 0) {
+
+        printf("Número de celular(somente números): ");
+        fgets(numero, 13, stdin);
+
+        tam = strlen(numero);
+        numero[tam - 1] = '\0';
+
+        a = (tam == 1) ? 0 : (validarNumInteiro(numero));
 
     }
 
