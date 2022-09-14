@@ -86,7 +86,7 @@ void cadastrarCliente(void) {
 
     validarNumeroCelular();
 
-    void validarEmail();
+    validarEmail();
 
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -158,7 +158,7 @@ void validarEmail(void) {
 
     while (a == 0) {
 
-        printf("Nome do cliente: ");
+        printf("Email: ");
         fgets(email, 100, stdin);
 
         tam = strlen(email);
