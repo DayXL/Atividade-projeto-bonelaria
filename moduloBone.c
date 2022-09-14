@@ -168,7 +168,7 @@ void editarModelo(void) {
 }
 
 void excluirModelo(void) {
-    
+
     char nomeModelo[11];
 
     system ( " clear||cls " );
@@ -189,13 +189,20 @@ void excluirModelo(void) {
 }
 
 void pesquisarModelo(void) {
+
+    char nomeModelo[11];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                = = = = = Pesquisar modelo = = = = =                     ===\n");
     printf("===                                                                         ===\n");
-    printf("===                   Informe o modelo:                                     ===\n");
+    printf("===============================================================================\n");
+    
+    printf("Nome do modelo: ");
+    fgets(nomeModelo, 11, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
