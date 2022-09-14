@@ -2,3 +2,4 @@
 
 void passarEnter(void);
 char auxEscolha(void);
+int validarPalavra(char *palavra);
