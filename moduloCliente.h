@@ -10,3 +10,4 @@ void pesquisarCliente(void);
 void pedidoCliente(void);
 
 void validarNomeCliente(void);
+void validarCPF(void);
