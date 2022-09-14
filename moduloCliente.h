@@ -11,3 +11,4 @@ void pedidoCliente(void);
 
 void validarNomeCliente(void);
 void validarCPF(void);
+void validarNumeroCelular(void);
