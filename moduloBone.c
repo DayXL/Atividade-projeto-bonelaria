@@ -147,13 +147,20 @@ void validarUniPorTubo(void) {
 }
 
 void editarModelo(void) {
+
+    char nomeModelo[11];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                = = = = = Editar modelo = = = = =                        ===\n");
+    printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("===                   Informe o modelo:                                     ===\n");
+
+    printf("Nome do modelo: ");
+    fgets(nomeModelo, 11, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
