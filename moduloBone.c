@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "moduloBone.h"
 #include "funcoesAux.h"
 
@@ -66,7 +67,6 @@ char verMenuBone(void) {
 
 void cadastrarModelo(void) {
 
-    char nomeModelo[11];
     char uniPorMetro[3];
     char uniPorTubo[3];
     
@@ -78,10 +78,9 @@ void cadastrarModelo(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
-    
-    printf("Nome do modelo: ");
-    fgets(nomeModelo, 11, stdin);
 
+    validarNomeModelo();
+    
     printf("Unidades por metro de tecido: ");
     fgets(uniPorMetro, 3, stdin);
 
@@ -92,6 +91,25 @@ void cadastrarModelo(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+}
+
+void validarNomeModelo(void) {
+    int a = 0;
+    int tam;
+    char nomeModelo[11];
+
+    while (a == 0) {
+
+        printf("Nome do modelo: ");
+        fgets(nomeModelo, 11, stdin);
+
+        tam = strlen(nomeModelo);
+        nomeModelo[tam - 1] = '\0';
+
+        a = (tam == 1) ? 0 : (validarPalavra(nomeModelo));
+
+    }
 
 }
 
