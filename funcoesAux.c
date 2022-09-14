@@ -73,3 +73,47 @@ int validarNumInteiro(char *numero) {
     return 1;
 
 }
+
+int verificarCpf(int *cpf) {
+    int i = 0;
+    int soma = 0;
+    int resto = 0;
+
+    while (i < 9) {
+        soma = soma + (cpf[i] * (i + 1));
+
+    }
+
+    resto = soma % 11;
+
+    resto = (resto == 10) ? 0 : resto;
+
+    if (resto == cpf[9]) {
+        soma = 0;
+
+        while (i < 9) {
+            soma = soma + (cpf[i] * (i));
+
+        }
+
+        resto = soma % 11;
+
+        resto = (resto == 10) ? 0 : resto;
+
+        if (resto == cpf[10]) {
+            return 1;
+
+        }
+
+        else {
+            return 0;
+        }
+
+    }
+
+    else {
+        return 0;
+
+    }
+
+}
