@@ -53,3 +53,23 @@ int validarPalavra(char *palavra) {
     return 1;
 
 }
+
+int validarNumInteiro(char *numero) {
+    int i = 0;
+
+    while (numero[i] != '\0') {
+        if ((numero[i] >= '0') && (numero[i] <= '9')) {
+            i = i + 1;
+
+        }
+
+        else {
+            return 0;
+
+        }
+
+    }
+
+    return 1;
+
+}
