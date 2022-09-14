@@ -86,6 +86,8 @@ void cadastrarCliente(void) {
 
     validarNumeroCelular();
 
+    void validarEmail();
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -144,6 +146,27 @@ void validarNumeroCelular(void) {
         numero[tam - 1] = '\0';
 
         a = (tam == 1) ? 0 : (validarNumInteiro(numero));
+
+    }
+
+}
+
+void validarEmail(void) {
+    int a = 0;
+    int tam;
+    char email[100];
+
+    while (a == 0) {
+
+        printf("Nome do cliente: ");
+        fgets(email, 100, stdin);
+
+        tam = strlen(email);
+        email[tam - 1] = '\0';
+
+        a = 1;
+
+        //a = (tam == 1) ? 0 : (validarPalavra(email));
 
     }
 
