@@ -74,29 +74,33 @@ int validarNumInteiro(char *numero) {
 
 }
 
-int verificarCpf(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k) {
+int verificarCpf(char *cpf) {
 
     int soma = 0;
     int resto = 0;
 
-    printf("aqui");
+    for (int i = 0; i < 9; i++) {
+        soma = soma + ((cpf[i] - '0' ) * (i + 1));
 
-    soma = a * 1 + b * 2 + c * 3 + d * 4 + e * 5 + f * 6 + g * 7 + h * 8 + i * 9; 
+    }
 
     resto = soma % 11;
 
     resto = (resto == 10) ? 0 : resto;
 
-    if (resto == j) {
+    if (resto == (cpf[9] - '0' )) {
         soma = 0;
 
-        soma = b * 1 + c * 2 + d * 3 + e * 4 + f * 5 + g * 6 + h * 7 + i * 8 + j * 9;
+        for (int i = 0; i < 10; i++) {
+                soma = soma + ((cpf[i] - '0' ) * (i));
+
+        }
 
         resto = soma % 11;
 
         resto = (resto == 10) ? 0 : resto;
 
-        if (resto == k) {
+        if (resto == (cpf[10] - '0' )) {
             return 1;
 
         }
