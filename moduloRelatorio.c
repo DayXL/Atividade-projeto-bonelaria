@@ -20,7 +20,7 @@ void moduloRelatorio(void) {
         }
 
         else if (esc=='3') {
-            printf("Relatório cliente\n");
+            relatorioCliente();
 
         }
 
@@ -92,6 +92,28 @@ void relatorioFornecedor(void) {
     printf("===     Empresa: Acrilex Tintas Especiais S.A                               ===\n");
     printf("===     CNPJ: 60.779.014/0001-87                                            ===\n");
     printf("===     Contato: acrilex@hotmail.com.br                                     ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void relatorioCliente(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===          = = = = = Relatório Fornecedor  = = = = =                      ===\n");
+    printf("===                                                                         ===\n");
+    printf("===     Cliente: Dayanne Xavier Lucena                                      ===\n");
+    printf("===     CNPJ: 537.495.390-73                                                ===\n");
+    printf("===     Telefone: 84 999999999                                              ===\n");
+    printf("===     Email: day2015@gmail.com                                            ===\n");
+    printf("===                                                                         ===\n");
+    printf("===     Cliente: Lucas Matheus                                              ===\n");
+    printf("===     CNPJ: 537.495.390-73                                                ===\n");
+    printf("===     Telefone: 84 888888888                                              ===\n");
+    printf("===     Email: lucas2019@hotmail.com                                        ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
