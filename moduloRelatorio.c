@@ -10,7 +10,7 @@ void moduloRelatorio(void) {
     while (esc!='0') {
 
         if (esc=='1') {
-            printf("Relatório Boné\n");
+            relatorioBone();
 
         }
 
@@ -55,5 +55,25 @@ char verMenuRelatorio(void) {
     esc = auxEscolha();
 
     return esc;
+
+}
+
+void relatorioBone(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Relatório Boné  = = = = =                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===     Boné de 6 partes:                                                   ===\n");
+    printf("===      - 4 bonés a cada 1 metro de tecido                                 ===\n");
+    printf("===      - 5 bonés a cada 1 tubo de linha                                   ===\n");
+    printf("===                                                                         ===\n");
+    printf("===     Boné aba reta:                                                      ===\n");
+    printf("===      - 5 bonés a cada 1 metro de tecido                                 ===\n");
+    printf("===      - 7 bonés a cada 1 tubo de linha                                   ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
