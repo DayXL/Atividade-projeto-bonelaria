@@ -125,3 +125,19 @@ void relatorioCliente(void) {
     printf("\n");
 
 }
+
+void relatorioEstoque(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===          = = = = = Relatório Fornecedor  = = = = =                      ===\n");
+    printf("===                                                                         ===\n");
+    printf("===     Linha vermelha: 100 tubos                                           ===\n");
+    printf("===     Bico de boné: 367                                                   ===\n");
+    printf("===     Tinha branca: 10 baldes                                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
