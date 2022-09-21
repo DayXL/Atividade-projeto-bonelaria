@@ -15,7 +15,7 @@ void moduloRelatorio(void) {
         }
 
         else if (esc=='2') {
-            printf("Relatório Fornecedor\n");
+            relatorioFornecedor();
 
         }
 
@@ -72,6 +72,26 @@ void relatorioBone(void) {
     printf("===     Boné aba reta:                                                      ===\n");
     printf("===      - 5 bonés a cada 1 metro de tecido                                 ===\n");
     printf("===      - 7 bonés a cada 1 tubo de linha                                   ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void relatorioFornecedor(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===          = = = = = Relatório Fornecedor  = = = = =                      ===\n");
+    printf("===                                                                         ===\n");
+    printf("===     Empresa: CCJ REPRESENTAÇÕES                                         ===\n");
+    printf("===     CNPJ: 09.354.174/0001-27                                            ===\n");
+    printf("===     Contato: ccjrepresentações@terra.com.br                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===     Empresa: Acrilex Tintas Especiais S.A                               ===\n");
+    printf("===     CNPJ: 60.779.014/0001-87                                            ===\n");
+    printf("===     Contato: acrilex@hotmail.com.br                                     ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
