@@ -79,7 +79,8 @@ void cadastrarFornecedor(void) {
 
     validarCnpj();
 
-    printf("===                 Contato:                                                ===\n");
+    validarEmail2();
+
     printf("===                 Item que vende:                                         ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -146,6 +147,27 @@ void validarCnpj(void) {
             a = 0;
 
         } 
+
+    }
+
+}
+
+void validarEmail2(void) {
+    int a = 0;
+    int tam;
+    char email[100];
+
+    while (a == 0) {
+
+        printf("Email: ");
+        fgets(email, 100, stdin);
+
+        tam = strlen(email);
+        email[tam - 1] = '\0';
+
+        a = 1;
+
+        //a = (tam == 1) ? 0 : (validarPalavra(email));
 
     }
 
