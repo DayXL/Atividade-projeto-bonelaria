@@ -5,3 +5,5 @@ void cadastrarFornecedor(void);
 void editarFornecedor(void);
 void excluirFornecedor(void);
 void pesquisarFornecedor(void);
+
+void validarNomeFornecedor(void);
