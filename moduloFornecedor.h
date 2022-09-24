@@ -9,3 +9,4 @@ void pesquisarFornecedor(void);
 void validarNomeFornecedor(void);
 void validarCnpj(void);
 void validarEmail2(void);
+void itens(void);
