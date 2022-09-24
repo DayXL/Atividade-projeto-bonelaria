@@ -7,3 +7,4 @@ void excluirFornecedor(void);
 void pesquisarFornecedor(void);
 
 void validarNomeFornecedor(void);
+void validarCnpj(void);
