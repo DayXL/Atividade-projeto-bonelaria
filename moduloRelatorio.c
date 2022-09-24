@@ -109,7 +109,7 @@ void relatorioCliente(void) {
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("===          = = = = = Relatório Fornecedor  = = = = =                      ===\n");
+    printf("===          = = = = = Relatório Cliente  = = = = =                         ===\n");
     printf("===                                                                         ===\n");
     printf("===     Cliente: Dayanne Xavier Lucena                                      ===\n");
     printf("===     CNPJ: 537.495.390-73                                                ===\n");
@@ -131,7 +131,7 @@ void relatorioEstoque(void) {
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("===          = = = = = Relatório Fornecedor  = = = = =                      ===\n");
+    printf("===          = = = = = Relatório Estoque  = = = = =                         ===\n");
     printf("===                                                                         ===\n");
     printf("===     Linha vermelha: 100 tubos                                           ===\n");
     printf("===     Bico de boné: 367                                                   ===\n");
