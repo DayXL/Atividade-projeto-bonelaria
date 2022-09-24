@@ -77,7 +77,8 @@ void cadastrarFornecedor(void) {
     
     validarNomeFornecedor();
 
-    printf("===                 CNPJ:                                                   ===\n");
+    validarCnpj();
+
     printf("===                 Contato:                                                ===\n");
     printf("===                 Item que vende:                                         ===\n");
     printf("===                                                                         ===\n");
@@ -100,6 +101,51 @@ void validarNomeFornecedor(void) {
         nomeFornecedor[tam - 1] = '\0';
 
         a = (tam == 1) ? 0 : (validarPalavra(nomeFornecedor));
+
+    }
+
+}
+
+void validarCnpj(void) {
+    int a = 0;
+    int tam;
+    char cnpj[16];
+
+    while (a == 0) {
+        int b = 0;
+
+        printf("CNPJ(somente números): ");
+        fgets(cnpj, 16, stdin);
+
+        tam = strlen(cnpj);
+        cnpj[tam - 1] = '\0';
+
+        b = ((tam == 1) || (tam < 15)) ? 0 : (validarNumInteiro(cnpj));
+
+        if (b == 1) {
+            
+            if (verificarCnpj(cnpj)) {
+
+                printf(" ");
+                printf("CNPJ válido!\n");
+                a = 1;
+
+            }
+
+            else {
+
+                printf(" ");
+                printf("CNPJ inválido!\n");
+                a = 0;
+
+            }
+
+        }
+
+        else {
+            a = 0;
+
+        } 
 
     }
 
