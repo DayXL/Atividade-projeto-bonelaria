@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "moduloFornecedor.h"
 #include "funcoesAux.h"
 
@@ -71,13 +72,36 @@ void cadastrarFornecedor(void) {
     printf("===                                                                         ===\n");
     printf("===            = = = = = Cadastrar fornecedor = = = = =                     ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 Nome do fornecedor:                                     ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    
+    validarNomeFornecedor();
+
     printf("===                 CNPJ:                                                   ===\n");
     printf("===                 Contato:                                                ===\n");
     printf("===                 Item que vende:                                         ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+}
+
+void validarNomeFornecedor(void) {
+    int a = 0;
+    int tam;
+    char nomeFornecedor[100];
+
+    while (a == 0) {
+
+        printf("Nome do fornecedor: ");
+        fgets(nomeFornecedor, 100, stdin);
+
+        tam = strlen(nomeFornecedor);
+        nomeFornecedor[tam - 1] = '\0';
+
+        a = (tam == 1) ? 0 : (validarPalavra(nomeFornecedor));
+
+    }
 
 }
 
