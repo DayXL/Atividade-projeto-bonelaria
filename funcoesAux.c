@@ -117,3 +117,50 @@ int verificarCpf(char *cpf) {
     }
 
 }
+
+int verificarCnpj(char *cnpj) {
+
+    int parteUm[12] = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+    int parteDois[12] = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+
+    int soma = 0;
+    int resto = 0;
+
+    for (int i = 0; i < 12; i++) {
+        soma = soma + ((cnpj[i] - '0' ) * (parteUm[i]));
+
+    }
+
+    resto = soma % 11;
+
+    resto = (resto == 0 || resto == 1) ? 0 : 11 - resto;
+
+    if (resto == (cnpj[12] - '0' )) {
+        soma = 0;
+
+        for (int i = 0; i < 13; i++) {
+            soma = soma + ((cnpj[i] - '0' ) * (parteDois[i]));
+
+        }
+
+        resto = soma % 11;
+
+        resto = (resto == 0 || resto == 1) ? 0 : 11 - resto;
+
+        if (resto == (cnpj[13] - '0' )) {
+            return 1;
+
+        }
+
+        else {
+            return 0;
+        }
+
+    }
+
+    else {
+        return 0;
+
+    }
+
+}
