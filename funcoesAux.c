@@ -121,7 +121,7 @@ int verificarCpf(char *cpf) {
 int verificarCnpj(char *cnpj) {
 
     int parteUm[12] = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
-    int parteDois[12] = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+    int parteDois[13] = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
 
     int soma = 0;
     int resto = 0;
