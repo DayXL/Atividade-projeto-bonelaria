@@ -15,7 +15,7 @@ void moduloEstoque(void) {
         }
 
         else if (esc=='2') {
-            printf("Pesquisar materias em estoque\n");
+            pesquisarMateriaisEstoque();
 
         }
 
@@ -68,6 +68,27 @@ void materiaisEstoque(void) {
     printf("===     Linha vermelha: 100 tubos                                           ===\n");
     printf("===     Bico de boné: 367                                                   ===\n");
     printf("===     Tinha branca: 10 baldes                                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void pesquisarMateriaisEstoque(void) {
+
+    char material[50];
+
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===        = = = = = Materiais em Estoque  = = = = =                        ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+
+    printf("Nome material: ");
+    fgets(material, 100, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
