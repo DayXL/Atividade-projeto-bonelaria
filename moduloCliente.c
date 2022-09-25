@@ -218,13 +218,20 @@ void validarEmail(void) {
 }
 
 void editarCliente(void) {
+
+    char cpf[13];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===              = = = = = Editar cliente = = = = =                         ===\n");
     printf("===                                                                         ===\n");
-    printf("===                   Informe o CPF:                                        ===\n");
+    printf("===============================================================================\n");
+
+    printf("CPF do cliente: ");
+    fgets(cpf, 13, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -232,13 +239,20 @@ void editarCliente(void) {
 }
 
 void excluirCliente(void) {
+
+    char cpf[13];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                = = = = = Excluir cliente = = = = =                      ===\n");
     printf("===                                                                         ===\n");
-    printf("===                   Informe o CPF:                                        ===\n");
+    printf("===============================================================================\n");
+
+    printf("CPF do cliente: ");
+    fgets(cpf, 13, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -246,13 +260,20 @@ void excluirCliente(void) {
 }
 
 void pesquisarCliente(void) {
+
+    char cpf[13];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===               = = = = = Pesquisar cliente = = = = =                     ===\n");
     printf("===                                                                         ===\n");
-    printf("===                   Informe o CPF:                                        ===\n");
+    printf("===============================================================================\n");
+
+    printf("CPF do cliente: ");
+    fgets(cpf, 13, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
