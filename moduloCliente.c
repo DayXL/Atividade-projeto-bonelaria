@@ -281,16 +281,33 @@ void pesquisarCliente(void) {
 }
 
 void pedidoCliente(void) {
+
+    char nomeCliente[100];
+    char cpf[13];
+    char nomeModelo[11];
+    char quantidade[10];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===               = = = = = Fechar pedido = = = = =                         ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 Nome do cliente:                                        ===\n");
-    printf("===                 CPF:                                                    ===\n");
-    printf("===                 Modelo de boné:                                         ===\n");
-    printf("===                 Quantidade:                                             ===\n");
+    printf("===============================================================================\n");
+
+
+    printf("Nome do cliente: ");
+    fgets(nomeCliente, 100, stdin);
+
+    printf("CPF(somente números): ");
+    fgets(cpf, 13, stdin);
+
+    printf("Nome do modelo: ");
+    fgets(nomeModelo, 11, stdin);
+
+    printf("Quantidade: ");
+    fgets(quantidade, 11, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
