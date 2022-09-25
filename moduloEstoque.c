@@ -20,7 +20,7 @@ void moduloEstoque(void) {
         }
 
         else if (esc=='3') {
-            printf("Comprar materias para estoque\n");
+            comprarMateriais();
 
         }
 
@@ -83,6 +83,28 @@ void pesquisarMateriaisEstoque(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===        = = = = = Materiais em Estoque  = = = = =                        ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+
+    printf("Nome material: ");
+    fgets(material, 100, stdin);
+
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void comprarMateriais(void) {
+
+    char material[50];
+
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===        = = = = = Comprar material  = = = = =                            ===\n");
+    printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
 
