@@ -194,13 +194,20 @@ void itens(void) {
 }
 
 void editarFornecedor(void) {
+
+    char cnpj[16];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===              = = = = = Editar fornecedor = = = = =                      ===\n");
     printf("===                                                                         ===\n");
-    printf("===                   Informe o CNPJ:                                       ===\n");
+    printf("===============================================================================\n");
+
+    printf("CNPJ(somente números): ");
+    fgets(cnpj, 16, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -208,13 +215,20 @@ void editarFornecedor(void) {
 }
 
 void excluirFornecedor(void) {
+
+    char cnpj[16];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                = = = = = Excluir fornecedor = = = = =                   ===\n");
     printf("===                                                                         ===\n");
-    printf("===                   Informe o CNPJ:                                       ===\n");
+    printf("===============================================================================\n");
+
+    printf("CNPJ(somente números): ");
+    fgets(cnpj, 16, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -222,13 +236,20 @@ void excluirFornecedor(void) {
 }
 
 void pesquisarFornecedor(void) {
+
+    char cnpj[16];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===              = = = = = Pesquisar fornecedor = = = = =                   ===\n");
     printf("===                                                                         ===\n");
-    printf("===                   Informe o CNPJ:                                       ===\n");
+    printf("===============================================================================\n");
+
+    printf("CNPJ(somente números): ");
+    fgets(cnpj, 16, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
