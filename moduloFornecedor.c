@@ -81,8 +81,6 @@ void cadastrarFornecedor(void) {
 
     validarEmail2();
 
-    itens();
-
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -169,25 +167,6 @@ void validarEmail2(void) {
         a = 1;
 
         //a = (tam == 1) ? 0 : (validarPalavra(email));
-
-    }
-
-}
-
-void itens(void) {
-    int a = 0;
-    int tam;
-    char itensQueVende[100];
-
-    while (a == 0) {
-
-        printf("Itens que vende: ");
-        fgets(itensQueVende, 100, stdin);
-
-        tam = strlen(itensQueVende);
-        itensQueVende[tam - 1] = '\0';
-
-        a = (tam == 1) ? 0 : (validarPalavra(itensQueVende));
 
     }
 
