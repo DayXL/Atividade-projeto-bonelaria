@@ -10,7 +10,7 @@ void moduloEstoque(void) {
     while (esc!='0') {
 
         if (esc=='1') {
-            materiaisEstoque();
+            cadastrarMateriais();
 
         }
 
@@ -67,6 +67,23 @@ char verMenuEstoque(void) {
     esc = auxEscolha();
 
     return esc;
+
+}
+
+void cadastrarMateriais(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===             = = = = = Cadastrar material = = = = =                      ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===     Nome do material:                                                   ===\n");
+    printf("===     CNPJ do fornecedor:                                                 ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
 
