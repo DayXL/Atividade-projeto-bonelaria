@@ -119,6 +119,8 @@ char escolherModelo(void) {
 
 void telaBone(void) {
 
+    char detalhes[20];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
@@ -137,6 +139,9 @@ void telaBone(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+    printf("Escolha: ");
+    fgets(detalhes, 20, stdin);
 
 }
 
