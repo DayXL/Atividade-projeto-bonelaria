@@ -15,7 +15,7 @@ void moduloEstoque(void) {
         }
 
         else if (esc=='2') {
-            pesquisarMateriaisEstoque();
+            excluirMaterial();
 
         }
 
@@ -81,6 +81,27 @@ void cadastrarMateriais(void) {
     printf("===                                                                         ===\n");
     printf("===     Nome do material:                                                   ===\n");
     printf("===     CNPJ do fornecedor:                                                 ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void excluirMaterial(void) {
+
+    char material[100];
+
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                = = = = = Excluir cliente = = = = =                      ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+
+    printf("Nome do material: ");
+    fgets(material, 100, stdin);
+
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
