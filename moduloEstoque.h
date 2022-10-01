@@ -6,3 +6,4 @@ void pesquisarMateriaisEstoque(void);
 void comprarMateriais(void);
 void cadastrarMateriais(void);
 void excluirMaterial(void);
+void validarNomeMaterial(void);
