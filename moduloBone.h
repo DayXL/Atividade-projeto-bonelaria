@@ -3,10 +3,12 @@
 //Assinaturas principais
 void moduloBone(void);
 char verMenuBone(void);
-void cadastrarModelo(void);
+char escolherModelo(void);
 void editarModelo(void);
 void excluirModelo(void);
 void pesquisarModelo(void);
+void cadastrarModelo(void);
+void escolhendoModelo(void);
 
 //Assinaturas para validacao
 void validarNomeModelo(void);
