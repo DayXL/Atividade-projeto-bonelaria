@@ -11,7 +11,7 @@ void moduloBone(void) {
     while (esc!='0') {
 
         if (esc=='1') {
-            cadastrarModelo();
+            escolhendoModelo();
 
         }
 
@@ -65,7 +65,35 @@ char verMenuBone(void) {
 
 }
 
-void cadastrarModelo(void) {
+void escolhendoModelo(void) {
+
+    char esc = escolherModelo();
+
+    while (esc!='0') {
+
+        if (esc=='1') {
+            printf("bone");
+
+        }
+
+        else if (esc=='2') {
+            printf("chapeu");
+
+        }
+
+        else {
+            printf("Opção inválida!\n");
+        
+        }
+
+        passarEnter();
+
+        esc = escolherModelo();
+    }
+
+}
+
+char escolherModelo(void) {
     
     system ( " clear||cls " );
     printf("\n");
@@ -74,19 +102,28 @@ void cadastrarModelo(void) {
     printf("===              = = = = = Cadastrar modelo = = = = =                       ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Boné                                                 ===\n");
+    printf("===                 2. Chapéu                                               ===\n");
+    printf("===                 0. Voltar                                               ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
     printf("\n");
+
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
+
+}
+
+void cadastrarModelo(void) {
 
     validarNomeModelo();
 
     validarUniPorMetro();
 
     validarUniPorTubo();
-
-    printf("\n");
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
-
 }
 
 void validarNomeModelo(void) {
@@ -145,6 +182,7 @@ void validarUniPorTubo(void) {
     }
 
 }
+
 
 void editarModelo(void) {
 
