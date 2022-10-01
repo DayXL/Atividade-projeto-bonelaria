@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "moduloEstoque.h"
 #include "funcoesAux.h"
 
@@ -79,11 +80,32 @@ void cadastrarMateriais(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("===     Nome do material:                                                   ===\n");
+
+    validarNomeMaterial();
+
     printf("===     CNPJ do fornecedor:                                                 ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+}
+
+void validarNomeMaterial(void) {
+    int a = 0;
+    int tam;
+    char nomeMaterial[100];
+
+    while (a == 0) {
+
+        printf("Nome do material: ");
+        fgets(nomeMaterial, 100, stdin);
+
+        tam = strlen(nomeMaterial);
+       nomeMaterial[tam - 1] = '\0';
+
+        a = (tam == 1) ? 0 : (validarPalavra(nomeMaterial));
+
+    }
 
 }
 
