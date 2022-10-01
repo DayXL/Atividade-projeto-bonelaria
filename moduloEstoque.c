@@ -20,6 +20,16 @@ void moduloEstoque(void) {
         }
 
         else if (esc=='3') {
+            materiaisEstoque();
+
+        }
+
+        else if (esc=='4') {
+            pesquisarMateriaisEstoque();
+
+        }
+
+        else if (esc=='5') {
             comprarMateriais();
 
         }
@@ -43,9 +53,11 @@ char verMenuEstoque(void) {
     printf("===                                                                         ===\n");
     printf("===               = = = = = Menu Estoque = = = = =                          ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 1. Ver materiais em estoque                             ===\n");
-    printf("===                 2. Pesquisar materias em estoque                        ===\n");
-    printf("===                 3. Comprar materiais para estoque                       ===\n");
+    printf("===                 1. Cadastrar materiais                                  ===\n");
+    printf("===                 2. Deletar materiais                                    ===\n");
+    printf("===                 3. Ver materiais em estoque                             ===\n");
+    printf("===                 4. Pesquisar materias em estoque                        ===\n");
+    printf("===                 5. Comprar materiais para estoque                       ===\n");
     printf("===                 0. Voltar ao menu principal                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
