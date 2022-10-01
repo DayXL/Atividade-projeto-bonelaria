@@ -72,7 +72,7 @@ void escolhendoModelo(void) {
     while (esc!='0') {
 
         if (esc=='1') {
-            printf("bone");
+            telaBone();
 
         }
 
@@ -94,7 +94,7 @@ void escolhendoModelo(void) {
 }
 
 char escolherModelo(void) {
-    
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
@@ -114,6 +114,29 @@ char escolherModelo(void) {
     esc = auxEscolha();
 
     return esc;
+
+}
+
+void telaBone(void) {
+
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Cadastrar modelo = = = = =                       ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                 Escolha o que deseja e pressione enter                  ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Botão                                                ===\n");
+    printf("===                 2. Tela                                                 ===\n");
+    printf("===                 3. Regulador de Fivela                                  ===\n");
+    printf("===                 4. Regulador de Velcro                                  ===\n");
+    printf("===                 5. Regulador de Plástico                                ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
 
