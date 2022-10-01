@@ -83,7 +83,8 @@ void cadastrarMateriais(void) {
 
     validarNomeMaterial();
 
-    printf("===     CNPJ do fornecedor:                                                 ===\n");
+    cnpj();
+    
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -104,6 +105,25 @@ void validarNomeMaterial(void) {
        nomeMaterial[tam - 1] = '\0';
 
         a = (tam == 1) ? 0 : (validarPalavra(nomeMaterial));
+
+    }
+
+}
+
+void cnpj(void) {
+    int a = 0;
+    int tam;
+    char cnpj[16];
+
+    while (a == 0) {
+
+        printf("CNPJ(somente números): ");
+        fgets(cnpj, 16, stdin);
+
+        tam = strlen(cnpj);
+        cnpj[tam - 1] = '\0';
+
+        a = ((tam == 1) || (tam < 15)) ? 0 : (validarNumInteiro(cnpj));
 
     }
 
