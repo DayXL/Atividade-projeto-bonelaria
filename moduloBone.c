@@ -251,7 +251,38 @@ void telaChapeu(void) {
     detalhes = validarEsc();
     tam = strlen(detalhes);
 
+    gerarCodigoChapeu(detalhes, tam, '0');
+
     cadastrarModelo();
+
+}
+
+void gerarCodigoChapeu (char *esc, int tam, char num) {
+    char codigo[3];
+
+    codigo[0] = num;
+
+    for (int i = 1; i < 3; i++) {
+        codigo[i] = '0';
+
+    }
+
+    for (int i = 0; i < tam; i++) {
+        if (esc[i] == '1') {
+            codigo[1] = '1';
+
+        }
+
+        else if (esc[i] == '2') {
+            codigo[2] = '1';
+
+        }
+
+    }
+
+    printf("Código do Chapéu:\n");
+    printf("%s", codigo);
+    printf("\n");
 
 }
 
