@@ -120,6 +120,7 @@ char escolherModelo(void) {
 void telaBone(void) {
 
     char *detalhes;
+    int tam;
 
     system ( " clear||cls " );
     printf("\n");
@@ -141,8 +142,11 @@ void telaBone(void) {
     printf("\n");
 
     detalhes = validarEsc();
+    tam = strlen(detalhes);
 
-    printf("%s", detalhes);
+    gerarCodigoBone(detalhes, tam, '1');
+
+    //printf("%s", detalhes);
 
 }
 
@@ -160,7 +164,7 @@ char* validarEsc(void) {
         tam = strlen(detalhes);
         detalhes[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarNumInteiro(detalhes));
+        a = (tam == 1) || (tam > 4) ? 0 : (validarNumInteiro(detalhes));
 
     }
 
@@ -174,8 +178,49 @@ char* validarEsc(void) {
 
 }
 
-void gerarCodigoBone(char *esc, int tam) {
-    
+void gerarCodigoBone(char *esc, int tam, char num) {
+    char codigo[5];
+
+    codigo[0] = num;
+
+    for (int i = 1; i < 5; i++) {
+        codigo[i] = '0';
+
+    }
+
+    for (int i = 0; i < tam; i++) {
+        if (esc[i] == '1') {
+            codigo[1] = '1';
+
+        }
+
+        else if (esc[i] == '2') {
+            codigo[2] = '1';
+
+        }
+
+        else if (esc[i] == '3') {
+            codigo[3]= '0';
+            codigo[4]= '1';
+
+        }
+
+        else if (esc[i] == '4') {
+            codigo[3]= '1';
+            codigo[4]= '0';
+
+        }
+
+        else if (esc[i] == '5') {
+            codigo[3]= '1';
+            codigo[4]= '1';
+
+        }
+
+    }
+
+    printf("%s", codigo);
+    printf("\n");
 
 }
 
