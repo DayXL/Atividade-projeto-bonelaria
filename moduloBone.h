@@ -18,3 +18,4 @@ void telaBone(void);
 void telaChapeu(void);
 char* validarEsc(void);
 void gerarCodigoBone(char *esc, int tam, char num);
+void gerarCodigoChapeu (char *esc, int tam, char num);
