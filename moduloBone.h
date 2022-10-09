@@ -15,3 +15,4 @@ void validarNomeModelo(void);
 void validarUniPorMetro(void);
 void validarUniPorTubo(void);
 void telaBone(void);
+void telaChapeu(void);
