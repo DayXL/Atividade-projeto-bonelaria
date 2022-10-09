@@ -196,3 +196,34 @@ void gerarCpf(void) {
     }
 
 }
+
+void escolheVerificadoCPF(int *cpf) {
+
+    int soma = 0;
+    int resto = 0;
+
+    for (int i = 0; i < 9; i++) {
+        soma = soma + (cpf[i] * (i + 1));
+
+    }
+
+    resto = soma % 11;
+
+    resto = (resto == 10) ? 0 : resto;
+
+    cpf[9] = resto;
+
+    soma = 0;
+
+    for (int i = 0; i < 10; i++) {
+        soma = soma + (cpf[i] * (i));
+
+    }
+
+    resto = soma % 11;
+
+    resto = (resto == 10) ? 0 : resto;
+
+    cpf[10] = resto;
+
+}
