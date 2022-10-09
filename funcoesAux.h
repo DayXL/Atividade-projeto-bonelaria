@@ -8,4 +8,4 @@ int verificarCpf(char *cpf);
 int verificarCnpj(char *cnpj);
 int sortear(void);
 void gerarCpf(void);
-void escolheVerificadoCPF(int *cpf);
+void escolheVerificadoCpf(int *cpf);
