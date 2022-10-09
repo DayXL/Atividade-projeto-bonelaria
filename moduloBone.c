@@ -228,6 +228,9 @@ void gerarCodigoBone(char *esc, int tam, char num) {
 
 void telaChapeu(void) {
 
+    char *detalhes;
+    int tam;
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
@@ -245,7 +248,10 @@ void telaChapeu(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    validarEsc();
+    detalhes = validarEsc();
+    tam = strlen(detalhes);
+
+    cadastrarModelo();
 
 }
 
