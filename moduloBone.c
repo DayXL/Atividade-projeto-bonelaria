@@ -147,7 +147,7 @@ void telaBone(void) {
 
     gerarCodigoBone(detalhes, tam, '1');
 
-    //printf("%s", detalhes);
+    cadastrarModelo();
 
 }
 
@@ -220,6 +220,7 @@ void gerarCodigoBone(char *esc, int tam, char num) {
 
     }
 
+    printf("Código do Boné:\n");
     printf("%s", codigo);
     printf("\n");
 
