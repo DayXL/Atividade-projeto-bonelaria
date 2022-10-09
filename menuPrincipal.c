@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "funcoesAux.h"           //Compile os .h -> gcc -c -Wall *.h
 #include "moduloBone.h"          //Compile os .c -> gcc -c -Wall *.c
 #include "moduloFornecedor.h"   //Junte os arquivos -> gcc -o Hat *.o
