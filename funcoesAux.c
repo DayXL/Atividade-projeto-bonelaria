@@ -227,3 +227,61 @@ void escolheVerificadoCpf(int *cpf) {
     cpf[10] = resto;
 
 }
+
+int verificarEmail(char *email, int tam) {
+    int i = 0;
+    int controleArroba = 0;
+    int controle2 = 0;
+    int controlePonto = 0;
+
+    while (email[i] != '\0') {
+
+        if (email[i] == '@') {
+
+            controleArroba = i;
+
+            i = i + 1;
+
+            controle2 = controle2 + 1;
+
+        }
+
+        if ((i > controleArroba) && (email[i] == '.')) {
+
+            controlePonto = i;
+
+            if ((email[i + 1] == 'c') && (email[i + 2] == 'o') && (email[i + 3] == 'm') && (email[i + 4] == '\0')) {
+                i = i + 1;
+
+            }
+
+            else {
+                return 0;
+
+            }
+
+        }
+
+        i = i + 1;
+
+    }
+
+    if ((controle2 == 0) || (controle2 > 1)) {
+        return 0;
+        
+    }
+
+    else if (controleArroba < 8) {
+        return 0;
+
+    }
+
+    else if ((controlePonto - controleArroba) < 5 ) {
+        return 0;
+
+    }
+
+    return 1;
+
+
+}
