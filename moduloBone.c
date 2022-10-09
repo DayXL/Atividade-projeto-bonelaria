@@ -119,6 +119,8 @@ char escolherModelo(void) {
 
 void telaBone(void) {
 
+    char *detalhes;
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
@@ -138,14 +140,17 @@ void telaBone(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    validarEsc();
+    detalhes = validarEsc();
+
+    printf("%s", detalhes);
 
 }
 
-void validarEsc(void) {
+char* validarEsc(void) {
     int a = 0;
     int tam;
     char detalhes[10];
+    char *ponDet;
 
     while (a == 0) {
 
@@ -158,6 +163,14 @@ void validarEsc(void) {
         a = (tam == 1) ? 0 : (validarNumInteiro(detalhes));
 
     }
+
+    //Reservando o espaço necessário para armazenar no ponteiro
+    ponDet = (char*) malloc((tam + 1) * sizeof(char));
+
+    //Colocando oq quero no ponteiro
+    strcpy(ponDet, detalhes);
+
+    return ponDet;
 
 }
 
