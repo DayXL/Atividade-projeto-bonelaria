@@ -164,3 +164,13 @@ int verificarCnpj(char *cnpj) {
     }
 
 }
+
+int sortear(void) {
+
+    int num;
+
+    num = rand()%10;
+
+    return num;
+
+}
