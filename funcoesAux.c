@@ -174,3 +174,25 @@ int sortear(void) {
     return num;
 
 }
+
+void gerarCpf(void) {
+    int cpf[11] = {};
+
+    for (int i = 0; i < 9 ; i++ ) {
+        int num = 0;
+
+        num = sortear();
+
+        cpf[i] = num;
+
+    }
+
+    escolheVerificadoCPF(cpf);
+
+    for (int i = 0; i < 11 ; i++ ) {
+
+        printf("%d" , cpf[i]);
+
+    }
+
+}
