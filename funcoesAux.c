@@ -187,7 +187,7 @@ void gerarCpf(void) {
 
     }
 
-    escolheVerificadoCPF(cpf);
+    escolheVerificadoCpf(cpf);
 
     for (int i = 0; i < 11 ; i++ ) {
 
