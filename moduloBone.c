@@ -139,7 +139,7 @@ void telaBone(void) {
     printf("\n");
 
     validarEsc();
-    
+
 }
 
 void validarEsc(void) {
@@ -168,8 +168,6 @@ void gerarCodigoBone(char *esc, int tam) {
 
 void telaChapeu(void) {
 
-    char detalhes[20];
-
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
@@ -186,9 +184,7 @@ void telaChapeu(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    printf("Escolha: ");
-    fgets(detalhes, 20, stdin);
-
+    validarEsc();
 
 }
 
