@@ -142,7 +142,7 @@ void telaBone(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    detalhes = validarEsc();
+    detalhes = validarEsc('1');
     tam = strlen(detalhes);
 
     gerarCodigoBone(detalhes, tam, '1');
@@ -151,7 +151,7 @@ void telaBone(void) {
 
 }
 
-char* validarEsc(void) {
+char* validarEsc(char tipo) {
     int a = 0;
     int tam;
     char detalhes[10];
@@ -166,6 +166,30 @@ char* validarEsc(void) {
         detalhes[tam - 1] = '\0';
 
         a = (tam == 1) || (tam > 4) ? 0 : (validarNumInteiro(detalhes));
+
+        if (tipo == '1') {
+            int i = 0;
+
+            while ((detalhes[i] != '\0') && (a == 1)) {
+                a = ((detalhes[i] >= '1') && (detalhes[i] <= '6')) ? 1 : 0;
+
+                i = i + 1;
+
+            }
+
+        }
+
+        else {
+            int i = 0;
+
+            while ((detalhes[i] != '\0') && (a == 1)) {
+                a = ((detalhes[i] >= '1') && (detalhes[i] <= '3')) ? 1 : 0;
+
+                i = i + 1;
+
+            }
+
+        }
 
     }
 
@@ -248,7 +272,7 @@ void telaChapeu(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    detalhes = validarEsc();
+    detalhes = validarEsc('0');
     tam = strlen(detalhes);
 
     gerarCodigoChapeu(detalhes, tam, '0');
