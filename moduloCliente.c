@@ -213,9 +213,7 @@ void validarEmail(void) {
         tam = strlen(email);
         email[tam - 1] = '\0';
 
-        a = 1;
-
-        //a = (tam == 1) ? 0 : (validarPalavra(email));
+        a = (tam == 1) ? 0 : (verificarEmail(email, tam));
 
     }
 
