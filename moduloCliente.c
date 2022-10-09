@@ -82,6 +82,10 @@ void cadastrarCliente(void) {
     
     validarNomeCliente();
 
+    gerarCpf();
+
+    printf("\n");
+
     validarCPF();
 
     validarNumeroCelular();
