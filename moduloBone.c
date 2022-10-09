@@ -119,8 +119,6 @@ char escolherModelo(void) {
 
 void telaBone(void) {
 
-    char detalhes[20];
-
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
@@ -140,8 +138,31 @@ void telaBone(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    printf("Escolha: ");
-    fgets(detalhes, 20, stdin);
+    validarEsc();
+    
+}
+
+void validarEsc(void) {
+    int a = 0;
+    int tam;
+    char detalhes[10];
+
+    while (a == 0) {
+
+        printf("Escolha: ");
+        fgets(detalhes, 10, stdin);
+
+        tam = strlen(detalhes);
+        detalhes[tam - 1] = '\0';
+
+        a = (tam == 1) ? 0 : (validarNumInteiro(detalhes));
+
+    }
+
+}
+
+void gerarCodigoBone(char *esc, int tam) {
+    
 
 }
 
@@ -236,7 +257,6 @@ void validarUniPorTubo(void) {
     }
 
 }
-
 
 void editarModelo(void) {
 
