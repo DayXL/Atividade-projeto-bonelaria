@@ -6,3 +6,4 @@ int validarPalavra(char *palavra);
 int validarNumInteiro(char *numero);
 int verificarCpf(char *cpf);
 int verificarCnpj(char *cnpj);
+int sortear(void);
