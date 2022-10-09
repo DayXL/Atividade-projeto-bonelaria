@@ -12,6 +12,8 @@ char verMenuPrincipal(void);
 
 int main(void) {
 
+    srand(time(NULL));
+
     char esc = verMenuPrincipal();
 
     while (esc!='0') {
