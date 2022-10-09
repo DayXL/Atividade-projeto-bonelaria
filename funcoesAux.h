@@ -9,3 +9,4 @@ int verificarCnpj(char *cnpj);
 int sortear(void);
 void gerarCpf(void);
 void escolheVerificadoCpf(int *cpf);
+int verificarEmail(char *email, int tam);
