@@ -197,7 +197,7 @@ void gerarCpf(void) {
 
 }
 
-void escolheVerificadoCPF(int *cpf) {
+void escolheVerificadoCpf(int *cpf) {
 
     int soma = 0;
     int resto = 0;
