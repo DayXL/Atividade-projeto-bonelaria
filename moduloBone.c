@@ -77,7 +77,7 @@ void escolhendoModelo(void) {
         }
 
         else if (esc=='2') {
-            printf("chapeu");
+            telaChapeu();
 
         }
 
@@ -142,6 +142,32 @@ void telaBone(void) {
 
     printf("Escolha: ");
     fgets(detalhes, 20, stdin);
+
+}
+
+void telaChapeu(void) {
+
+    char detalhes[20];
+
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Cadastrar modelo = = = = =                       ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                 Escolha o que deseja e pressione enter                  ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Cordão                                               ===\n");
+    printf("===                 2. Proteção                                             ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+    printf("Escolha: ");
+    fgets(detalhes, 20, stdin);
+
 
 }
 
