@@ -184,21 +184,21 @@ void validarCPF(void) {
 void validarNumeroCelular(void) {
     int a = 0;
     int tam;
-    char numero[13];
+    char numero[30];
 
     while (a == 0) {
 
         printf("Número de celular(somente números): ");
-        fgets(numero, 13, stdin);
+        fgets(numero, 30, stdin);
 
         tam = strlen(numero);
         numero[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarNumInteiro(numero));
+        a = (tam != 12 )? 0 : (validarNumInteiro(numero));
 
     }
 
-}
+} 
 
 void validarEmail(void) {
     int a = 0;
