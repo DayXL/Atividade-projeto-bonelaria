@@ -204,7 +204,7 @@ char* validarEsc(char tipo) {
 }
 
 void gerarCodigoBone(char *esc, int tam, char num) {
-    char codigo[5];
+    char codigo[6];
 
     codigo[0] = num;
 
