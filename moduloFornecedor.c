@@ -77,6 +77,9 @@ void cadastrarFornecedor(void) {
     
     validarNomeFornecedor();
 
+    gerarCnpj();
+    printf("\n");
+
     validarCnpj();
 
     validarEmail2();
