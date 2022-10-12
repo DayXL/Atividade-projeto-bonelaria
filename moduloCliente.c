@@ -287,7 +287,7 @@ void pedidoCliente(void) {
     char nomeCliente[100];
     char cpf[13];
     char nomeModelo[11];
-    char quantidade[10];
+    char quantidade[11];
 
     system ( " clear||cls " );
     printf("\n");
