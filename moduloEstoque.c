@@ -168,7 +168,7 @@ void materiaisEstoque(void) {
 
 void pesquisarMateriaisEstoque(void) {
 
-    char material[50];
+    char material[100];
 
     system ( " clear||cls " );
     printf("\n");
@@ -190,7 +190,7 @@ void pesquisarMateriaisEstoque(void) {
 
 void comprarMateriais(void) {
 
-    char material[50];
+    char material[100];
 
     system ( " clear||cls " );
     printf("\n");
