@@ -271,7 +271,7 @@ int verificarEmail(char *email, int tam) {
         
     }
 
-    else if (controleArroba < 8) {
+    else if (controleArroba < 3) {
         return 0;
 
     }
