@@ -157,7 +157,7 @@ char* validarEsc(char tipo) {
     char detalhes[10];
     char *ponDet;
 
-do {
+    do {
 
 
         do {
@@ -168,7 +168,7 @@ do {
             tam = strlen(detalhes);
             detalhes[tam - 1] = '\0';
 
-        } while (((tam == 1) || (tam > 4)) && validarNumInteiro(detalhes));
+        } while (((tam == 1) || (tam > 4)) || !validarNumInteiro(detalhes));
 
 
         if (tipo == '1') {
@@ -324,11 +324,10 @@ void cadastrarModelo(void) {
 }
 
 void validarNomeModelo(void) {
-    int a = 0;
     int tam;
     char nomeModelo[11];
 
-    while (a == 0) {
+    do {
 
         printf("Nome do modelo: ");
         fgets(nomeModelo, 11, stdin);
@@ -336,9 +335,7 @@ void validarNomeModelo(void) {
         tam = strlen(nomeModelo);
         nomeModelo[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarPalavra(nomeModelo));
-
-    }
+    } while ((tam == 1) || !(validarPalavra(nomeModelo))); 
 
 }
 
