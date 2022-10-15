@@ -359,11 +359,10 @@ void validarUniPorMetro(void) {
 }
 
 void validarUniPorTubo(void) {
-    int a = 0;
     int tam;
     char uniPorTubo[3];
 
-    while (a == 0) {
+    do {
 
         printf("Unidades por tubo de linha: ");
         fgets(uniPorTubo, 3, stdin);
@@ -371,9 +370,8 @@ void validarUniPorTubo(void) {
         tam = strlen(uniPorTubo);
         uniPorTubo[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarNumInteiro(uniPorTubo));
 
-    }
+    } while ((tam == 1) || !(validarNumInteiro(uniPorTubo))); 
 
 }
 
