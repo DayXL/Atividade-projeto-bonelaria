@@ -99,11 +99,10 @@ void cadastrarCliente(void) {
 }
 
 void validarNomeCliente(void) {
-    int a = 0;
     int tam;
     char nomeCliente[100];
 
-    while (a == 0) {
+    do {
 
         printf("Nome do cliente: ");
         fgets(nomeCliente, 100, stdin);
@@ -111,9 +110,7 @@ void validarNomeCliente(void) {
         tam = strlen(nomeCliente);
         nomeCliente[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarPalavra(nomeCliente));
-
-    }
+    } while ((tam == 1) || !(validarPalavra(nomeCliente))); 
 
 }
 
