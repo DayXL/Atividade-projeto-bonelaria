@@ -340,11 +340,10 @@ void validarNomeModelo(void) {
 }
 
 void validarUniPorMetro(void) {
-    int a = 0;
     int tam;
     char uniPorMetro[3];
 
-    while (a == 0) {
+    do {
 
         printf("Unidades por metro de tecido: ");
         fgets(uniPorMetro, 3, stdin);
@@ -352,9 +351,8 @@ void validarUniPorMetro(void) {
         tam = strlen(uniPorMetro);
         uniPorMetro[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarNumInteiro(uniPorMetro));
 
-    }
+    } while ((tam == 1) || !(validarNumInteiro(uniPorMetro)));
 
 }
 
