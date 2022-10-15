@@ -152,26 +152,30 @@ void telaBone(void) {
 }
 
 char* validarEsc(char tipo) {
-    int a = 0;
+    int a = 1;
     int tam;
     char detalhes[10];
     char *ponDet;
 
-    while (a == 0) {
+do {
 
-        printf("Escolha: ");
-        fgets(detalhes, 10, stdin);
 
-        tam = strlen(detalhes);
-        detalhes[tam - 1] = '\0';
+        do {
 
-        a = (tam == 1) || (tam > 4) ? 0 : (validarNumInteiro(detalhes));
+            printf("Escolha: ");
+            fgets(detalhes, 10, stdin);
+
+            tam = strlen(detalhes);
+            detalhes[tam - 1] = '\0';
+
+        } while (((tam == 1) || (tam > 4)) && validarNumInteiro(detalhes));
+
 
         if (tipo == '1') {
             int i = 0;
 
-            while ((detalhes[i] != '\0') && (a == 1)) {
-                a = ((detalhes[i] >= '1') && (detalhes[i] <= '6')) ? 1 : 0;
+            while (detalhes[i] != '\0') {
+                a = ((detalhes[i] >= '1') && (detalhes[i] <= '6')) ? 0 : 1;
 
                 i = i + 1;
 
@@ -183,7 +187,7 @@ char* validarEsc(char tipo) {
             int i = 0;
 
             while ((detalhes[i] != '\0') && (a == 1)) {
-                a = ((detalhes[i] >= '1') && (detalhes[i] <= '3')) ? 1 : 0;
+                a = ((detalhes[i] >= '1') && (detalhes[i] <= '3')) ? 0 : 1;
 
                 i = i + 1;
 
@@ -191,7 +195,7 @@ char* validarEsc(char tipo) {
 
         }
 
-    }
+    } while (a);
 
     //Reservando o espaço necessário para armazenar no ponteiro
     ponDet = (char*) malloc((tam + 1) * sizeof(char));
