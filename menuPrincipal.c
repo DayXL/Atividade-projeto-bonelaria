@@ -5,7 +5,7 @@
 #include "moduloBone.h"          //Compile os .c -> gcc -c -Wall *.c
 #include "moduloFornecedor.h"   //Junte os arquivos -> gcc -o Hat *.o
 #include "moduloCliente.h"
-#include "moduloEstoque.h"
+#include "moduloEstoque.h"  //teste
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
 
