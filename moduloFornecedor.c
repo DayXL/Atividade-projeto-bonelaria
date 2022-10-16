@@ -91,11 +91,10 @@ void cadastrarFornecedor(void) {
 }
 
 void validarNomeFornecedor(void) {
-    int a = 0;
     int tam;
     char nomeFornecedor[100];
 
-    while (a == 0) {
+    do {
 
         printf("Nome do fornecedor: ");
         fgets(nomeFornecedor, 100, stdin);
@@ -103,10 +102,8 @@ void validarNomeFornecedor(void) {
         tam = strlen(nomeFornecedor);
         nomeFornecedor[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarPalavra(nomeFornecedor));
-
-    }
-
+    } while ((tam == 1) || !validarPalavra(nomeFornecedor));
+ 
 }
 
 void validarCnpj(void) {
