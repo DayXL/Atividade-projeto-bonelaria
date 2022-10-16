@@ -120,13 +120,17 @@ void validarCPF(void) {
 
     do {
 
-        printf("CPF(somente números): ");
-        fgets(cpf, 30, stdin);
+        do {
 
-        tam = strlen(cpf);
-        cpf[tam - 1] = '\0';
+            printf("CPF(somente números): ");
+            fgets(cpf, 30, stdin);
 
-    } while ((tam != 12) || !validarNumInteiro(cpf));
+            tam = strlen(cpf);
+            cpf[tam - 1] = '\0';
+
+        } while ((tam != 12) || !validarNumInteiro(cpf));
+
+    } while (!verificarCpf(cpf));
 
     printf(" ");
     printf("CPF válido!\n");
@@ -134,11 +138,10 @@ void validarCPF(void) {
 }
 
 void validarNumeroCelular(void) {
-    int a = 0;
     int tam;
     char numero[30];
 
-    while (a == 0) {
+    do {
 
         printf("Número de celular(somente números): ");
         fgets(numero, 30, stdin);
@@ -146,9 +149,7 @@ void validarNumeroCelular(void) {
         tam = strlen(numero);
         numero[tam - 1] = '\0';
 
-        a = (tam != 12 )? 0 : (validarNumInteiro(numero));
-
-    }
+    } while ((tam != 12) || !validarNumInteiro(numero));
 
 } 
 
