@@ -126,7 +126,7 @@ void validarCPF(void) {
         tam = strlen(cpf);
         cpf[tam - 1] = '\0';
 
-    } while ((tam == 1) || (tam < 12) || (tam > 12) || !validarNumInteiro(cpf));
+    } while ((tam != 12) || !validarNumInteiro(cpf));
 
     printf(" ");
     printf("CPF válido!\n");
