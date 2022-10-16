@@ -92,11 +92,10 @@ void cadastrarMateriais(void) {
 }
 
 void validarNomeMaterial(void) {
-    int a = 0;
     int tam;
     char nomeMaterial[100];
 
-    while (a == 0) {
+    do {
 
         printf("Nome do material: ");
         fgets(nomeMaterial, 100, stdin);
@@ -104,9 +103,7 @@ void validarNomeMaterial(void) {
         tam = strlen(nomeMaterial);
        nomeMaterial[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (validarPalavra(nomeMaterial));
-
-    }
+    } while ((tam == 1) || !validarPalavra(nomeMaterial));
 
 }
 
