@@ -108,11 +108,10 @@ void validarNomeMaterial(void) {
 }
 
 void cnpj(void) {
-    int a = 0;
     int tam;
     char cnpj[30];
 
-    while (a == 0) {
+    do {
 
         printf("CNPJ(somente números): ");
         fgets(cnpj, 30, stdin);
@@ -120,9 +119,7 @@ void cnpj(void) {
         tam = strlen(cnpj);
         cnpj[tam - 1] = '\0';
 
-        a = ((tam == 1) || (tam < 15)) ? 0 : (validarNumInteiro(cnpj));
-
-    }
+    } while ((tam != 15) || !validarNumInteiro(cnpj));
 
 }
 
