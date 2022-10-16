@@ -154,11 +154,10 @@ void validarNumeroCelular(void) {
 } 
 
 void validarEmail(void) {
-    int a = 0;
     int tam;
     char email[100];
 
-    while (a == 0) {
+    do {
 
         printf("Email: ");
         fgets(email, 100, stdin);
@@ -166,9 +165,7 @@ void validarEmail(void) {
         tam = strlen(email);
         email[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (verificarEmail(email, tam));
-
-    }
+    } while ((tam == 1) || !verificarEmail(email, tam));
 
 }
 
