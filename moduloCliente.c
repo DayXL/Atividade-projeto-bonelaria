@@ -115,66 +115,21 @@ void validarNomeCliente(void) {
 }
 
 void validarCPF(void) {
-    int a = 0;
     int tam;
-    char cpf[13];
+    char cpf[30];
 
-    while (a == 0) {
-        int b = 0;
+    do {
 
         printf("CPF(somente números): ");
-        fgets(cpf, 13, stdin);
+        fgets(cpf, 30, stdin);
 
         tam = strlen(cpf);
         cpf[tam - 1] = '\0';
 
-        b = ((tam == 1) || (tam < 12)) ? 0 : (validarNumInteiro(cpf));
+    } while ((tam == 1) || (tam < 12) || (tam > 12) || !validarNumInteiro(cpf));
 
-        if (b == 1) {
-
-            
-            if (verificarCpf(cpf)) {
-
-                printf(" ");
-                printf("CPF válido!\n");
-                a = 1;
-
-            }
-
-            else {
-
-                printf(" ");
-                printf("CPF inválido!\n");
-                a = 0;
-
-            }
-
-            /*if (verificarCpf(cpf[0] - '0', cpf[1] - '0', cpf[2] - '0', cpf[3] - '0',
-                cpf[4] - '0', cpf[5] - '0', cpf[6] - '0', cpf[7] - '0', cpf[8] - '0',
-                cpf[9] - '0', cpf[10] - '0')) {
-
-                printf(" ");
-                printf("CPF válido!\n");
-                a = 1;
-
-            }
-
-            else {
-                printf(" ");
-                printf("CPF inválido!\n");
-                a = 0;
-
-            } */
-
-        }
-
-        else {
-            printf("b");
-            a = 0;
-
-        } 
-
-    }
+    printf(" ");
+    printf("CPF válido!\n");
 
 }
 
