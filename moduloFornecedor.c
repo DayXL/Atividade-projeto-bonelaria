@@ -130,11 +130,10 @@ void validarCnpj(void) {
 }
 
 void validarEmail2(void) {
-    int a = 0;
     int tam;
     char email[100];
 
-    while (a == 0) {
+    do {
 
         printf("Email: ");
         fgets(email, 100, stdin);
@@ -142,9 +141,7 @@ void validarEmail2(void) {
         tam = strlen(email);
         email[tam - 1] = '\0';
 
-        a = (tam == 1) ? 0 : (verificarEmail(email, tam));
-
-    }
+    } while ((tam == 1) || !verificarEmail(email, tam));
 
 }
 
