@@ -1,3 +1,13 @@
+typedef struct fornecedor Fornecedor;
+
+struct fornecedor {
+
+    char nomeFornecedor[100];
+    char cnpj[15];
+    char email[100];
+    char ativo[2];
+
+};
 
 void moduloFornecedor(void);
 char verMenuFornecedor(void);
