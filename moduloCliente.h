@@ -21,7 +21,7 @@ void excluirCliente(void);
 void pesquisarCliente(void);
 void pedidoCliente(void);
 
-void validarNomeCliente(void);
-void validarCPF(void);
-void validarNumeroCelular(void);
-void validarEmail(void);
+void validarNomeCliente(char *nomeCliente);
+void validarCPF(char *cpf);
+void validarNumeroCelular(char *numero);
+void validarEmail(char *email);
