@@ -73,6 +73,40 @@ char verMenuCliente(void) {
 
 }
 
+void salArqClt(Cliente* clt) {
+    FILE *fp;
+
+    
+    fp = fopen("arqCliente.txt","at");
+
+    if (fp == NULL){
+      fp = fopen("arqCliente.txt","wt");
+      printf("Erro com arquivo!");
+
+    }
+
+    else {
+        fprintf(fp,clt->nomeDoCliente, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,clt->cpf, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,clt->numero, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,clt->email, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,clt->ativo, "\n");
+        fprintf(fp,"\n");
+
+    }
+
+    fclose(fp);
+
+}
+
 void cadastrarCliente(void) {
 
     Cliente* clt;
@@ -111,7 +145,11 @@ void cadastrarCliente(void) {
     strcpy(clt->cpf,cpf);
     strcpy(clt->numero,numero);
     strcpy(clt->email,email);
-    strcpy(clt->ativo, 1);
+    strcpy(clt->ativo, "S");
+
+    salArqClt(clt);
+
+    free(clt);
 
 }
 
