@@ -138,6 +138,7 @@ void telaBone(void) {
     printf("===                 4. Regulador de Velcro                                  ===\n");
     printf("===                 5. Regulador de Plástico                                ===\n");
     printf("===                 6. Sem nada                                             ===\n");
+    printf("===                 0. Encerrar                                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -154,21 +155,109 @@ void telaBone(void) {
 char* validarEsc(char tipo) {
     int a = 1;
     int tam;
-    char detalhes[10];
+    char aux[5];
+    int aux2 = 0;
+    char detalhes[4] = "000";
     char *ponDet;
 
     do {
 
-
         do {
 
-            printf("Escolha: ");
-            fgets(detalhes, 10, stdin);
+            do {
+
+                printf("Escolha: ");
+                fgets(aux, 5, stdin);
+
+                if ((aux[0] == '1') && (tipo == '1')) {
+                    detalhes[0] = aux[0];
+                    printf("Você escolheu Botão!");
+                    printf("\n");
+
+                }
+
+                else if ((aux[0] == '1') && (tipo == '0')) {
+                    detalhes[0] = aux[0];
+                    printf("Você escolheu Cordão!");
+                    printf("\n");
+
+                }
+
+                else if ((aux[0] == '2') && (tipo == '1')) {
+                    detalhes[1] = aux[0];
+                    printf("Você escolheu Tela!");
+                    printf("\n");
+
+                }
+
+                else if ((aux[0] == '2') && (tipo == '0')) {
+                    detalhes[1] = aux[0];
+                    printf("Você escolheu Proteção!");
+                    printf("\n");
+
+                }
+
+                else if ((aux[0] == '3') && (tipo == '1')) {
+                    detalhes[2] = aux[0];
+                    printf("Você escolheu Fivela!");
+                    printf("\n");
+
+                }
+
+                else if ((aux[0] == '3') && (tipo == '0')) {
+                    detalhes[0] = '3';
+                    detalhes[1] = '3';
+                    printf("Você escolheu Chapéu normal!");
+                    printf("\n");
+                    break;
+
+                }
+
+                else if (aux[0] == '4') {
+                    detalhes[2] = aux[0];
+                    printf("Você escolheu Velcro!");
+                    printf("\n");
+
+                }
+
+                else if (aux[0] == '5') {
+                    detalhes[2] = aux[0];
+                    printf("Você escolheu Plástico!");
+                    printf("\n");
+
+                }
+
+                else if (aux[0] == '6') {
+                    detalhes[0] = '6';
+                    detalhes[1] = '6';
+                    detalhes[2] = '6';
+
+                    printf("Você escolheu boné todo liso!");
+                    printf("\n");
+                    break;
+
+                }
+
+                else if (aux[0] == '0') {
+                    printf("Encerrando escolha!");
+                    printf("\n");
+                    break;
+
+                }
+
+                else {
+                    printf("Você digitou algo inválido!");
+                    printf("\n");
+                }
+
+                aux2 = aux2 + 1;
+
+            } while (aux2 < 9);
 
             tam = strlen(detalhes);
             detalhes[tam - 1] = '\0';
 
-        } while (((tam == 1) || (tam > 4)) || !validarNumInteiro(detalhes));
+        } while ((tam == 1) || !validarNumInteiro(detalhes));
 
 
         if (tipo == '1') {
@@ -272,6 +361,7 @@ void telaChapeu(void) {
     printf("===                 1. Cordão                                               ===\n");
     printf("===                 2. Proteção                                             ===\n");
     printf("===                 3. Sem nada                                             ===\n");
+    printf("===                 0. Encerrar                                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -437,4 +527,3 @@ void pesquisarModelo(void) {
     printf("\n");
 
 }
-
