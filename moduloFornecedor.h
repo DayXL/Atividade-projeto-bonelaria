@@ -20,3 +20,5 @@ void validarNomeFornecedor(char *nomeFornecedor);
 void validarCnpj(char *cnpj);
 void validarEmail2(char *email);
 void itens(void);
+
+void salArqFnc(Fornecedor* fnc);
