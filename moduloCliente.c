@@ -4,6 +4,8 @@
 #include "moduloCliente.h"
 #include "funcoesAux.h"
 
+typedef struct cliente Cliente;
+
 void moduloCliente(void) {
 
     char esc = verMenuCliente();
@@ -73,14 +75,14 @@ char verMenuCliente(void) {
 
 void cadastrarCliente(void) {
 
-    DadosCliente* clt;
-    clt = (DadosCliente*) malloc(sizeof(DadosCliente));
+    Cliente* clt;
+    clt = (Cliente*) malloc(sizeof(Cliente));
 
     char nomeCliente[100];
     char cpf[30];
     char numero[30];
     char email[100];
-    
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
@@ -89,27 +91,31 @@ void cadastrarCliente(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     
-    validarNomeCliente();
+    validarNomeCliente(nomeCliente);
 
     gerarCpf();
 
     printf("\n");
 
-    validarCPF();
+    validarCPF(cpf);
 
-    validarNumeroCelular();
+    validarNumeroCelular(numero);
 
-    validarEmail();
+    validarEmail(email);
 
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
 
+    strcpy(clt->nomeDoCliente,nomeCliente);
+    strcpy(clt->cpf,cpf);
+    strcpy(clt->numero,numero);
+    strcpy(clt->email,email);
+
 }
 
-void validarNomeCliente(void) {
+void validarNomeCliente(char *nomeCliente) {
     int tam;
-    char nomeCliente[100];
 
     do {
 
@@ -123,9 +129,8 @@ void validarNomeCliente(void) {
 
 }
 
-void validarCPF(void) {
+void validarCPF(char *cpf) {
     int tam;
-    char cpf[30];
 
     do {
 
@@ -146,9 +151,8 @@ void validarCPF(void) {
 
 }
 
-void validarNumeroCelular(void) {
+void validarNumeroCelular(char *numero) {
     int tam;
-    char numero[30];
 
     do {
 
@@ -162,9 +166,8 @@ void validarNumeroCelular(void) {
 
 } 
 
-void validarEmail(void) {
+void validarEmail(char *email) {
     int tam;
-    char email[100];
 
     do {
 
