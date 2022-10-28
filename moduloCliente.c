@@ -72,6 +72,15 @@ char verMenuCliente(void) {
 }
 
 void cadastrarCliente(void) {
+
+    DadosCliente* clt;
+    clt = (DadosCliente*) malloc(sizeof(DadosCliente));
+
+    char nomeCliente[100];
+    char cpf[30];
+    char numero[30];
+    char email[100];
+    
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
