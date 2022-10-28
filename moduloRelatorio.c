@@ -86,21 +86,19 @@ void relatorioBone(void) {
 
 void relatorioFornecedor(void) {
     system ( " clear||cls " );
-    printf("\n");
-    printf("===============================================================================\n");
-    printf("===                                                                         ===\n");
-    printf("===          = = = = = Relatório Fornecedor  = = = = =                      ===\n");
-    printf("===                                                                         ===\n");
-    printf("===     Empresa: CCJ REPRESENTAÇÕES                                         ===\n");
-    printf("===     CNPJ: 09.354.174/0001-27                                            ===\n");
-    printf("===     Contato: ccjrepresentações@terra.com.br                             ===\n");
-    printf("===                                                                         ===\n");
-    printf("===     Empresa: Acrilex Tintas Especiais S.A                               ===\n");
-    printf("===     CNPJ: 60.779.014/0001-87                                            ===\n");
-    printf("===     Contato: acrilex@hotmail.com.br                                     ===\n");
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+
+    FILE *fp;
+    char linha[255];
+
+    fp = fopen("arqFornecedor.txt","rt");
+
+    while (fscanf(fp,"%[^\n]",linha) == 1) {
+        printf("%s\n",linha);
+        fgetc(fp);
+
+    }
+
+    fclose(fp);
 
 }
 
