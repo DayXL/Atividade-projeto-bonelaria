@@ -4,6 +4,8 @@
 #include "moduloFornecedor.h"
 #include "funcoesAux.h"
 
+typedef struct fornecedor Fornecedor;
+
 void moduloFornecedor(void) {
 
     char esc = verMenuFornecedor();
@@ -66,6 +68,14 @@ char verMenuFornecedor(void) {
 }
 
 void cadastrarFornecedor(void) {
+
+    Fornecedor* fnc;
+    fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
+
+    char nomeFornecedor[100];
+    char cnpj[30];
+    char email[100];
+
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
@@ -75,14 +85,14 @@ void cadastrarFornecedor(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     
-    validarNomeFornecedor();
+    validarNomeFornecedor(nomeFornecedor);
 
     gerarCnpj();
     printf("\n");
 
-    validarCnpj();
+    validarCnpj(cnpj);
 
-    validarEmail2();
+    validarEmail2(email);
 
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -90,9 +100,8 @@ void cadastrarFornecedor(void) {
 
 }
 
-void validarNomeFornecedor(void) {
+void validarNomeFornecedor(char *nomeFornecedor) {
     int tam;
-    char nomeFornecedor[100];
 
     do {
 
@@ -106,9 +115,8 @@ void validarNomeFornecedor(void) {
  
 }
 
-void validarCnpj(void) {
+void validarCnpj(char *cnpj) {
     int tam;
-    char cnpj[30];
 
     do {
 
@@ -129,9 +137,8 @@ void validarCnpj(void) {
 
 }
 
-void validarEmail2(void) {
+void validarEmail2(char *email) {
     int tam;
-    char email[100];
 
     do {
 
