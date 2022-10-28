@@ -67,6 +67,36 @@ char verMenuFornecedor(void) {
 
 }
 
+void salArqFnc(Fornecedor* fnc) {
+    FILE *fp;
+
+    fp = fopen("arqFornecedor.txt","at");
+
+    if (fp == NULL){
+      fp = fopen("arqFornecedor.txt","wt");
+      printf("Erro com arquivo!");
+
+    }
+
+    else {
+        fprintf(fp,fnc->nomeFornecedor, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,fnc->cnpj, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,fnc->email, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,fnc->ativo, "\n");
+        fprintf(fp,"\n");
+
+    }
+
+    fclose(fp);
+
+}
+
 void cadastrarFornecedor(void) {
 
     Fornecedor* fnc;
@@ -103,7 +133,7 @@ void cadastrarFornecedor(void) {
     strcpy(fnc->email,email);
     strcpy(fnc->ativo, "S");
 
-    //salArqFnc(fnc);
+    salArqFnc(fnc);
 
     free(fnc);
 }
