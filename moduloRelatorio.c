@@ -106,23 +106,19 @@ void relatorioFornecedor(void) {
 
 void relatorioCliente(void) {
     system ( " clear||cls " );
-    printf("\n");
-    printf("===============================================================================\n");
-    printf("===                                                                         ===\n");
-    printf("===          = = = = = Relatório Cliente  = = = = =                         ===\n");
-    printf("===                                                                         ===\n");
-    printf("===     Cliente: Dayanne Xavier Lucena                                      ===\n");
-    printf("===     CNPJ: 537.495.390-73                                                ===\n");
-    printf("===     Telefone: 84 999999999                                              ===\n");
-    printf("===     Email: day2015@gmail.com                                            ===\n");
-    printf("===                                                                         ===\n");
-    printf("===     Cliente: Lucas Matheus                                              ===\n");
-    printf("===     CNPJ: 537.495.390-73                                                ===\n");
-    printf("===     Telefone: 84 888888888                                              ===\n");
-    printf("===     Email: lucas2019@hotmail.com                                        ===\n");
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+
+    FILE *fp;
+    char linha[255];
+
+    fp = fopen("arqCliente.txt","rt");
+
+    while (fscanf(fp,"%[^\n]",linha) == 1) {
+        printf("%s\n",linha);
+        fgetc(fp);
+
+    }
+
+    fclose(fp);
 
 }
 
