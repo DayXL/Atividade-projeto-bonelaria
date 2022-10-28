@@ -16,7 +16,7 @@ void editarFornecedor(void);
 void excluirFornecedor(void);
 void pesquisarFornecedor(void);
 
-void validarNomeFornecedor(void);
-void validarCnpj(void);
-void validarEmail2(void);
+void validarNomeFornecedor(char *nomeFornecedor);
+void validarCnpj(char *cnpj);
+void validarEmail2(char *email);
 void itens(void);
