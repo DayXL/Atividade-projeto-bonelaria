@@ -111,6 +111,7 @@ void cadastrarCliente(void) {
     strcpy(clt->cpf,cpf);
     strcpy(clt->numero,numero);
     strcpy(clt->email,email);
+    strcpy(clt->ativo, 1);
 
 }
 
