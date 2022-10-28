@@ -98,6 +98,14 @@ void cadastrarFornecedor(void) {
     printf("===============================================================================\n");
     printf("\n");
 
+    strcpy(fnc->nomeFornecedor,nomeFornecedor);
+    strcpy(fnc->cnpj,cnpj);
+    strcpy(fnc->email,email);
+    strcpy(fnc->ativo, "S");
+
+    //salArqFnc(fnc);
+
+    free(fnc);
 }
 
 void validarNomeFornecedor(char *nomeFornecedor) {
