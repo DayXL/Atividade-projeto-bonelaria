@@ -4,6 +4,8 @@
 #include "moduloBone.h"
 #include "funcoesAux.h"
 
+typedef struct boneChap BoneChap;
+
 void moduloBone(void) {
 
     char esc = verMenuBone();
@@ -39,6 +41,40 @@ void moduloBone(void) {
 
         esc = verMenuBone();
     }
+
+}
+
+void salArqBonChap(BoneChap* bcp) {
+    FILE *fp;
+
+    
+    fp = fopen("arqBonChap.txt","at");
+
+    if (fp == NULL){
+      fp = fopen("arqBonChap.txt","wt");
+      printf("Erro com arquivo!");
+
+    }
+
+    else {
+        fprintf(fp,bcp->nomeBonChap, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,bcp->codigo, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,bcp->uniPorMetro, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,bcp->uniPorTubo, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,bcp->ativo, "\n");
+        fprintf(fp,"\n");
+
+    }
+
+    fclose(fp);
 
 }
 
@@ -119,6 +155,9 @@ char escolherModelo(void) {
 
 void telaBone(void) {
 
+    BoneChap* bcp;
+    bcp = (BoneChap*) malloc(sizeof(BoneChap));
+
     char *detalhes;
     int tam;
 
@@ -146,9 +185,15 @@ void telaBone(void) {
     detalhes = validarEsc('1');
     tam = strlen(detalhes);
 
-    gerarCodigoBone(detalhes, tam, '1');
+    gerarCodigoBone(detalhes, tam, '1', bcp);
 
-    cadastrarModelo();
+    cadastrarModelo(bcp);
+
+    strcpy(bcp->ativo, "S");
+
+    salArqBonChap(bcp);
+
+    free(bcp);
 
 }
 
@@ -296,7 +341,7 @@ char* validarEsc(char tipo) {
 
 }
 
-void gerarCodigoBone(char *esc, int tam, char num) {
+void gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
     char codigo[6];
 
     codigo[0] = num;
@@ -341,9 +386,13 @@ void gerarCodigoBone(char *esc, int tam, char num) {
     printf("%s", codigo);
     printf("\n");
 
+    strcpy(bcp->codigo,codigo);
 }
 
 void telaChapeu(void) {
+
+    BoneChap* bcp;
+    bcp = (BoneChap*) malloc(sizeof(BoneChap));
 
     char *detalhes;
     int tam;
@@ -369,14 +418,19 @@ void telaChapeu(void) {
     detalhes = validarEsc('0');
     tam = strlen(detalhes);
 
-    gerarCodigoChapeu(detalhes, tam, '0');
+    gerarCodigoChapeu(detalhes, tam, '0',bcp);
 
-    cadastrarModelo();
+    cadastrarModelo(bcp);
 
+    strcpy(bcp->ativo, "S");
+
+    salArqBonChap(bcp);
+
+    free(bcp);
 }
 
-void gerarCodigoChapeu (char *esc, int tam, char num) {
-    char codigo[3];
+void gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp) {
+    char codigo[4];
 
     codigo[0] = num;
 
@@ -402,18 +456,19 @@ void gerarCodigoChapeu (char *esc, int tam, char num) {
     printf("%s", codigo);
     printf("\n");
 
+    strcpy(bcp->codigo,codigo);
 }
 
-void cadastrarModelo(void) {
+void cadastrarModelo(BoneChap *bcp) {
+    
+    validarNomeModelo(bcp);
 
-    validarNomeModelo();
+    validarUniPorMetro(bcp);
 
-    validarUniPorMetro();
-
-    validarUniPorTubo();
+    validarUniPorTubo(bcp);
 }
 
-void validarNomeModelo(void) {
+void validarNomeModelo(BoneChap *bcp) {
     int tam;
     char nomeModelo[11];
 
@@ -427,9 +482,10 @@ void validarNomeModelo(void) {
 
     } while ((tam == 1) || !(validarPalavra(nomeModelo))); 
 
+    strcpy(bcp->nomeBonChap, nomeModelo);
 }
 
-void validarUniPorMetro(void) {
+void validarUniPorMetro(BoneChap *bcp) {
     int tam;
     char uniPorMetro[3];
 
@@ -444,9 +500,11 @@ void validarUniPorMetro(void) {
 
     } while ((tam == 1) || !(validarNumInteiro(uniPorMetro)));
 
+    strcpy(bcp->uniPorMetro, uniPorMetro);
+
 }
 
-void validarUniPorTubo(void) {
+void validarUniPorTubo(BoneChap *bcp) {
     int tam;
     char uniPorTubo[3];
 
@@ -461,6 +519,7 @@ void validarUniPorTubo(void) {
 
     } while ((tam == 1) || !(validarNumInteiro(uniPorTubo))); 
 
+    strcpy(bcp->uniPorTubo, uniPorTubo);
 }
 
 void editarModelo(void) {
