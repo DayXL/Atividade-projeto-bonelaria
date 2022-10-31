@@ -4,6 +4,8 @@
 #include "moduloEstoque.h"
 #include "funcoesAux.h"
 
+typedef struct estoque Estoque;
+
 void moduloEstoque(void) {
 
     char esc = verMenuEstoque();
@@ -71,8 +73,43 @@ char verMenuEstoque(void) {
 
 }
 
+void salArqEst(Estoque* est) {
+    FILE *fp;
+
+    
+    fp = fopen("arqEst.txt","at");
+
+    if (fp == NULL){
+      fp = fopen("arqEst.txt","wt");
+      printf("Erro com arquivo!");
+
+    }
+
+    else {
+        fprintf(fp,est->nomeDoMaterial, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,est->cnpj, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,est->quant, "\n");
+        fprintf(fp,"\n");
+
+        fprintf(fp,est->ativo, "\n");
+        fprintf(fp,"\n");
+
+    }
+
+    fclose(fp);
+
+}
+
 void cadastrarMateriais(void) {
     system ( " clear||cls " );
+
+    Estoque* est;
+    est = (Estoque*) malloc(sizeof(Estoque));
+
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
@@ -81,17 +118,24 @@ void cadastrarMateriais(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
 
-    cnpj();
+    cnpj(est);
 
-    validarNomeMaterial();
+    validarNomeMaterial(est);
+
+    validarQuant(est);
     
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
 
+    strcpy(est->ativo, "S");
+
+    salArqEst(est);
+
+    free(est);
 }
 
-void validarNomeMaterial(void) {
+void validarNomeMaterial(Estoque *est) {
     int tam;
     char nomeMaterial[100];
 
@@ -105,9 +149,11 @@ void validarNomeMaterial(void) {
 
     } while ((tam == 1) || !validarPalavra(nomeMaterial));
 
+    strcpy(est->nomeDoMaterial, nomeMaterial);
+
 }
 
-void cnpj(void) {
+void cnpj(Estoque *est) {
     int tam;
     char cnpj[30];
 
@@ -120,6 +166,27 @@ void cnpj(void) {
         cnpj[tam - 1] = '\0';
 
     } while ((tam != 15) || !validarNumInteiro(cnpj));
+
+    strcpy(est->cnpj, cnpj);
+
+}
+
+void validarQuant(Estoque *est) {
+    int tam;
+    char quant[10];
+
+    do {
+
+        printf("Qual a quantidade? ");
+        fgets(quant, 10, stdin);
+
+        tam = strlen(quant);
+        quant[tam - 1] = '\0';
+
+
+    } while ((tam == 1) || !(validarNumInteiro(quant)));
+
+    strcpy(est->quant, quant);
 
 }
 
