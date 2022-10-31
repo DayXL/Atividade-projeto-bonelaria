@@ -40,7 +40,11 @@ int main(void) {
         }
 
         else if (esc=='5') {
-            moduloRelatorio();
+
+            printf("Manutenção!");
+            printf("\n");
+
+            //moduloRelatorio();
 
         }
 
