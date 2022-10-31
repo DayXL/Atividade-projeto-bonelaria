@@ -66,21 +66,27 @@ char verMenuRelatorio(void) {
 
 void relatorioBone(void) {
     system ( " clear||cls " );
-    printf("\n");
-    printf("===============================================================================\n");
-    printf("===                                                                         ===\n");
-    printf("===              = = = = = Relatório Boné  = = = = =                        ===\n");
-    printf("===                                                                         ===\n");
-    printf("===     Boné de 6 partes:                                                   ===\n");
-    printf("===      - 4 bonés a cada 1 metro de tecido                                 ===\n");
-    printf("===      - 5 bonés a cada 1 tubo de linha                                   ===\n");
-    printf("===                                                                         ===\n");
-    printf("===     Boné aba reta:                                                      ===\n");
-    printf("===      - 5 bonés a cada 1 metro de tecido                                 ===\n");
-    printf("===      - 7 bonés a cada 1 tubo de linha                                   ===\n");
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+
+    FILE *fp;
+    char linha[255];
+
+    fp = fopen("arqBonChap.txt","rt");
+
+    if (fp == NULL){
+      printf("Nada cadastrado ainda!");
+
+    }
+
+    else {
+
+        while (fscanf(fp,"%[^\n]",linha) == 1) {
+            printf("%s\n",linha);
+            fgetc(fp);
+
+        }
+    }
+
+    fclose(fp);
 
 }
 
@@ -92,10 +98,17 @@ void relatorioFornecedor(void) {
 
     fp = fopen("arqFornecedor.txt","rt");
 
-    while (fscanf(fp,"%[^\n]",linha) == 1) {
-        printf("%s\n",linha);
-        fgetc(fp);
+    if (fp == NULL){
+      printf("Nada cadastrado ainda!");
 
+    }
+
+    else {
+        while (fscanf(fp,"%[^\n]",linha) == 1) {
+            printf("%s\n",linha);
+            fgetc(fp);
+
+        }   
     }
 
     fclose(fp);
@@ -110,12 +123,20 @@ void relatorioCliente(void) {
 
     fp = fopen("arqCliente.txt","rt");
 
-    while (fscanf(fp,"%[^\n]",linha) == 1) {
-        printf("%s\n",linha);
-        fgetc(fp);
+    if (fp == NULL){
+      printf("Nada cadastrado ainda!");
 
     }
 
+    else {
+
+        while (fscanf(fp,"%[^\n]",linha) == 1) {
+            printf("%s\n",linha);
+            fgetc(fp);
+
+        }
+    }
+    
     fclose(fp);
 
 }
