@@ -76,30 +76,28 @@ char verMenuCliente(void) {
 void salArqClt(Cliente* clt) {
     FILE *fp;
 
-    
-    fp = fopen("arqCliente.txt","at");
+    fp = fopen("arqCliente.dat","ab");
 
     if (fp == NULL){
-      fp = fopen("arqCliente.txt","wt");
-      printf("Erro com arquivo!");
+
+      fp = fopen("arqCliente.dat","wb");
+      printf("Arquivo inexistente!\n");
+      printf("Criando novo arquivo!");
+
+      if (fp == NULL) {
+        printf("Erro com arquivo!");
+
+      }
+
+      else {
+        fwrite(clt, sizeof(Cliente), 1, fp);
+
+      }
 
     }
 
     else {
-        fprintf(fp,clt->nomeDoCliente, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,clt->cpf, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,clt->numero, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,clt->email, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,clt->ativo, "\n");
-        fprintf(fp,"\n");
+        fwrite(clt, sizeof(Cliente), 1, fp);
 
     }
 
