@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "moduloRelatorio.h"
 #include "funcoesAux.h"
+#include "moduloCliente.h"
 
 void moduloRelatorio(void) {
 
@@ -67,77 +68,21 @@ char verMenuRelatorio(void) {
 void relatorioBone(void) {
     system ( " clear||cls " );
 
-    FILE *fp;
-    char linha[255];
-
-    fp = fopen("arqBonChap.txt","rt");
-
-    if (fp == NULL){
-      printf("Nada cadastrado ainda!");
-
-    }
-
-    else {
-
-        while (fscanf(fp,"%[^\n]",linha) == 1) {
-            printf("%s\n",linha);
-            fgetc(fp);
-
-        }
-    }
-
-    fclose(fp);
+    printf("Em desenvolvimento!");
 
 }
 
 void relatorioFornecedor(void) {
     system ( " clear||cls " );
 
-    FILE *fp;
-    char linha[255];
-
-    fp = fopen("arqFornecedor.txt","rt");
-
-    if (fp == NULL){
-      printf("Nada cadastrado ainda!");
-
-    }
-
-    else {
-        while (fscanf(fp,"%[^\n]",linha) == 1) {
-            printf("%s\n",linha);
-            fgetc(fp);
-
-        }   
-    }
-
-    fclose(fp);
+    printf("Em desenvolvimento!");
 
 }
 
 void relatorioCliente(void) {
     system ( " clear||cls " );
 
-    FILE *fp;
-    char linha[255];
-
-    fp = fopen("arqCliente.txt","rt");
-
-    if (fp == NULL){
-      printf("Nada cadastrado ainda!");
-
-    }
-
-    else {
-
-        while (fscanf(fp,"%[^\n]",linha) == 1) {
-            printf("%s\n",linha);
-            fgetc(fp);
-
-        }
-    }
-    
-    fclose(fp);
+    lerArqClt();
 
 }
 
