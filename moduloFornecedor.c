@@ -99,6 +99,60 @@ void salArqFnc(Fornecedor* fnc) {
 
 }
 
+void lerArqFnc(void) {
+    FILE *fp;
+    Fornecedor *fnc;
+    fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
+
+    fp = fopen("arqFornecedor.dat","rb");
+
+    if (fp == NULL) {
+
+        fp = fopen("arqFornecedor.dat","wb");
+        printf("Arquivo inexistente!\n");
+        printf("Criando novo arquivo!");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+    }
+
+    else {
+
+        while (fread(fnc, sizeof(Fornecedor), 1, fp)) {
+
+            if (fnc->ativo != 0) {
+                fread(fnc, sizeof(Fornecedor), 1, fp);
+                
+                exibFornecedor(fnc);
+
+                free(fnc);
+
+            }
+        }
+    }
+
+    fclose(fp);
+
+}
+
+void exibFornecedor(Fornecedor *fnc) {
+    
+    printf("\n");
+    printf("Nome do Fornecedor: ");
+    printf("%s" ,fnc->nomeFornecedor);
+    printf("\n");
+    printf("CNPJ: ");
+    printf("%s" ,fnc->cnpj);
+    printf("\n");
+    printf("Email: ");
+    printf("%s" ,fnc->email);
+    printf("\n");
+
+}
+
 void cadastrarFornecedor(void) {
 
     Fornecedor* fnc;
@@ -133,7 +187,7 @@ void cadastrarFornecedor(void) {
     strcpy(fnc->nomeFornecedor,nomeFornecedor);
     strcpy(fnc->cnpj,cnpj);
     strcpy(fnc->email,email);
-    strcpy(fnc->ativo, "S");
+    fnc->ativo = 1;
 
     salArqFnc(fnc);
 
