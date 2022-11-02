@@ -3,6 +3,7 @@
 #include "moduloRelatorio.h"
 #include "funcoesAux.h"
 #include "moduloCliente.h"
+#include "moduloFornecedor.h"
 
 void moduloRelatorio(void) {
 
@@ -75,7 +76,7 @@ void relatorioBone(void) {
 void relatorioFornecedor(void) {
     system ( " clear||cls " );
 
-    printf("Em desenvolvimento!");
+    lerArqFnc();
 
 }
 
