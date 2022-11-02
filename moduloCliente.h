@@ -7,7 +7,7 @@ struct cliente {
     char cpf[12];
     char numero[12];
     char email[100];
-    char ativo[2];
+    int ativo;
 
 };
 
@@ -26,3 +26,5 @@ void validarCPF(char *cpf);
 void validarNumeroCelular(char *numero);
 void validarEmail(char *email);
 void salArqClt(Cliente* clt);
+void lerArqClt(void);
+void exibCliente(Cliente *clt);
