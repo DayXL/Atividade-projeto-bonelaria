@@ -41,10 +41,10 @@ int main(void) {
 
         else if (esc=='5') {
 
-            printf("Manutenção!");
-            printf("\n");
+            //printf("Manutenção!");
+            //printf("\n");
 
-            //moduloRelatorio();
+            moduloRelatorio();
 
         }
 
