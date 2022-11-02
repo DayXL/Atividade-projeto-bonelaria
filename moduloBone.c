@@ -47,30 +47,28 @@ void moduloBone(void) {
 void salArqBonChap(BoneChap* bcp) {
     FILE *fp;
 
-    
-    fp = fopen("arqBonChap.txt","at");
+    fp = fopen("arqBoneChap.dat","ab");
 
     if (fp == NULL){
-      fp = fopen("arqBonChap.txt","wt");
-      printf("Erro com arquivo!");
+
+        fp = fopen("arqBoneChap.dat","wb");
+        printf("Arquivo inexistente!\n");
+        printf("Criando novo arquivo!");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+            fwrite(bcp, sizeof(BoneChap), 1, fp);
+
+        }
 
     }
 
     else {
-        fprintf(fp,bcp->nomeBonChap, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,bcp->codigo, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,bcp->uniPorMetro, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,bcp->uniPorTubo, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,bcp->ativo, "\n");
-        fprintf(fp,"\n");
+        fwrite(bcp, sizeof(BoneChap), 1, fp);
 
     }
 
@@ -189,7 +187,7 @@ void telaBone(void) {
 
     cadastrarModelo(bcp);
 
-    strcpy(bcp->ativo, "S");
+    bcp->ativo = 1;
 
     salArqBonChap(bcp);
 
@@ -422,7 +420,7 @@ void telaChapeu(void) {
 
     cadastrarModelo(bcp);
 
-    strcpy(bcp->ativo, "S");
+    bcp->ativo = 1;
 
     salArqBonChap(bcp);
 
@@ -430,23 +428,23 @@ void telaChapeu(void) {
 }
 
 void gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp) {
-    char codigo[4];
+    char codigo[6];
 
     codigo[0] = num;
 
-    for (int i = 1; i < 3; i++) {
+    for (int i = 1; i < 5; i++) {
         codigo[i] = '0';
 
     }
 
     for (int i = 0; i < tam; i++) {
         if (esc[i] == '1') {
-            codigo[1] = '1';
+            codigo[4] = '1';
 
         }
 
         else if (esc[i] == '2') {
-            codigo[2] = '1';
+            codigo[5] = '1';
 
         }
 
