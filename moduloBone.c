@@ -71,7 +71,7 @@ void salArqBonChap(BoneChap* bcp) {
         fwrite(bcp, sizeof(BoneChap), 1, fp);
 
     }
-
+    
     fclose(fp);
 
 }
@@ -192,6 +192,65 @@ void telaBone(void) {
     salArqBonChap(bcp);
 
     free(bcp);
+
+}
+
+void lerArqBcp(void) {
+    FILE *fp;
+    BoneChap *bcp;
+    bcp = (BoneChap*) malloc(sizeof(BoneChap));
+
+    fp = fopen("arqFornecedor.dat","rb");
+
+    printf("a");
+
+    if (fp == NULL) {
+
+        fp = fopen("arqFornecedor.dat","wb");
+        printf("Arquivo inexistente!\n");
+        printf("Criando novo arquivo!");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+    }
+
+    else {
+
+        while (fread(bcp, sizeof(BoneChap), 1, fp)) {
+
+            if (bcp->ativo != 0) {
+                fread(bcp, sizeof(BoneChap), 1, fp);
+                
+                exibBoneChap(bcp);
+
+                free(bcp);
+
+            }
+        }
+    }
+
+    fclose(fp);
+
+}
+
+void exibBoneChap(BoneChap *bcp) {
+    
+    printf("\n");
+    printf("Nome do Modelo: ");
+    printf("%s" ,bcp->nomeBonChap);
+    printf("\n");
+    printf("Código: ");
+    printf("%s" ,bcp->codigo);
+    printf("\n");
+    printf("Quantidade por metro: ");
+    printf("%s" ,bcp->uniPorMetro);
+    printf("\n");
+    printf("Quantidade por tubo de linha: ");
+    printf("%s" ,bcp->uniPorTubo);
+    printf("\n");
 
 }
 
@@ -468,12 +527,12 @@ void cadastrarModelo(BoneChap *bcp) {
 
 void validarNomeModelo(BoneChap *bcp) {
     int tam;
-    char nomeModelo[11];
+    char nomeModelo[100];
 
     do {
 
         printf("Nome do modelo: ");
-        fgets(nomeModelo, 11, stdin);
+        fgets(nomeModelo, 100, stdin);
 
         tam = strlen(nomeModelo);
         nomeModelo[tam - 1] = '\0';
