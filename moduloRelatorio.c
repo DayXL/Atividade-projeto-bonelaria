@@ -4,6 +4,8 @@
 #include "funcoesAux.h"
 #include "moduloCliente.h"
 #include "moduloFornecedor.h"
+#include "moduloBone.h"
+#include "moduloEstoque.h"
 
 void moduloRelatorio(void) {
 
@@ -69,7 +71,10 @@ char verMenuRelatorio(void) {
 void relatorioBone(void) {
     system ( " clear||cls " );
 
-    printf("Em desenvolvimento!");
+    printf("\n");
+    printf("Em manutenção!");
+    printf("\n");
+    //lerArqBcp();
 
 }
 
@@ -89,16 +94,7 @@ void relatorioCliente(void) {
 
 void relatorioEstoque(void) {
     system ( " clear||cls " );
-    printf("\n");
-    printf("===============================================================================\n");
-    printf("===                                                                         ===\n");
-    printf("===          = = = = = Relatório Estoque  = = = = =                         ===\n");
-    printf("===                                                                         ===\n");
-    printf("===     Linha vermelha: 100 tubos                                           ===\n");
-    printf("===     Bico de boné: 367                                                   ===\n");
-    printf("===     Tinha branca: 10 baldes                                             ===\n");
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+
+    lerArqEst();
 
 }
