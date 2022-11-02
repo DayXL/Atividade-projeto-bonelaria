@@ -128,7 +128,7 @@ void cadastrarMateriais(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    strcpy(est->ativo, "S");
+    est->ativo = 1;
 
     salArqEst(est);
 
