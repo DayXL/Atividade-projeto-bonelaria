@@ -31,3 +31,5 @@ void telaChapeu(void);
 char* validarEsc(char tipo);
 void gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp);
 void gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp);
+void lerArqBcp(void);
+void exibBoneChap(BoneChap *bcp);
