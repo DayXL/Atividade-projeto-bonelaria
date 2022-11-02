@@ -6,7 +6,7 @@ struct boneChap {
     char codigo[6];
     char uniPorMetro[3];
     char uniPorTubo[3];
-    char ativo[2];
+    int ativo;
 
 };
 
