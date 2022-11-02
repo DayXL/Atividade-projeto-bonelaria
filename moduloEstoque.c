@@ -73,34 +73,89 @@ char verMenuEstoque(void) {
 
 }
 
-void salArqEst(Estoque* est) {
+void salArqEst(Estoque *est) {
     FILE *fp;
 
-    
-    fp = fopen("arqEst.txt","at");
+    fp = fopen("arqEstoq.dat","ab");
 
     if (fp == NULL){
-      fp = fopen("arqEst.txt","wt");
-      printf("Erro com arquivo!");
+
+        fp = fopen("arqEstoq.dat","wb");
+        printf("Arquivo inexistente!\n");
+        printf("Criando novo arquivo!");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+            fwrite(est, sizeof(Estoque), 1, fp);
+
+        }
 
     }
 
     else {
-        fprintf(fp,est->nomeDoMaterial, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,est->cnpj, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,est->quant, "\n");
-        fprintf(fp,"\n");
-
-        fprintf(fp,est->ativo, "\n");
-        fprintf(fp,"\n");
+        fwrite(est, sizeof(Estoque), 1, fp);
 
     }
 
     fclose(fp);
+
+}
+
+void lerArqEst(void) {
+    FILE *fp;
+    Estoque *est;
+    est = (Estoque*) malloc(sizeof(Estoque));
+
+    fp = fopen("arqEstoq.dat","rb");
+
+    if (fp == NULL) {
+
+        fp = fopen("arqEstoq.dat","wb");
+        printf("Arquivo inexistente!\n");
+        printf("Criando novo arquivo!");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+    }
+
+    else {
+
+        while (fread(est, sizeof(Estoque), 1, fp)) {
+
+            if (est->ativo != 0) {
+                fread(est, sizeof(Estoque), 1, fp);
+                
+                exibEstoque(est);
+
+                free(est);
+
+            }
+        }
+    }
+
+    fclose(fp);
+
+}
+
+void exibEstoque(Estoque *est) {
+    
+    printf("\n");
+    printf("Nome do Material: ");
+    printf("%s" ,est->nomeDoMaterial);
+    printf("\n");
+    printf("CNPJ do vendedor: ");
+    printf("%s" ,est->cnpj);
+    printf("\n");
+    printf("Quantidade: ");
+    printf("%s" ,est->quant);
+    printf("\n");
 
 }
 
