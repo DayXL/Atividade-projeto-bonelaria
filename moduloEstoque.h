@@ -19,4 +19,6 @@ void excluirMaterial(void);
 void validarNomeMaterial(Estoque *est);
 void cnpj(Estoque *est);
 void validarQuant(Estoque *est);
-void salArqEst(Estoque* est);
+void salArqEst(Estoque *est);
+void lerArqEst(void);
+void exibEstoque(Estoque *est);
