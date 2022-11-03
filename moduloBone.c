@@ -200,13 +200,11 @@ void lerArqBcp(void) {
     BoneChap *bcp;
     bcp = (BoneChap*) malloc(sizeof(BoneChap));
 
-    fp = fopen("arqFornecedor.dat","rb");
-
-    printf("a");
+    fp = fopen("arqBoneChap.dat","rb");
 
     if (fp == NULL) {
 
-        fp = fopen("arqFornecedor.dat","wb");
+        fp = fopen("arqBoneChap.dat","wb");
         printf("Arquivo inexistente!\n");
         printf("Criando novo arquivo!");
 
