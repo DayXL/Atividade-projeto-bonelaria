@@ -71,10 +71,7 @@ char verMenuRelatorio(void) {
 void relatorioBone(void) {
     system ( " clear||cls " );
 
-    printf("\n");
-    printf("Em manutenção!");
-    printf("\n");
-    //lerArqBcp();
+    lerArqBcp();
 
 }
 
