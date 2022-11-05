@@ -144,6 +144,46 @@ void lerArqEst(void) {
 
 }
 
+Estoque* acharEst(char *nome) {
+    FILE* fp;
+    Estoque* est;
+
+    est = (Estoque*) malloc(sizeof(Estoque));
+    fp = fopen("arqEstoq.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo!\n");
+
+    }
+
+
+    else {
+
+        while(!feof(fp)) {
+            fread(est, sizeof(Estoque), 1, fp);
+
+            if (strcmp(est->nomeDoMaterial, nome) == 0) {
+
+                if (est->ativo != 0) {
+                    fclose(fp);
+                    return est;
+                }
+
+                else {
+                    fclose(fp);
+                    return NULL;
+                }
+
+            } 
+
+        }
+
+    }
+
+    fclose(fp);
+    return NULL;
+}
+
 void exibEstoque(Estoque *est) {
     
     printf("\n");
@@ -283,8 +323,9 @@ void materiaisEstoque(void) {
 }
 
 void pesquisarMateriaisEstoque(void) {
-
+    Estoque* est;
     char material[100];
+    int tam;
 
     system ( " clear||cls " );
     printf("\n");
@@ -298,9 +339,22 @@ void pesquisarMateriaisEstoque(void) {
     printf("Nome material: ");
     fgets(material, 100, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(material);
+    material[tam - 1] = '\0';
+
+    est = acharEst(material);
+     
+    if (est == NULL) {
+        printf("Material não cadastrado! ");
+
+    }
+
+    else {
+        exibEstoque(est);
+
+    }
+
+    free(est);
 
 }
 
