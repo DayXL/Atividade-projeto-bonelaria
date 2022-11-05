@@ -234,6 +234,45 @@ void lerArqBcp(void) {
 
 }
 
+BoneChap* acharMdl(char *codigo) {
+    FILE* fp;
+    BoneChap* bcp;
+
+    bcp = (BoneChap*) malloc(sizeof(BoneChap));
+    fp = fopen("arqBoneChap.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo!\n");
+
+    }
+
+    else {
+
+        while(!feof(fp)) {
+            fread(bcp, sizeof(BoneChap), 1, fp);
+
+            if (strcmp(bcp->codigo, codigo) == 0) {
+
+                if (bcp->ativo != 0) {
+                    fclose(fp);
+                    return bcp;
+                }
+
+                else {
+                    fclose(fp);
+                    return NULL;
+                }
+
+            } 
+
+        }
+
+    }
+
+    fclose(fp);
+    return NULL;
+}
+
 void exibBoneChap(BoneChap *bcp) {
     
     printf("\n");
@@ -623,7 +662,9 @@ void excluirModelo(void) {
 
 void pesquisarModelo(void) {
 
-    char nomeModelo[11];
+    BoneChap* bcp;
+    char codigo[50];
+    int tam;
 
     system ( " clear||cls " );
     printf("\n");
@@ -634,10 +675,23 @@ void pesquisarModelo(void) {
     printf("===============================================================================\n");
     
     printf("Nome do modelo: ");
-    fgets(nomeModelo, 11, stdin);
+    fgets(codigo, 50, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(codigo);
+    codigo[tam - 1] = '\0';
+
+    bcp = acharMdl(codigo);
+     
+    if (bcp == NULL) {
+        printf("Modelo não cadastrado! ");
+
+    }
+
+    else {
+        exibBoneChap(bcp);
+
+    }
+
+    free(bcp);
 
 }
