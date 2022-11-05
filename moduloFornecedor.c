@@ -138,6 +138,46 @@ void lerArqFnc(void) {
 
 }
 
+Fornecedor* acharFnc(char *cnpj) {
+    FILE* fp;
+    Fornecedor* fnc;
+
+    fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
+    fp = fopen("arqFornecedor.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo!\n");
+
+    }
+
+
+    else {
+
+        while(!feof(fp)) {
+            fread(fnc, sizeof(Fornecedor), 1, fp);
+
+            if (strcmp(fnc->cnpj, cnpj) == 0) {
+
+                if (fnc->ativo != 0) {
+                    fclose(fp);
+                    return fnc;
+                }
+
+                else {
+                    fclose(fp);
+                    return NULL;
+                }
+
+            } 
+
+        }
+
+    }
+
+    fclose(fp);
+    return NULL;
+}
+
 void exibFornecedor(Fornecedor *fnc) {
     
     printf("\n");
@@ -289,8 +329,9 @@ void excluirFornecedor(void) {
 }
 
 void pesquisarFornecedor(void) {
-
-    char cnpj[16];
+    Fornecedor* fnc;
+    char cnpj[50];
+    int tam;
 
     system ( " clear||cls " );
     printf("\n");
@@ -301,10 +342,23 @@ void pesquisarFornecedor(void) {
     printf("===============================================================================\n");
 
     printf("CNPJ(somente números): ");
-    fgets(cnpj, 16, stdin);
+    fgets(cnpj, 50, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(cnpj);
+    cnpj[tam - 1] = '\0';
+
+    fnc = acharFnc(cnpj);
+     
+    if (fnc == NULL) {
+        printf("Fornecedor não cadastrado! ");
+
+    }
+
+    else {
+        exibFornecedor(fnc);
+
+    }
+
+    free(fnc);
 
 }
