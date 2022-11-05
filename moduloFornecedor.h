@@ -24,3 +24,4 @@ void itens(void);
 void salArqFnc(Fornecedor* fnc);
 void lerArqFnc(void);
 void exibFornecedor(Fornecedor *fnc);
+Fornecedor* acharFnc(char *cnpj);
