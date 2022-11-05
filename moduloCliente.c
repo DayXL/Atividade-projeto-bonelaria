@@ -211,6 +211,7 @@ void cadastrarCliente(void) {
     char cpf[30];
     char numero[30];
     char email[100];
+    int jaCad;
 
     system ( " clear||cls " );
     printf("\n");
@@ -220,36 +221,42 @@ void cadastrarCliente(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     
-    validarNomeCliente(nomeCliente);
-
     gerarCpf();
 
     printf("\n");
 
-    validarCPF(cpf);
+    jaCad = validarCPF(cpf);
+    
+    if (jaCad == 1) {
+        printf("\nCliente já cadastrado! ");
 
-    validarNumeroCelular(numero);
+    }
 
-    validarEmail(email);
+    else {
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
+        validarNomeCliente(nomeCliente);
+
+        validarNumeroCelular(numero);
+
+        validarEmail(email);
+
+        strcpy(clt->nomeDoCliente,nomeCliente);
+        strcpy(clt->cpf,cpf);
+        strcpy(clt->numero,numero);
+        strcpy(clt->email,email);
+        clt->ativo = 1;
+
+        salArqClt(clt);
+
+        printf("\n");
+        printf("Cliente cadastrado com sucesso!");
+    }
+
+    printf("\n===============================================================================\n");
     printf("\n");
-
-    strcpy(clt->nomeDoCliente,nomeCliente);
-    strcpy(clt->cpf,cpf);
-    strcpy(clt->numero,numero);
-    strcpy(clt->email,email);
-    clt->ativo = 1;
-
-    salArqClt(clt);
 
     free(clt);
-
-    printf("\n");
-    printf("Cliente cadastrado com sucesso!");
     
-
 }
 
 void validarNomeCliente(char *nomeCliente) {
@@ -267,8 +274,9 @@ void validarNomeCliente(char *nomeCliente) {
 
 }
 
-void validarCPF(char *cpf) {
+int validarCPF(char *cpf) {
     int tam;
+    Cliente* clt;
 
     do {
 
@@ -280,6 +288,13 @@ void validarCPF(char *cpf) {
             tam = strlen(cpf);
             cpf[tam - 1] = '\0';
 
+            clt = acharClt(cpf);
+
+            if (clt != NULL) {
+                return 1;
+
+            }
+
         } while ((tam != 12) || !validarNumInteiro(cpf));
 
     } while (!verificarCpf(cpf));
@@ -287,6 +302,7 @@ void validarCPF(char *cpf) {
     printf(" ");
     printf("CPF válido!\n");
 
+    return 0;
 }
 
 void validarNumeroCelular(char *numero) {
