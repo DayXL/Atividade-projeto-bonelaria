@@ -22,7 +22,7 @@ void pesquisarCliente(void);
 void pedidoCliente(void);
 
 void validarNomeCliente(char *nomeCliente);
-void validarCPF(char *cpf);
+int validarCPF(char *cpf);
 void validarNumeroCelular(char *numero);
 void validarEmail(char *email);
 void salArqClt(Cliente* clt);
