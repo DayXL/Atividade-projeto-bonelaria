@@ -144,6 +144,46 @@ void lerArqClt(void) {
 
 }
 
+Cliente* acharClt(char *cpf) {
+    FILE* fp;
+    Cliente* clt;
+
+    clt = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("arqCliente.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo!\n");
+
+    }
+
+
+    else {
+
+        while(!feof(fp)) {
+            fread(clt, sizeof(Cliente), 1, fp);
+
+            if (strcmp(clt->cpf, cpf) == 0) {
+
+                if (clt->ativo != 0) {
+                    fclose(fp);
+                    return clt;
+                }
+
+                else {
+                    fclose(fp);
+                    return NULL;
+                }
+
+            } 
+
+        }
+
+    }
+
+    fclose(fp);
+    return NULL;
+}
+
 void exibCliente(Cliente *clt) {
     
     printf("\n");
@@ -322,8 +362,9 @@ void excluirCliente(void) {
 }
 
 void pesquisarCliente(void) {
-
-    char cpf[13];
+    Cliente* clt;
+    char cpf[50];
+    int tam;
 
     system ( " clear||cls " );
     printf("\n");
@@ -334,11 +375,24 @@ void pesquisarCliente(void) {
     printf("===============================================================================\n");
 
     printf("CPF do cliente: ");
-    fgets(cpf, 13, stdin);
+    fgets(cpf, 50, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(cpf);
+    cpf[tam - 1] = '\0';
+
+    clt = acharClt(cpf);
+     
+    if (clt == NULL) {
+        printf("Cliente não cadastrado! ");
+
+    }
+
+    else {
+        exibCliente(clt);
+
+    }
+
+    free(clt);
 
 }
 
