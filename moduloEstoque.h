@@ -22,3 +22,4 @@ void validarQuant(Estoque *est);
 void salArqEst(Estoque *est);
 void lerArqEst(void);
 void exibEstoque(Estoque *est);
+Estoque* acharEst(char *nome);
