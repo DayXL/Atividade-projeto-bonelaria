@@ -228,7 +228,7 @@ void cadastrarCliente(void) {
     jaCad = validarCPF(cpf);
     
     if (jaCad == 1) {
-        printf("\nCliente já cadastrado! ");
+        printf("\nCliente já cadastrado!\n");
 
     }
 
@@ -248,8 +248,7 @@ void cadastrarCliente(void) {
 
         salArqClt(clt);
 
-        printf("\n");
-        printf("Cliente cadastrado com sucesso!");
+        printf("\nCliente cadastrado com sucesso!\n");
     }
 
     printf("\n===============================================================================\n");
