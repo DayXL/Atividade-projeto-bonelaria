@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "moduloEstoque.h"
+#include "moduloFornecedor.h"
 #include "funcoesAux.h"
 
 typedef struct estoque Estoque;
+typedef struct fornecedor Fornecedor;
 
 void moduloEstoque(void) {
 
@@ -222,16 +224,26 @@ void cadastrarMateriais(void) {
     }
 
     else {
-        cnpj(est);
+        jaCad = cnpj(est);
 
-        validarQuant(est);
+        if (jaCad == 1) {
+            printf("\nFornecedor não cadastrado!\n");
 
-        est->ativo = 1;
+        }
 
-        salArqEst(est);
+        else {
 
-        printf("Material cadastrado com sucesso!");
-    
+            validarQuant(est);
+
+            est->ativo = 1;
+
+            salArqEst(est);
+
+            printf("\nMaterial cadastrado com sucesso!\n");
+        
+        }
+
+        
     }
     
     printf("\n===============================================================================\n");
@@ -268,9 +280,10 @@ int validarNomeMaterial(Estoque *est) {
 
 }
 
-void cnpj(Estoque *est) {
+int cnpj(Estoque *est) {
     int tam;
     char cnpj[30];
+    Fornecedor* fnc;
 
     do {
 
@@ -280,9 +293,18 @@ void cnpj(Estoque *est) {
         tam = strlen(cnpj);
         cnpj[tam - 1] = '\0';
 
+        fnc = acharFnc(cnpj);
+
+        if (fnc != NULL) {
+            return 0;
+
+        }
+
     } while ((tam != 15) || !validarNumInteiro(cnpj));
 
     strcpy(est->cnpj, cnpj);
+
+    return 1;
 
 }
 
