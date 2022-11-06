@@ -201,6 +201,7 @@ void cadastrarFornecedor(void) {
     char nomeFornecedor[100];
     char cnpj[30];
     char email[100];
+    int jaCad;
 
     system ( " clear||cls " );
     printf("\n");
@@ -210,28 +211,37 @@ void cadastrarFornecedor(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    
-    validarNomeFornecedor(nomeFornecedor);
 
     gerarCnpj();
     printf("\n");
 
-    validarCnpj(cnpj);
+    jaCad = validarCnpj(cnpj);
 
-    validarEmail2(email);
+    if (jaCad == 1) {
+        printf("\nFornecedor já cadastrado!\n");
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
+    }
+
+    else {
+        validarNomeFornecedor(nomeFornecedor);
+
+        validarEmail2(email);
+
+        strcpy(fnc->nomeFornecedor,nomeFornecedor);
+        strcpy(fnc->cnpj,cnpj);
+        strcpy(fnc->email,email);
+        fnc->ativo = 1;
+
+        salArqFnc(fnc);
+
+        printf("\nFornecedor cadastrado com sucesso!\n");
+    }
+
+    printf("\n===============================================================================\n");
     printf("\n");
 
-    strcpy(fnc->nomeFornecedor,nomeFornecedor);
-    strcpy(fnc->cnpj,cnpj);
-    strcpy(fnc->email,email);
-    fnc->ativo = 1;
-
-    salArqFnc(fnc);
-
     free(fnc);
+
 }
 
 void validarNomeFornecedor(char *nomeFornecedor) {
@@ -249,8 +259,9 @@ void validarNomeFornecedor(char *nomeFornecedor) {
  
 }
 
-void validarCnpj(char *cnpj) {
+int validarCnpj(char *cnpj) {
     int tam;
+    Fornecedor* fnc;
 
     do {
 
@@ -261,6 +272,13 @@ void validarCnpj(char *cnpj) {
 
             tam = strlen(cnpj);
             cnpj[tam - 1] = '\0';
+
+            fnc = acharFnc(cnpj);
+
+            if (fnc != NULL) {
+                return 1;
+
+            }
         
         } while ((tam != 15) || !validarNumInteiro(cnpj));
 
@@ -268,6 +286,8 @@ void validarCnpj(char *cnpj) {
 
     printf(" ");
     printf("CNPJ válido!\n");
+
+    return 0;
 
 }
 
