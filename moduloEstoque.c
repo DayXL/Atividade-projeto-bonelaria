@@ -350,17 +350,8 @@ void excluirMaterial(void) {
 
 void materiaisEstoque(void) {
     system ( " clear||cls " );
-    printf("\n");
-    printf("===============================================================================\n");
-    printf("===                                                                         ===\n");
-    printf("===        = = = = = Materiais em Estoque  = = = = =                        ===\n");
-    printf("===                                                                         ===\n");
-    printf("===     Linha vermelha: 100 tubos                                           ===\n");
-    printf("===     Bico de boné: 367                                                   ===\n");
-    printf("===     Tinha branca: 10 baldes                                             ===\n");
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    
+    lerArqEst();
 
 }
 
