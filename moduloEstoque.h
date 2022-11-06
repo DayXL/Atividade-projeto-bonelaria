@@ -17,7 +17,7 @@ void comprarMateriais(void);
 void cadastrarMateriais(void);
 void excluirMaterial(void);
 int validarNomeMaterial(Estoque *est);
-void cnpj(Estoque *est);
+int cnpj(Estoque *est);
 void validarQuant(Estoque *est);
 void salArqEst(Estoque *est);
 void lerArqEst(void);
