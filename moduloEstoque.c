@@ -204,6 +204,7 @@ void cadastrarMateriais(void) {
 
     Estoque* est;
     est = (Estoque*) malloc(sizeof(Estoque));
+    int jaCad;
 
     printf("\n");
     printf("===============================================================================\n");
@@ -213,26 +214,36 @@ void cadastrarMateriais(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
 
-    cnpj(est);
+    jaCad = validarNomeMaterial(est);
 
-    validarNomeMaterial(est);
+    if (jaCad == 1) {
+        printf("\nMaterial já cadastrado! ");
 
-    validarQuant(est);
+    }
+
+    else {
+        cnpj(est);
+
+        validarQuant(est);
+
+        est->ativo = 1;
+
+        salArqEst(est);
+
+        printf("Material cadastrado com sucesso!");
     
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
+    }
+    
+    printf("\n===============================================================================\n");
     printf("\n");
-
-    est->ativo = 1;
-
-    salArqEst(est);
 
     free(est);
 }
 
-void validarNomeMaterial(Estoque *est) {
+int validarNomeMaterial(Estoque *est) {
     int tam;
     char nomeMaterial[100];
+    Estoque* aux;
 
     do {
 
@@ -240,11 +251,20 @@ void validarNomeMaterial(Estoque *est) {
         fgets(nomeMaterial, 100, stdin);
 
         tam = strlen(nomeMaterial);
-       nomeMaterial[tam - 1] = '\0';
+        nomeMaterial[tam - 1] = '\0';
+
+        aux = acharEst(nomeMaterial);
+
+        if (aux != NULL) {
+            return 1;
+
+        }
 
     } while ((tam == 1) || !validarPalavra(nomeMaterial));
 
     strcpy(est->nomeDoMaterial, nomeMaterial);
+
+    return 0;
 
 }
 
