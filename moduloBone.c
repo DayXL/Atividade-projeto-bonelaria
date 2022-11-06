@@ -158,6 +158,7 @@ void telaBone(void) {
 
     char *detalhes;
     int tam;
+    int jaCad;
 
     system ( " clear||cls " );
     printf("\n");
@@ -183,13 +184,22 @@ void telaBone(void) {
     detalhes = validarEsc('1');
     tam = strlen(detalhes);
 
-    gerarCodigoBone(detalhes, tam, '1', bcp);
+    jaCad = gerarCodigoBone(detalhes, tam, '1', bcp);
 
-    cadastrarModelo(bcp);
+    if (jaCad == 1) {
+        printf("\nBoné já cadastrado!\n");
 
-    bcp->ativo = 1;
+    }
 
-    salArqBonChap(bcp);
+    else {
+        cadastrarModelo(bcp);
+
+        bcp->ativo = 1;
+
+        salArqBonChap(bcp);
+
+        printf("Boné cadastrado com sucesso!");
+    }
 
     free(bcp);
 
@@ -435,8 +445,9 @@ char* validarEsc(char tipo) {
 
 }
 
-void gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
+int gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
     char codigo[6];
+    BoneChap* aux;
 
     codigo[0] = num;
 
@@ -476,11 +487,22 @@ void gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
 
     }
 
-    printf("Código do Boné:\n");
-    printf("%s", codigo);
-    printf("\n");
+    aux = acharMdl(codigo);
 
-    strcpy(bcp->codigo,codigo);
+    if (aux != NULL) {
+        return 1;
+
+    }
+
+    else {
+        printf("Código do Boné:\n");
+        printf("%s", codigo);
+        printf("\n");
+
+        strcpy(bcp->codigo,codigo);
+    }
+
+    return 0;
 }
 
 void telaChapeu(void) {
@@ -490,6 +512,7 @@ void telaChapeu(void) {
 
     char *detalhes;
     int tam;
+    int jaCad;
 
     system ( " clear||cls " );
     printf("\n");
@@ -512,19 +535,29 @@ void telaChapeu(void) {
     detalhes = validarEsc('0');
     tam = strlen(detalhes);
 
-    gerarCodigoChapeu(detalhes, tam, '0',bcp);
+    jaCad = gerarCodigoChapeu(detalhes, tam, '0',bcp);
 
-    cadastrarModelo(bcp);
+    if (jaCad == 1) {
+        printf("\nChapéu já cadastrado!\n");
 
-    bcp->ativo = 1;
+    }
 
-    salArqBonChap(bcp);
+    else {
+        cadastrarModelo(bcp);
+
+        bcp->ativo = 1;
+
+        salArqBonChap(bcp);
+
+        printf("\nChapéu cadastrado com sucesso!\n");
+    }
 
     free(bcp);
 }
 
-void gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp) {
+int gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp) {
     char codigo[6];
+    BoneChap* aux;
 
     codigo[0] = num;
 
@@ -546,11 +579,23 @@ void gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp) {
 
     }
 
-    printf("Código do Chapéu:\n");
-    printf("%s", codigo);
-    printf("\n");
+    aux = acharMdl(codigo);
 
-    strcpy(bcp->codigo,codigo);
+    if (aux != NULL) {
+        return 1;
+
+    }
+
+    else {
+
+        printf("Código do Chapéu:\n");
+        printf("%s", codigo);
+        printf("\n");
+
+        strcpy(bcp->codigo,codigo);
+    }
+
+    return 0;
 }
 
 void cadastrarModelo(BoneChap *bcp) {
