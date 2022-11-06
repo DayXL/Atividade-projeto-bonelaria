@@ -130,16 +130,17 @@ void lerArqClt(void) {
         while (fread(clt, sizeof(Cliente), 1, fp)) {
 
             if (clt->ativo != 0) {
+
                 fread(clt, sizeof(Cliente), 1, fp);
                 
                 exibCliente(clt);
 
-                free(clt);
 
             }
         }
     }
 
+    free(clt);
     fclose(fp);
 
 }
@@ -290,6 +291,9 @@ int validarCPF(char *cpf) {
             clt = acharClt(cpf);
 
             if (clt != NULL) {
+
+                free(clt);
+
                 return 1;
 
             }
