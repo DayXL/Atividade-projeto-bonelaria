@@ -132,16 +132,14 @@ void lerArqEst(void) {
         while (fread(est, sizeof(Estoque), 1, fp)) {
 
             if (est->ativo != 0) {
-                fread(est, sizeof(Estoque), 1, fp);
                 
                 exibEstoque(est);
-
-                free(est);
 
             }
         }
     }
 
+    free(est);
     fclose(fp);
 
 }
