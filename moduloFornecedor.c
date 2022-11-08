@@ -124,16 +124,14 @@ void lerArqFnc(void) {
         while (fread(fnc, sizeof(Fornecedor), 1, fp)) {
 
             if (fnc->ativo != 0) {
-                fread(fnc, sizeof(Fornecedor), 1, fp);
                 
                 exibFornecedor(fnc);
-
-                free(fnc);
 
             }
         }
     }
 
+    free(fnc);
     fclose(fp);
 
 }
