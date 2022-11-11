@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "moduloCliente.h"
 #include "funcoesAux.h"
 
@@ -78,21 +79,20 @@ void salArqClt(Cliente* clt) {
 
     fp = fopen("arqCliente.dat","ab");
 
-    if (fp == NULL){
+    if (fp == NULL) {
 
-      fp = fopen("arqCliente.dat","wb");
-      printf("Arquivo inexistente!\n");
-      printf("Criando novo arquivo!");
+        printf("Arquivo inexistente!\n");
+        printf("Criando novo arquivo!");
 
-      if (fp == NULL) {
-        printf("Erro com arquivo!");
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
 
-      }
+        }
 
-      else {
-        fwrite(clt, sizeof(Cliente), 1, fp);
+        else {
+            fwrite(clt, sizeof(Cliente), 1, fp);
 
-      }
+        }
 
     }
 
@@ -108,37 +108,32 @@ void salArqClt(Cliente* clt) {
 void lerArqClt(void) {
     FILE *fp;
     Cliente *clt;
-    clt = (Cliente*) malloc(sizeof(Cliente));
 
-    fp = fopen("arqCliente.dat","rb");
+    if (access("arqCliente.dat", F_OK) != -1) {
 
-    if (fp == NULL) {
-
-        fp = fopen("arqCliente.dat","wb");
-        printf("Arquivo inexistente!\n");
-        printf("Criando novo arquivo!");
+        fp = fopen("arqCliente.dat","rb");
 
         if (fp == NULL) {
             printf("Erro com arquivo!");
 
         }
 
-    }
+        else {
 
-    else {
+            clt = (Cliente*) malloc(sizeof(Cliente));
 
-        while (fread(clt, sizeof(Cliente), 1, fp)) {
+            while (fread(clt, sizeof(Cliente), 1, fp)) {
 
-            if (clt->ativo != 0) {
-                
-                exibCliente(clt);
+                if (clt->ativo != 0) {
+                    exibCliente(clt);
 
-
+                }
             }
+            free(clt);
+
         }
     }
 
-    free(clt);
     fclose(fp);
 
 }
