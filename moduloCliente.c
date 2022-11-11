@@ -142,36 +142,29 @@ Cliente* acharClt(char *cpf) {
     FILE* fp;
     Cliente* clt;
 
-    clt = (Cliente*) malloc(sizeof(Cliente));
-    fp = fopen("arqCliente.dat", "rb");
+    if (access("arqCliente.dat", F_OK) != -1) {
+        fp = fopen("arqCliente.dat", "rb");
 
-    if (fp == NULL) {
-        printf("Ocorreu um erro na abertura do arquivo!\n");
-
-    }
-
-
-    else {
-
-        while(!feof(fp)) {
-            fread(clt, sizeof(Cliente), 1, fp);
-
-            if (strcmp(clt->cpf, cpf) == 0) {
-
-                if (clt->ativo != 0) {
-                    fclose(fp);
-                    return clt;
-                }
-
-                else {
-                    fclose(fp);
-                    return NULL;
-                }
-
-            } 
+        if (fp == NULL) {
+            printf("Ocorreu um erro na abertura do arquivo!\n");
 
         }
 
+        else {
+
+            clt = (Cliente*) malloc(sizeof(Cliente));
+
+            while(fread(clt, sizeof(Cliente), 1, fp)) {
+
+                if ((strcmp(clt->cpf, cpf) == 0) && (clt->ativo != 0)) {
+                    fclose(fp);
+                    return clt;
+
+                } 
+
+            }
+
+        }
     }
 
     fclose(fp);
