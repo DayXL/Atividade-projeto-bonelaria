@@ -74,7 +74,6 @@ void salArqFnc(Fornecedor* fnc) {
 
     if (fp == NULL){
 
-        fp = fopen("arqFornecedor.dat","wb");
         printf("Arquivo inexistente!\n");
         printf("Criando novo arquivo!");
 
@@ -102,36 +101,31 @@ void salArqFnc(Fornecedor* fnc) {
 void lerArqFnc(void) {
     FILE *fp;
     Fornecedor *fnc;
-    fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
 
-    fp = fopen("arqFornecedor.dat","rb");
-
-    if (fp == NULL) {
-
-        fp = fopen("arqFornecedor.dat","wb");
-        printf("Arquivo inexistente!\n");
-        printf("Criando novo arquivo!");
+    if (access("arqCliente.dat", F_OK) != -1) {
+        fp = fopen("arqFornecedor.dat","rb");
 
         if (fp == NULL) {
             printf("Erro com arquivo!");
 
         }
 
-    }
+        else {
+            fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
 
-    else {
+            while (fread(fnc, sizeof(Fornecedor), 1, fp)) {
 
-        while (fread(fnc, sizeof(Fornecedor), 1, fp)) {
+                if (fnc->ativo != 0) {                  
+                    exibFornecedor(fnc);
 
-            if (fnc->ativo != 0) {
-                
-                exibFornecedor(fnc);
-
+                }
             }
+            free(fnc);
+            
         }
     }
 
-    free(fnc);
+    
     fclose(fp);
 
 }
