@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "moduloFornecedor.h"
 #include "funcoesAux.h"
 
@@ -151,7 +152,7 @@ Fornecedor* acharFnc(char *cnpj) {
 
                 if ((strcmp(fnc->cnpj, cnpj) == 0) && (fnc->ativo != 0)) {
                     fclose(fp);
-                    return fnc
+                    return fnc;
 
                 } 
 
