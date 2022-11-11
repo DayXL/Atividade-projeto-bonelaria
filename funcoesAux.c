@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "funcoesAux.h"
 
 void passarEnter(void) {
@@ -78,21 +79,14 @@ int verificarCpf(char *cpf) {
 
     int soma = 0;
     int resto = 0;
+    int tam;
+    
+    tam = strlen(cpf);
+    cpf[tam - 1] = '\0';
 
-    for (int i = 0; i < 9; i++) {
-        soma = soma + ((cpf[i] - '0' ) * (i + 1));
-
-    }
-
-    resto = soma % 11;
-
-    resto = (resto == 10) ? 0 : resto;
-
-    if (resto == (cpf[9] - '0' )) {
-        soma = 0;
-
-        for (int i = 0; i < 10; i++) {
-                soma = soma + ((cpf[i] - '0' ) * (i));
+    if ((validarNumInteiro(cpf)) && (tam == 12)) {
+        for (int i = 0; i < 9; i++) {
+            soma = soma + ((cpf[i] - '0' ) * (i + 1));
 
         }
 
@@ -100,15 +94,33 @@ int verificarCpf(char *cpf) {
 
         resto = (resto == 10) ? 0 : resto;
 
-        if (resto == (cpf[10] - '0' )) {
-            return 1;
+        if (resto == (cpf[9] - '0' )) {
+            soma = 0;
+
+            for (int i = 0; i < 10; i++) {
+                    soma = soma + ((cpf[i] - '0' ) * (i));
+
+            }
+
+            resto = soma % 11;
+
+            resto = (resto == 10) ? 0 : resto;
+
+            if (resto == (cpf[10] - '0' )) {
+                return 1;
+
+            }
+
+            else {
+                return 0;
+            }
 
         }
 
         else {
             return 0;
-        }
 
+        }
     }
 
     else {
