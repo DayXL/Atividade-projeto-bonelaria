@@ -121,7 +121,7 @@ void lerArqFnc(void) {
                 }
             }
             free(fnc);
-            
+
         }
     }
 
@@ -134,36 +134,29 @@ Fornecedor* acharFnc(char *cnpj) {
     FILE* fp;
     Fornecedor* fnc;
 
-    fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
-    fp = fopen("arqFornecedor.dat", "rb");
+    if (access("arqCliente.dat", F_OK) != -1) {
+        fp = fopen("arqFornecedor.dat", "rb");
 
-    if (fp == NULL) {
-        printf("Ocorreu um erro na abertura do arquivo!\n");
-
-    }
-
-
-    else {
-
-        while(!feof(fp)) {
-            fread(fnc, sizeof(Fornecedor), 1, fp);
-
-            if (strcmp(fnc->cnpj, cnpj) == 0) {
-
-                if (fnc->ativo != 0) {
-                    fclose(fp);
-                    return fnc;
-                }
-
-                else {
-                    fclose(fp);
-                    return NULL;
-                }
-
-            } 
+        if (fp == NULL) {
+            printf("Ocorreu um erro na abertura do arquivo!\n");
 
         }
 
+
+        else {
+                
+            fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
+
+            while(fread(fnc, sizeof(Fornecedor), 1, fp)) {
+
+                if ((strcmp(fnc->cnpj, cnpj) == 0) && (fnc->ativo != 0)) {
+                    fclose(fp);
+                    return fnc
+
+                } 
+
+            }
+        }
     }
 
     fclose(fp);
