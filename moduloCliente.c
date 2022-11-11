@@ -261,36 +261,26 @@ void validarNomeCliente(char *nomeCliente) {
 }
 
 int validarCPF(char *cpf) {
-    int tam;
     Cliente* clt;
 
     do {
 
-        do {
-
-            printf("CPF(somente números): ");
-            fgets(cpf, 30, stdin);
-
-            tam = strlen(cpf);
-            cpf[tam - 1] = '\0';
-
-            clt = acharClt(cpf);
-
-            if (clt != NULL) {
-
-                free(clt);
-
-                return 1;
-
-            }
-
-        } while ((tam != 12) || !validarNumInteiro(cpf));
+        printf("CPF(somente números): ");
+        fgets(cpf, 30, stdin);
 
     } while (!verificarCpf(cpf));
 
-    printf(" ");
-    printf("CPF válido!\n");
 
+    clt = acharClt(cpf);
+
+    if (clt != NULL) {
+
+        free(clt);
+        return 1;
+
+    }
+
+    free(clt);
     return 0;
 }
 
