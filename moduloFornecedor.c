@@ -246,33 +246,24 @@ void validarNomeFornecedor(char *nomeFornecedor) {
 }
 
 int validarCnpj(char *cnpj) {
-    int tam;
     Fornecedor* fnc;
 
     do {
 
-        do {
-
-            printf("CNPJ(somente números): ");
-            fgets(cnpj, 30, stdin);
-
-            tam = strlen(cnpj);
-            cnpj[tam - 1] = '\0';
-
-            fnc = acharFnc(cnpj);
-
-            if (fnc != NULL) {
-                return 1;
-
-            }
-        
-        } while ((tam != 15) || !validarNumInteiro(cnpj));
-
+        printf("CNPJ(somente números): ");
+        fgets(cnpj, 30, stdin);
+    
     } while (!verificarCnpj(cnpj));
 
-    printf(" ");
-    printf("CNPJ válido!\n");
+    fnc = acharFnc(cnpj);
 
+    if (fnc != NULL) {
+        free(fnc);
+        return 1;
+
+    }
+    
+    free(fnc);
     return 0;
 
 }
