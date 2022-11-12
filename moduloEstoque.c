@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "moduloEstoque.h"
 #include "moduloFornecedor.h"
 #include "funcoesAux.h"
@@ -82,7 +83,6 @@ void salArqEst(Estoque *est) {
 
     if (fp == NULL){
 
-        fp = fopen("arqEstoq.dat","wb");
         printf("Arquivo inexistente!\n");
         printf("Criando novo arquivo!");
 
@@ -110,36 +110,32 @@ void salArqEst(Estoque *est) {
 void lerArqEst(void) {
     FILE *fp;
     Estoque *est;
-    est = (Estoque*) malloc(sizeof(Estoque));
 
-    fp = fopen("arqEstoq.dat","rb");
+    if (access("arqCliente.dat", F_OK) != -1) {
 
-    if (fp == NULL) {
-
-        fp = fopen("arqEstoq.dat","wb");
-        printf("Arquivo inexistente!\n");
-        printf("Criando novo arquivo!");
+        fp = fopen("arqEstoq.dat","rb");
 
         if (fp == NULL) {
             printf("Erro com arquivo!");
 
         }
 
-    }
+        else {
 
-    else {
+            est = (Estoque*) malloc(sizeof(Estoque));
 
-        while (fread(est, sizeof(Estoque), 1, fp)) {
+            while (fread(est, sizeof(Estoque), 1, fp)) {
 
-            if (est->ativo != 0) {
-                
-                exibEstoque(est);
+                if (est->ativo != 0) {    
+                    exibEstoque(est);
 
+                }
             }
+            
+            free(est);
         }
     }
 
-    free(est);
     fclose(fp);
 
 }
