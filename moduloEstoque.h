@@ -3,6 +3,7 @@ typedef struct estoque Estoque;
 struct estoque {
 
     char nomeDoMaterial[100];
+    char codigo[9];
     char cnpj[15];
     char quant[10];
     int ativo;
@@ -16,9 +17,10 @@ void pesquisarMateriaisEstoque(void);
 void comprarMateriais(void);
 void cadastrarMateriais(void);
 void excluirMaterial(void);
-int validarNomeMaterial(Estoque *est);
-int cnpj(Estoque *est);
-void validarQuant(Estoque *est);
+int lerCodMat(char *codigo);
+void validarNomeMaterial(char *nomeMaterial);
+int lerCnpjEst(char *cnpj);
+void validarQuant(char *quant);
 void salArqEst(Estoque *est);
 void lerArqEst(void);
 void exibEstoque(Estoque *est);
