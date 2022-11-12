@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "moduloBone.h"
 #include "funcoesAux.h"
 
@@ -51,7 +52,6 @@ void salArqBonChap(BoneChap* bcp) {
 
     if (fp == NULL){
 
-        fp = fopen("arqBoneChap.dat","wb");
         printf("Arquivo inexistente!\n");
         printf("Criando novo arquivo!");
 
@@ -208,34 +208,29 @@ void telaBone(void) {
 void lerArqBcp(void) {
     FILE *fp;
     BoneChap *bcp;
-    bcp = (BoneChap*) malloc(sizeof(BoneChap));
 
-    fp = fopen("arqBoneChap.dat","rb");
+    if (access("arqCliente.dat", F_OK) != -1) {
 
-    if (fp == NULL) {
-
-        fp = fopen("arqBoneChap.dat","wb");
-        printf("Arquivo inexistente!\n");
-        printf("Criando novo arquivo!");
+        fp = fopen("arqBoneChap.dat","rb");
 
         if (fp == NULL) {
             printf("Erro com arquivo!");
 
         }
 
-    }
+        else {
 
-    else {
+            bcp = (BoneChap*) malloc(sizeof(BoneChap));
 
-        while (fread(bcp, sizeof(BoneChap), 1, fp)) {
+            while (fread(bcp, sizeof(BoneChap), 1, fp)) {
 
-            if (bcp->ativo != 0) {
-                
-                exibBoneChap(bcp);
+                if (bcp->ativo != 0) {   
+                    exibBoneChap(bcp);
 
-                free(bcp);
-
+                }
             }
+            free(bcp);
+
         }
     }
 
@@ -247,35 +242,29 @@ BoneChap* acharMdl(char *codigo) {
     FILE* fp;
     BoneChap* bcp;
 
-    bcp = (BoneChap*) malloc(sizeof(BoneChap));
-    fp = fopen("arqBoneChap.dat", "rb");
+    if (access("arqCliente.dat", F_OK) != -1) {
+        fp = fopen("arqBoneChap.dat", "rb");
 
-    if (fp == NULL) {
-        printf("Ocorreu um erro na abertura do arquivo!\n");
-
-    }
-
-    else {
-
-        while(!feof(fp)) {
-            fread(bcp, sizeof(BoneChap), 1, fp);
-
-            if (strcmp(bcp->codigo, codigo) == 0) {
-
-                if (bcp->ativo != 0) {
-                    fclose(fp);
-                    return bcp;
-                }
-
-                else {
-                    fclose(fp);
-                    return NULL;
-                }
-
-            } 
+        if (fp == NULL) {
+            printf("Ocorreu um erro na abertura do arquivo!\n");
 
         }
 
+        else {
+
+            bcp = (BoneChap*) malloc(sizeof(BoneChap));
+
+            while(fread(bcp, sizeof(BoneChap), 1, fp)) {
+
+                if ((strcmp(bcp->codigo, codigo) == 0) && (bcp->ativo != 0)) {
+                    fclose(fp);
+                    return bcp;
+
+                } 
+
+            }
+
+        }
     }
 
     fclose(fp);
