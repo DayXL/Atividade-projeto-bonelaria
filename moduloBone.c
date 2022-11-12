@@ -673,7 +673,13 @@ void editarModelo(void) {
 
 void excluirModelo(void) {
 
-    char nomeModelo[11];
+    FILE* fp;
+    BoneChap* bcp;
+    BoneChap* aux;
+    char codigo[30];
+    int tam;
+    char aux2[20];
+    int achou = 0;
 
     system ( " clear||cls " );
     printf("\n");
@@ -684,19 +690,85 @@ void excluirModelo(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
 
-    printf("Nome do modelo: ");
-    fgets(nomeModelo, 11, stdin);
+    printf("Código do modelo: ");
+    fgets(codigo, 30, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(codigo);
+    codigo[tam - 1] = '\0';
+
+    bcp = acharMdl(codigo);
+     
+    if (bcp == NULL) {
+
+        printf("Modelo não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (BoneChap*) malloc(sizeof(BoneChap));
+        fp = fopen("arqBoneChap.dat", "r+b");
+
+        if (access("arqBoneChap.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível deletar!\n");
+
+            }
+
+            else {
+
+                while(fread(aux, sizeof(BoneChap), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->codigo, codigo) == 0) && (aux->ativo != 0)) {
+
+                        achou = 1;
+                        exibBoneChap(aux);
+
+                        printf("\nDeseja realmente deletar?1 para sim, 0 para não.\n");
+                        fgets(aux2, 20, stdin);
+                        
+                        tam = strlen(aux2);
+                        aux2[tam - 1] = '\0';
+
+                        if (strcmp(aux2, "1\0") == 0) {
+                            aux->ativo = 0;
+
+                            fseek(fp, -1*sizeof(BoneChap), SEEK_CUR);
+                            fwrite(aux, sizeof(BoneChap), 1, fp);
+
+                            printf("\nModelo excluído com sucesso!\n");
+                        }
+
+                        else {
+                            printf("\nCancelado!\n");
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        else {
+            printf("\nErro com arquivo\n");
+
+        }
+
+        free(aux);
+    }
+
+    fclose(fp);
+    free(bcp);
 
 }
 
 void pesquisarModelo(void) {
 
     BoneChap* bcp;
-    char codigo[50];
+    char codigo[30];
     int tam;
 
     system ( " clear||cls " );
@@ -708,7 +780,7 @@ void pesquisarModelo(void) {
     printf("===============================================================================\n");
     
     printf("Nome do modelo: ");
-    fgets(codigo, 50, stdin);
+    fgets(codigo, 30, stdin);
 
     tam = strlen(codigo);
     codigo[tam - 1] = '\0';
