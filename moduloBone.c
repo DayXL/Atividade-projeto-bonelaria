@@ -209,7 +209,7 @@ void lerArqBcp(void) {
     FILE *fp;
     BoneChap *bcp;
 
-    if (access("arqCliente.dat", F_OK) != -1) {
+    if (access("arqBoneChap.dat", F_OK) != -1) {
 
         fp = fopen("arqBoneChap.dat","rb");
 
@@ -232,9 +232,9 @@ void lerArqBcp(void) {
             free(bcp);
 
         }
-    }
 
-    fclose(fp);
+        fclose(fp);
+    }
 
 }
 
@@ -242,7 +242,7 @@ BoneChap* acharMdl(char *codigo) {
     FILE* fp;
     BoneChap* bcp;
 
-    if (access("arqCliente.dat", F_OK) != -1) {
+    if (access("arqBoneChap.dat", F_OK) != -1) {
         fp = fopen("arqBoneChap.dat", "rb");
 
         if (fp == NULL) {
@@ -265,9 +265,10 @@ BoneChap* acharMdl(char *codigo) {
             }
 
         }
+
+        fclose(fp);
     }
 
-    fclose(fp);
     return NULL;
 }
 
