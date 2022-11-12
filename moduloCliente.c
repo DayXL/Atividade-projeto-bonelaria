@@ -106,9 +106,10 @@ void salArqClt(Cliente* clt) {
 }
 
 void lerArqClt(void) {
+    
     FILE *fp;
     Cliente *clt;
-
+    
     if (access("arqCliente.dat", F_OK) != -1) {
 
         fp = fopen("arqCliente.dat","rb");
@@ -132,9 +133,9 @@ void lerArqClt(void) {
             free(clt);
 
         }
-    }
 
-    fclose(fp);
+        fclose(fp);
+    }
 
 }
 
@@ -165,9 +166,10 @@ Cliente* acharClt(char *cpf) {
             }
 
         }
+
+        fclose(fp);
     }
 
-    fclose(fp);
     return NULL;
 }
 
