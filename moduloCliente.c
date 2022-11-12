@@ -270,7 +270,6 @@ int validarCPF(char *cpf) {
 
     } while (!verificarCpf(cpf));
 
-
     clt = acharClt(cpf);
 
     if (clt != NULL) {
