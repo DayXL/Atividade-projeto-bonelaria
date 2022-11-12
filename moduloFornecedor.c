@@ -306,7 +306,13 @@ void editarFornecedor(void) {
 
 void excluirFornecedor(void) {
 
-    char cnpj[16];
+    FILE* fp;
+    Fornecedor* fnc;
+    Fornecedor* aux;
+    char cnpj[30];
+    int tam;
+    char aux2[20];
+    int achou = 0;
 
     system ( " clear||cls " );
     printf("\n");
@@ -317,11 +323,77 @@ void excluirFornecedor(void) {
     printf("===============================================================================\n");
 
     printf("CNPJ(somente números): ");
-    fgets(cnpj, 16, stdin);
+    fgets(cnpj, 30, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(cnpj);
+    cnpj[tam - 1] = '\0';
+
+    fnc = acharFnc(cnpj);
+     
+    if (fnc == NULL) {
+
+        printf("Fornecedor não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (Fornecedor*) malloc(sizeof(Fornecedor));
+        fp = fopen("arqFornecedor.dat", "r+b");
+
+        if (access("arqFornecedor.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível deletar!\n");
+
+            }
+
+            else {
+
+                while(fread(aux, sizeof(Fornecedor), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->cnpj, cnpj) == 0) && (aux->ativo != 0)) {
+
+                        achou = 1;
+                        exibFornecedor(aux);
+
+                        printf("\nDeseja realmente deletar?1 para sim, 0 para não.\n");
+                        fgets(aux2, 20, stdin);
+                        
+                        tam = strlen(aux2);
+                        aux2[tam - 1] = '\0';
+
+                        if (strcmp(aux2, "1\0") == 0) {
+                            aux->ativo = 0;
+
+                            fseek(fp, -1*sizeof(Fornecedor), SEEK_CUR);
+                            fwrite(aux, sizeof(Fornecedor), 1, fp);
+
+                            printf("\nFornecedor excluído com sucesso!\n");
+                        }
+
+                        else {
+                            printf("\nCancelado!\n");
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        else {
+            printf("\nErro com arquivo\n");
+
+        }
+
+        free(aux);
+    }
+
+    fclose(fp);
+    free(fnc);
 
 }
 
