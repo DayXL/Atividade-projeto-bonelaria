@@ -81,7 +81,7 @@ void salArqEst(Estoque *est) {
 
     fp = fopen("arqEstoq.dat","ab");
 
-    if (fp == NULL){
+    if (fp == NULL) {
 
         printf("Arquivo inexistente!\n");
         printf("Criando novo arquivo!");
@@ -111,7 +111,7 @@ void lerArqEst(void) {
     FILE *fp;
     Estoque *est;
 
-    if (access("arqCliente.dat", F_OK) != -1) {
+    if (access("arqEstoq.dat", F_OK) != -1) {
 
         fp = fopen("arqEstoq.dat","rb");
 
@@ -134,54 +134,51 @@ void lerArqEst(void) {
             
             free(est);
         }
-    }
 
-    fclose(fp);
+        fclose(fp);
+    }
 
 }
 
-Estoque* acharEst(char *nome) {
+Estoque* acharEst(char *codigo) {
     FILE* fp;
     Estoque* est;
 
-    est = (Estoque*) malloc(sizeof(Estoque));
-    fp = fopen("arqEstoq.dat", "rb");
+    if (access("arqEstoq.dat", F_OK) != -1) {
+        fp = fopen("arqEstoq.dat", "rb");
 
-    if (fp == NULL) {
-        printf("Ocorreu um erro na abertura do arquivo!\n");
-
-    }
-
-
-    else {
-
-        while(!feof(fp)) {
-            fread(est, sizeof(Estoque), 1, fp);
-
-            if (strcmp(est->nomeDoMaterial, nome) == 0) {
-
-                if (est->ativo != 0) {
-                    fclose(fp);
-                    return est;
-                }
-
-                else {
-                    fclose(fp);
-                    return NULL;
-                }
-
-            } 
+        if (fp == NULL) {
+            printf("Ocorreu um erro na abertura do arquivo!\n");
 
         }
 
+        else {
+            
+            est = (Estoque*) malloc(sizeof(Estoque));
+
+            while(fread(est, sizeof(Estoque), 1, fp)) {
+
+                if ((strcmp(est->codigo, codigo) == 0) && (est->ativo != 0)) {
+                    fclose(fp);
+                    return est;
+
+                } 
+
+            }
+
+        }
+
+        fclose(fp);
     }
 
-    fclose(fp);
     return NULL;
 }
 
 void exibEstoque(Estoque *est) {
-    
+
+    printf("\n");
+    printf("Código do Material: ");
+    printf("%s" ,est->codigo);
     printf("\n");
     printf("Nome do Material: ");
     printf("%s" ,est->nomeDoMaterial);
@@ -196,12 +193,17 @@ void exibEstoque(Estoque *est) {
 }
 
 void cadastrarMateriais(void) {
-    system ( " clear||cls " );
 
     Estoque* est;
     est = (Estoque*) malloc(sizeof(Estoque));
+
+    char codigo[30];
+    char cnpj[30];
+    char nomeMaterial[100];
+    char quant[10];
     int jaCad;
 
+    system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
@@ -210,7 +212,7 @@ void cadastrarMateriais(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
 
-    jaCad = validarNomeMaterial(est);
+    jaCad = lerCodMat(codigo);
 
     if (jaCad == 1) {
         printf("\nMaterial já cadastrado! ");
@@ -218,7 +220,7 @@ void cadastrarMateriais(void) {
     }
 
     else {
-        jaCad = cnpj(est);
+        jaCad = lerCnpjEst(cnpj);
 
         if (jaCad == 1) {
             printf("\nFornecedor não cadastrado!\n");
@@ -226,9 +228,14 @@ void cadastrarMateriais(void) {
         }
 
         else {
+            validarNomeMaterial(nomeMaterial);
 
-            validarQuant(est);
+            validarQuant(quant);
 
+            strcpy(est->codigo, codigo);
+            strcpy(est->cnpj, cnpj);
+            strcpy(est->nomeDoMaterial, nomeMaterial);
+            strcpy(est->quant, quant);
             est->ativo = 1;
 
             salArqEst(est);
@@ -246,10 +253,38 @@ void cadastrarMateriais(void) {
     free(est);
 }
 
-int validarNomeMaterial(Estoque *est) {
+int lerCodMat(char *codigo) {
     int tam;
-    char nomeMaterial[100];
-    Estoque* aux;
+    Estoque* est;
+
+    do {
+
+        printf("Código do material (Oito números): ");
+        fgets(codigo, 30, stdin);
+
+        tam = strlen(codigo);
+        codigo[tam - 1] = '\0';
+
+        printf("Tou aqui");
+
+    } while ((tam != 9) || !validarNumInteiro(codigo));
+
+    printf("Hello");
+    est = acharEst(codigo);
+
+    if (est != NULL) {
+        free(est);
+        return 1;
+
+    }
+
+    free(est);
+    return 0;
+
+}
+
+void validarNomeMaterial(char *nomeMaterial) {
+    int tam;
 
     do {
 
@@ -259,24 +294,12 @@ int validarNomeMaterial(Estoque *est) {
         tam = strlen(nomeMaterial);
         nomeMaterial[tam - 1] = '\0';
 
-        aux = acharEst(nomeMaterial);
-
-        if (aux != NULL) {
-            return 1;
-
-        }
-
     } while ((tam == 1) || !validarPalavra(nomeMaterial));
-
-    strcpy(est->nomeDoMaterial, nomeMaterial);
-
-    return 0;
 
 }
 
-int cnpj(Estoque *est) {
+int lerCnpjEst(char *cnpj) {
     int tam;
-    char cnpj[30];
     Fornecedor* fnc;
 
     do {
@@ -287,24 +310,21 @@ int cnpj(Estoque *est) {
         tam = strlen(cnpj);
         cnpj[tam - 1] = '\0';
 
-        fnc = acharFnc(cnpj);
-
-        if (fnc != NULL) {
-            return 0;
-
-        }
-
     } while ((tam != 15) || !validarNumInteiro(cnpj));
 
-    strcpy(est->cnpj, cnpj);
+    fnc = acharFnc(cnpj);
+
+    if (fnc != NULL) {
+        return 0;
+
+    }
 
     return 1;
 
 }
 
-void validarQuant(Estoque *est) {
+void validarQuant(char *quant) {
     int tam;
-    char quant[10];
 
     do {
 
@@ -316,8 +336,6 @@ void validarQuant(Estoque *est) {
 
 
     } while ((tam == 1) || !(validarNumInteiro(quant)));
-
-    strcpy(est->quant, quant);
 
 }
 
