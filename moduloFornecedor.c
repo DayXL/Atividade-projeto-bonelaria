@@ -124,10 +124,10 @@ void lerArqFnc(void) {
             free(fnc);
 
         }
-    }
 
-    
-    fclose(fp);
+        fclose(fp);
+
+    }
 
 }
 
@@ -135,14 +135,13 @@ Fornecedor* acharFnc(char *cnpj) {
     FILE* fp;
     Fornecedor* fnc;
 
-    if (access("arqCliente.dat", F_OK) != -1) {
+    if (access("arqFornecedor.dat", F_OK) != -1) {
         fp = fopen("arqFornecedor.dat", "rb");
 
         if (fp == NULL) {
             printf("Ocorreu um erro na abertura do arquivo!\n");
 
         }
-
 
         else {
                 
@@ -158,9 +157,10 @@ Fornecedor* acharFnc(char *cnpj) {
 
             }
         }
+
+        fclose(fp);
     }
 
-    fclose(fp);
     return NULL;
 }
 
