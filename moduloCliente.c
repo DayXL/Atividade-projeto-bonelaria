@@ -414,7 +414,6 @@ void excluirCliente(void) {
             }
         }
 
-
         else {
             printf("\nErro com arquivo\n");
 
