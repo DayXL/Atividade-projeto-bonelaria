@@ -336,7 +336,13 @@ void editarCliente(void) {
 
 void excluirCliente(void) {
 
-    char cpf[13];
+    FILE* fp;
+    Cliente* clt;
+    Cliente* aux;
+    char cpf[30];
+    int tam;
+    char aux2[20];
+    int achou = 0;
 
     system ( " clear||cls " );
     printf("\n");
@@ -347,11 +353,78 @@ void excluirCliente(void) {
     printf("===============================================================================\n");
 
     printf("CPF do cliente: ");
-    fgets(cpf, 13, stdin);
+    fgets(cpf, 30, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(cpf);
+    cpf[tam - 1] = '\0';
+
+    clt = acharClt(cpf);
+     
+    if (clt == NULL) {
+
+        printf("Cliente não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (Cliente*) malloc(sizeof(Cliente));
+        fp = fopen("arqCliente.dat", "r+b");
+
+        if (access("arqCliente.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível deletar!\n");
+
+            }
+
+            else {
+
+                while(fread(aux, sizeof(Cliente), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->cpf, cpf) == 0) && (aux->ativo != 0)) {
+
+                        achou = 1;
+                        exibCliente(aux);
+
+                        printf("\nDeseja realmente deletar?1 para sim, 0 para não.\n");
+                        fgets(aux2, 20, stdin);
+                        
+                        tam = strlen(aux2);
+                        aux2[tam - 1] = '\0';
+
+                        if (strcmp(aux2, "1\0") == 0) {
+                            aux->ativo = 0;
+
+                            fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
+                            fwrite(aux, sizeof(Cliente), 1, fp);
+
+                            printf("\nCliente excluído com sucesso!\n");
+                        }
+
+                        else {
+                            printf("\nCancelado!\n");
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+
+        else {
+            printf("\nErro com arquivo\n");
+
+        }
+
+        free(aux);
+    }
+
+    fclose(fp);
+    free(clt);
 
 }
 
