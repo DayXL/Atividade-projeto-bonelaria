@@ -193,7 +193,7 @@ void exibEstoque(Estoque *est) {
     printf("%s" ,est->cnpj);
     printf("\n");
     printf("Quantidade: ");
-    printf("%s" ,est->quant);
+    printf("%f" ,est->quant);
     printf("\n");
 
 }
@@ -241,7 +241,7 @@ void cadastrarMateriais(void) {
             strcpy(est->codigo, codigo);
             strcpy(est->cnpj, cnpj);
             strcpy(est->nomeDoMaterial, nomeMaterial);
-            strcpy(est->quant, quant);
+            est->quant = atof(quant);
             est->ativo = 1;
 
             salArqEst(est);
@@ -530,7 +530,7 @@ void editarMaterial(void) {
 
                                 else if (esc=='3') {
                                     validarQuant(quant);
-                                    strcpy(aux->quant,quant); 
+                                    aux->quant = atof(quant); 
 
                                 }
 
@@ -543,7 +543,7 @@ void editarMaterial(void) {
 
                                     strcpy(aux->nomeDoMaterial,nomeMaterial);
                                     strcpy(aux->cnpj,cnpj);
-                                    strcpy(aux->quant,quant); 
+                                    aux->quant = atof(quant);
                                 }
 
                                 else {
