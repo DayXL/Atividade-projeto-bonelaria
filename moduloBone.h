@@ -19,13 +19,13 @@ char escolherModelo(void);
 void editarModelo(void);
 void excluirModelo(void);
 void pesquisarModelo(void);
-void cadastrarModelo(BoneChap *bcp);
+void cadastrarModelo(char *nomeModelo, char *uniPorMetro, char *uniPorTubo);
 void escolhendoModelo(void);
 
 //Assinaturas para validacao
-void validarNomeModelo(BoneChap *bcp);
-void validarUniPorMetro(BoneChap *bcp);
-void validarUniPorTubo(BoneChap *bcp);
+void validarNomeModelo(char *nomeModelo);
+void validarUniPorMetro(char *uniPorMetro);
+void validarUniPorTubo(char *uniPorTubo);
 void telaBone(void);
 void telaChapeu(void);
 char* validarEsc(char tipo);
@@ -34,3 +34,4 @@ int gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp);
 void lerArqBcp(void);
 void exibBoneChap(BoneChap *bcp);
 BoneChap* acharMdl(char *codigo);
+char telAtlBcp(void);
