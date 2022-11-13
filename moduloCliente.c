@@ -105,7 +105,7 @@ void salArqClt(Cliente* clt) {
 
 }
 
-void lerArqClt(void) {
+void lerArqClt(int num) {
     
     FILE *fp;
     Cliente *clt;
@@ -125,7 +125,7 @@ void lerArqClt(void) {
 
             while (fread(clt, sizeof(Cliente), 1, fp)) {
 
-                if (clt->ativo != 0) {
+                if (clt->ativo == num) {
                     exibCliente(clt);
 
                 }
