@@ -85,7 +85,7 @@ void relatorioFornecedor(void) {
 void relatorioCliente(void) {
     system ( " clear||cls " );
 
-    lerArqClt();
+    lerArqClt(1);
 
 }
 
