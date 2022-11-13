@@ -285,7 +285,16 @@ void validarEmail2(char *email) {
 
 void editarFornecedor(void) {
 
-    char cnpj[16];
+    FILE* fp;
+    Fornecedor* fnc;
+    Fornecedor* aux;
+    char cnpj[30];
+    int tam;
+    char aux2[20];
+    int achou = 0;
+    char nomeFornecedor[100];
+    char email[100];
+    char esc;
 
     system ( " clear||cls " );
     printf("\n");
@@ -296,12 +305,129 @@ void editarFornecedor(void) {
     printf("===============================================================================\n");
 
     printf("CNPJ(somente números): ");
-    fgets(cnpj, 16, stdin);
+    fgets(cnpj, 30, stdin);
 
+    tam = strlen(cnpj);
+    cnpj[tam - 1] = '\0';
+
+    fnc = acharFnc(cnpj);
+     
+    if (fnc == NULL) {
+
+        printf("Fornecedor não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (Fornecedor*) malloc(sizeof(Fornecedor));
+        fp = fopen("arqFornecedor.dat", "r+b");
+
+        if (access("arqFornecedor.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível atualizar!\n");
+                
+            }
+
+            else {
+
+                while(fread(aux, sizeof(Fornecedor), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->cnpj, cnpj) == 0) && (aux->ativo != 0)) {
+                        achou = 1;
+                        exibFornecedor(aux);
+
+                        printf("\nDeseja realmente atualizar?1 para sim, 0 para não.\n");
+                        fgets(aux2, 20, stdin);
+                        
+                        tam = strlen(aux2);
+                        aux2[tam - 1] = '\0';
+
+                        if (strcmp(aux2, "1\0") == 0) {
+
+                            esc = telAtlFnc();
+
+                            while (esc!='0') {
+
+                                if (esc=='1') {
+                                    validarNomeFornecedor(nomeFornecedor);
+                                    strcpy(aux->nomeFornecedor,nomeFornecedor);
+
+                                }
+
+                                else if (esc=='2') {
+                                    validarEmail2(email);
+                                    strcpy(aux->email,email); 
+
+                                }
+
+                                else if (esc=='4') {
+                                    validarNomeFornecedor(nomeFornecedor);
+
+                                    validarEmail2(email);
+
+                                    strcpy(aux->nomeFornecedor,nomeFornecedor);
+                                    strcpy(aux->email,email); 
+                                }
+
+                                else {
+                                    printf("Opção inválida!\n");
+                                
+                                }
+
+                                esc = telAtlFnc();
+                            }
+  
+                            fseek(fp, -1*sizeof(Fornecedor), SEEK_CUR);
+                            fwrite(aux, sizeof(Fornecedor), 1, fp);
+
+                            printf("\nFornecedor atualizado com sucesso!\n");
+                        }
+
+                        else {
+                            printf("\nCancelado!\n");
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        else {
+            printf("\nErro com arquivo\n");
+
+        }
+        free(aux);
+    }
+
+    fclose(fp);
+    free(fnc);
+
+}
+
+char telAtlFnc(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                 = = = = = Atualizar = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Nome                                                 ===\n");
+    printf("===                 2. Email                                                ===\n");
+    printf("===                 3. Atualizar tudo                                       ===\n");
+    printf("===                 0. Sair                                                 ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
 
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 }
 
 void excluirFornecedor(void) {
