@@ -4,8 +4,8 @@ struct boneChap {
 
     char nomeBonChap[100];
     char codigo[6];
-    char uniPorMetro[3];
-    char uniPorTubo[3];
+    float uniPorMetro;
+    float uniPorTubo;
     int ativo;
 
 };
