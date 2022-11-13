@@ -23,7 +23,7 @@ void validarNomeMaterial(char *nomeMaterial);
 int lerCnpjEst(char *cnpj);
 void validarQuant(char *quant);
 void salArqEst(Estoque *est);
-void lerArqEst(void);
+void lerArqEst(int num);
 void exibEstoque(Estoque *est);
 Estoque* acharEst(char *nome);
 char telAtlEst(void);

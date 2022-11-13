@@ -72,14 +72,14 @@ char verMenuLix(void) {
 void lixBone(void) {
     system ( " clear||cls " );
 
-    lerArqBcp();
+    lerArqBcp(0);
 
 }
 
 void lixFornecedor(void) {
     system ( " clear||cls " );
 
-    lerArqFnc();
+    lerArqFnc(0);
 
 }
 
@@ -93,6 +93,6 @@ void lixCliente(void) {
 void lixEstoque(void) {
     system ( " clear||cls " );
 
-    lerArqEst();
+    lerArqEst(0);
 
 }

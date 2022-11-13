@@ -99,7 +99,7 @@ void salArqFnc(Fornecedor* fnc) {
 
 }
 
-void lerArqFnc(void) {
+void lerArqFnc(int num) {
     FILE *fp;
     Fornecedor *fnc;
 
@@ -116,7 +116,7 @@ void lerArqFnc(void) {
 
             while (fread(fnc, sizeof(Fornecedor), 1, fp)) {
 
-                if (fnc->ativo != 0) {                  
+                if (fnc->ativo == num) {                  
                     exibFornecedor(fnc);
 
                 }

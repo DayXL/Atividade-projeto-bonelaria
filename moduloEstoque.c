@@ -113,7 +113,7 @@ void salArqEst(Estoque *est) {
 
 }
 
-void lerArqEst(void) {
+void lerArqEst(int num) {
     FILE *fp;
     Estoque *est;
 
@@ -132,7 +132,7 @@ void lerArqEst(void) {
 
             while (fread(est, sizeof(Estoque), 1, fp)) {
 
-                if (est->ativo != 0) {    
+                if (est->ativo == num) {    
                     exibEstoque(est);
 
                 }
@@ -609,7 +609,7 @@ char telAtlEst(void) {
 void materiaisEstoque(void) {
     system ( " clear||cls " );
     
-    lerArqEst();
+    lerArqEst(1);
 
 }
 

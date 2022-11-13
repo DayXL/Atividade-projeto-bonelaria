@@ -211,7 +211,7 @@ void telaBone(void) {
 
 }
 
-void lerArqBcp(void) {
+void lerArqBcp(int num) {
     FILE *fp;
     BoneChap *bcp;
 
@@ -230,7 +230,7 @@ void lerArqBcp(void) {
 
             while (fread(bcp, sizeof(BoneChap), 1, fp)) {
 
-                if (bcp->ativo != 0) {   
+                if (bcp->ativo == num) {   
                     exibBoneChap(bcp);
 
                 }

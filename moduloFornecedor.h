@@ -22,7 +22,7 @@ void validarEmail2(char *email);
 void itens(void);
 
 void salArqFnc(Fornecedor* fnc);
-void lerArqFnc(void);
+void lerArqFnc(int num);
 void exibFornecedor(Fornecedor *fnc);
 Fornecedor* acharFnc(char *cnpj);
 char telAtlFnc(void);

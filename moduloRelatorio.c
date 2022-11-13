@@ -71,14 +71,14 @@ char verMenuRelatorio(void) {
 void relatorioBone(void) {
     system ( " clear||cls " );
 
-    lerArqBcp();
+    lerArqBcp(1);
 
 }
 
 void relatorioFornecedor(void) {
     system ( " clear||cls " );
 
-    lerArqFnc();
+    lerArqFnc(1);
 
 }
 
@@ -92,6 +92,6 @@ void relatorioCliente(void) {
 void relatorioEstoque(void) {
     system ( " clear||cls " );
 
-    lerArqEst();
+    lerArqEst(1);
 
 }

@@ -84,7 +84,7 @@ char verMenuPrincipal(void) {
     printf("===                 4. Módulo Estoque                                       ===\n");
     printf("===                 5. Relatórios                                           ===\n");
     printf("===                 6. Menu Sobre                                           ===\n");
-    printf("===                 6. Lixeira                                              ===\n");
+    printf("===                 7. Lixeira                                              ===\n");
     printf("===                 0. Sair                                                 ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
