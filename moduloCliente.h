@@ -1,5 +1,7 @@
 
 typedef struct cliente Cliente;
+typedef struct pedidoCliente PedidoCliente;
+typedef struct boneChap BoneChap;
 
 struct cliente {
 
@@ -8,6 +10,16 @@ struct cliente {
     char numero[12];
     char email[100];
     int ativo;
+
+};
+
+struct pedidoCliente {
+
+    char pedido;
+    char cpf[12];
+    char codigo[6];
+    float quant[12];
+    char detalhes[100];
 
 };
 
@@ -30,3 +42,5 @@ void lerArqClt(int num);
 void exibCliente(Cliente *clt);
 Cliente* acharClt(char *cpf);
 char telAtlClt(void);
+BoneChap* selecionarModelo(char *codigo);
+void lerArqBcpDif(char num);
