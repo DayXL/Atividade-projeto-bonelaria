@@ -159,6 +159,9 @@ void telaBone(void) {
     char *detalhes;
     int tam;
     int jaCad;
+    char nomeModelo[100];
+    char uniPorMetro[20];
+    char uniPorTubo[20];
 
     system ( " clear||cls " );
     printf("\n");
@@ -192,8 +195,11 @@ void telaBone(void) {
     }
 
     else {
-        cadastrarModelo(bcp);
+        cadastrarModelo(nomeModelo,uniPorMetro,uniPorTubo);
 
+        strcpy(bcp->nomeBonChap, nomeModelo);
+        strcpy(bcp->uniPorMetro, uniPorMetro);
+        strcpy(bcp->uniPorTubo, uniPorTubo);
         bcp->ativo = 1;
 
         salArqBonChap(bcp);
@@ -502,6 +508,9 @@ void telaChapeu(void) {
     char *detalhes;
     int tam;
     int jaCad;
+    char nomeModelo[100];
+    char uniPorMetro[20];
+    char uniPorTubo[20];
 
     system ( " clear||cls " );
     printf("\n");
@@ -532,8 +541,11 @@ void telaChapeu(void) {
     }
 
     else {
-        cadastrarModelo(bcp);
+        cadastrarModelo(nomeModelo,uniPorMetro,uniPorTubo);
 
+        strcpy(bcp->nomeBonChap, nomeModelo);
+        strcpy(bcp->uniPorMetro, uniPorMetro);
+        strcpy(bcp->uniPorTubo, uniPorTubo);
         bcp->ativo = 1;
 
         salArqBonChap(bcp);
@@ -587,18 +599,17 @@ int gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp) {
     return 0;
 }
 
-void cadastrarModelo(BoneChap *bcp) {
+void cadastrarModelo(char *nomeModelo, char *uniPorMetro, char *uniPorTubo) {
     
-    validarNomeModelo(bcp);
+    validarNomeModelo(nomeModelo);
 
-    validarUniPorMetro(bcp);
+    validarUniPorMetro(uniPorMetro);
 
-    validarUniPorTubo(bcp);
+    validarUniPorTubo(uniPorTubo);
 }
 
-void validarNomeModelo(BoneChap *bcp) {
+void validarNomeModelo(char *nomeModelo) {
     int tam;
-    char nomeModelo[100];
 
     do {
 
@@ -610,17 +621,15 @@ void validarNomeModelo(BoneChap *bcp) {
 
     } while ((tam == 1) || !(validarPalavra(nomeModelo))); 
 
-    strcpy(bcp->nomeBonChap, nomeModelo);
 }
 
-void validarUniPorMetro(BoneChap *bcp) {
+void validarUniPorMetro(char *uniPorMetro) {
     int tam;
-    char uniPorMetro[3];
 
     do {
 
         printf("Unidades por metro de tecido: ");
-        fgets(uniPorMetro, 3, stdin);
+        fgets(uniPorMetro, 20, stdin);
 
         tam = strlen(uniPorMetro);
         uniPorMetro[tam - 1] = '\0';
@@ -628,18 +637,15 @@ void validarUniPorMetro(BoneChap *bcp) {
 
     } while ((tam == 1) || !(validarNumInteiro(uniPorMetro)));
 
-    strcpy(bcp->uniPorMetro, uniPorMetro);
-
 }
 
-void validarUniPorTubo(BoneChap *bcp) {
+void validarUniPorTubo(char *uniPorTubo) {
     int tam;
-    char uniPorTubo[3];
 
     do {
 
         printf("Unidades por tubo de linha: ");
-        fgets(uniPorTubo, 3, stdin);
+        fgets(uniPorTubo, 20, stdin);
 
         tam = strlen(uniPorTubo);
         uniPorTubo[tam - 1] = '\0';
@@ -647,12 +653,20 @@ void validarUniPorTubo(BoneChap *bcp) {
 
     } while ((tam == 1) || !(validarNumInteiro(uniPorTubo))); 
 
-    strcpy(bcp->uniPorTubo, uniPorTubo);
 }
 
 void editarModelo(void) {
-
-    char nomeModelo[11];
+    FILE* fp;
+    BoneChap* bcp;
+    BoneChap* aux;
+    char codigo[30];
+    int tam;
+    char aux2[20];
+    int achou = 0;
+    char nomeModelo[100];
+    char uniPorMetro[30];
+    char uniPorTubo[30];
+    char esc;
 
     system ( " clear||cls " );
     printf("\n");
@@ -663,12 +677,140 @@ void editarModelo(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
 
-    printf("Nome do modelo: ");
-    fgets(nomeModelo, 11, stdin);
+    printf("Código do modelo: ");
+    fgets(codigo, 30, stdin);
 
+    tam = strlen(codigo);
+    codigo[tam - 1] = '\0';
+
+    bcp = acharMdl(codigo);
+     
+    if (bcp == NULL) {
+
+        printf("Modelo não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (BoneChap*) malloc(sizeof(BoneChap));
+        fp = fopen("arqBoneChap.dat", "r+b");
+
+        if (access("arqBoneChap.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível atualizar!\n");
+                
+            }
+
+            else {
+
+                while(fread(aux, sizeof(BoneChap), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->codigo, codigo) == 0) && (aux->ativo != 0)) {
+                        achou = 1;
+                        exibBoneChap(aux);
+
+                        printf("\nDeseja realmente atualizar?1 para sim, 0 para não.\n");
+                        fgets(aux2, 20, stdin);
+                        
+                        tam = strlen(aux2);
+                        aux2[tam - 1] = '\0';
+
+                        if (strcmp(aux2, "1\0") == 0) {
+
+                            esc = telAtlBcp();
+
+                            while (esc!='0') {
+
+                                if (esc=='1') {
+                                    validarNomeModelo(nomeModelo);
+                                    strcpy(aux->nomeBonChap,nomeModelo);
+
+                                }
+
+                                else if (esc=='2') {
+                                    validarUniPorMetro(uniPorMetro);
+                                    strcpy(aux->uniPorMetro,uniPorMetro);
+
+                                }
+
+                                else if (esc=='3') {
+                                    validarUniPorTubo(uniPorTubo);
+                                    strcpy(aux->uniPorTubo,uniPorTubo);
+
+                                }
+
+                                else if (esc=='4') {
+                                    validarNomeModelo(nomeModelo);
+
+                                    validarUniPorMetro(uniPorMetro);
+
+                                    validarUniPorTubo(uniPorTubo);
+
+                                    strcpy(aux->nomeBonChap,nomeModelo);
+                                    strcpy(aux->uniPorMetro,uniPorMetro);
+                                    strcpy(aux->uniPorTubo,uniPorTubo); 
+                                }
+
+                                else {
+                                    printf("Opção inválida!\n");
+                                
+                                }
+
+                                esc = telAtlBcp();
+                            }
+  
+                            fseek(fp, -1*sizeof(BoneChap), SEEK_CUR);
+                            fwrite(aux, sizeof(BoneChap), 1, fp);
+
+                            printf("\nModelo atualizado com sucesso!\n");
+                        }
+
+                        else {
+                            printf("\nCancelado!\n");
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        else {
+            printf("\nErro com arquivo\n");
+
+        }
+        free(aux);
+    }
+
+    fclose(fp);
+    free(bcp);
+
+}
+
+char telAtlBcp(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                 = = = = = Atualizar = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Nome                                                 ===\n");
+    printf("===                 2. Unidade por metro                                    ===\n");
+    printf("===                 3. Unidades por tubo                                    ===\n");
+    printf("===                 4. Atualizar tudo                                       ===\n");
+    printf("===                 0. Sair                                                 ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 
 }
 
@@ -780,7 +922,7 @@ void pesquisarModelo(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     
-    printf("Nome do modelo: ");
+    printf("Código do modelo: ");
     fgets(codigo, 30, stdin);
 
     tam = strlen(codigo);
