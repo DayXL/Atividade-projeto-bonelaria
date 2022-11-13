@@ -8,6 +8,7 @@
 #include "moduloEstoque.h"  //teste
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
+#include "moduloLixeira.h"
 
 char verMenuPrincipal(void);
 
@@ -40,16 +41,17 @@ int main(void) {
         }
 
         else if (esc=='5') {
-
-            //printf("Manutenção!");
-            //printf("\n");
-
             moduloRelatorio();
 
         }
 
         else if (esc=='6') {
             verMenuSobre();
+
+        }
+
+        else if (esc=='7') {
+            moduloLixeira();
 
         }
 
@@ -82,6 +84,7 @@ char verMenuPrincipal(void) {
     printf("===                 4. Módulo Estoque                                       ===\n");
     printf("===                 5. Relatórios                                           ===\n");
     printf("===                 6. Menu Sobre                                           ===\n");
+    printf("===                 6. Lixeira                                              ===\n");
     printf("===                 0. Sair                                                 ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
