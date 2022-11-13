@@ -2,6 +2,7 @@
 typedef struct cliente Cliente;
 typedef struct pedidoCliente PedidoCliente;
 typedef struct boneChap BoneChap;
+typedef struct estoque Estoque;
 
 struct cliente {
 
@@ -44,3 +45,8 @@ Cliente* acharClt(char *cpf);
 char telAtlClt(void);
 BoneChap* selecionarModelo(char *codigo);
 void lerArqBcpDif(char num);
+void lerQuant(char *quant);
+void verMtlDisp(BoneChap* bcp, float quant);
+void acharTec(void);
+void selecionarCor(char *tec);
+//Estoque* acharMtlPelNom(char* nome, int tam);
