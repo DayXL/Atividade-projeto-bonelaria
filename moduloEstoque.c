@@ -40,6 +40,11 @@ void moduloEstoque(void) {
 
         }
 
+        else if (esc=='6') {
+            editarMaterial();
+
+        }
+
         else {
             printf("Opção inválida!\n");
         
@@ -59,11 +64,12 @@ char verMenuEstoque(void) {
     printf("===                                                                         ===\n");
     printf("===               = = = = = Menu Estoque = = = = =                          ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 1. Cadastrar materiais                                  ===\n");
-    printf("===                 2. Deletar materiais                                    ===\n");
+    printf("===                 1. Cadastrar material                                   ===\n");
+    printf("===                 2. Deletar material                                     ===\n");
     printf("===                 3. Ver materiais em estoque                             ===\n");
-    printf("===                 4. Pesquisar materias em estoque                        ===\n");
-    printf("===                 5. Comprar materiais para estoque                       ===\n");
+    printf("===                 4. Pesquisar material                                   ===\n");
+    printf("===                 5. Comprar material                                     ===\n");
+    printf("===                 6. Editar material                                      ===\n");
     printf("===                 0. Voltar ao menu principal                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -200,7 +206,7 @@ void cadastrarMateriais(void) {
     char codigo[30];
     char cnpj[30];
     char nomeMaterial[100];
-    char quant[10];
+    char quant[30];
     int jaCad;
 
     system ( " clear||cls " );
@@ -329,7 +335,7 @@ void validarQuant(char *quant) {
     do {
 
         printf("Qual a quantidade? ");
-        fgets(quant, 10, stdin);
+        fgets(quant, 30, stdin);
 
         tam = strlen(quant);
         quant[tam - 1] = '\0';
@@ -429,6 +435,175 @@ void excluirMaterial(void) {
 
     fclose(fp);
     free(est);
+}
+
+void editarMaterial(void) {
+
+    FILE* fp;
+    Estoque* est;
+    Estoque* aux;
+    char codigo[30];
+    int tam;
+    int jaCad;
+    char aux2[20];
+    int achou = 0;
+    char nomeMaterial[100];
+    char cnpj[30];
+    char quant[30];
+    char esc;
+
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Editar material = = = = =                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+
+    printf("Código do material: ");
+    fgets(codigo, 30, stdin);
+
+    tam = strlen(codigo);
+    codigo[tam - 1] = '\0';
+
+    est = acharEst(codigo);
+     
+    if (est == NULL) {
+        printf("Material não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (Estoque*) malloc(sizeof(Estoque));
+        fp = fopen("arqEstoq.dat", "r+b");
+
+        if (access("arqEstoq.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível atualizar!\n");
+                
+            }
+
+            else {
+
+                while(fread(aux, sizeof(Estoque), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->codigo, codigo) == 0) && (aux->ativo != 0)) {
+                        achou = 1;
+                        exibEstoque(aux);
+
+                        printf("\nDeseja realmente atualizar?1 para sim, 0 para não.\n");
+                        fgets(aux2, 20, stdin);
+                        
+                        tam = strlen(aux2);
+                        aux2[tam - 1] = '\0';
+
+                        if (strcmp(aux2, "1\0") == 0) {
+
+                            esc = telAtlEst();
+
+                            while (esc!='0') {
+
+                                if (esc=='1') {
+                                    validarNomeMaterial(nomeMaterial);
+                                    strcpy(aux->nomeDoMaterial,nomeMaterial);
+
+                                }
+
+                                else if (esc=='2') {
+                                    lerCnpjEst(cnpj);
+
+                                    jaCad = lerCnpjEst(cnpj);
+
+                                    if (jaCad == 1) {
+                                        printf("\nFornecedor não cadastrado!\n");
+
+                                    }
+
+                                    else {
+                                        strcpy(aux->cnpj,cnpj);
+
+                                    }
+
+                                }
+
+                                else if (esc=='3') {
+                                    validarQuant(quant);
+                                    strcpy(aux->quant,quant); 
+
+                                }
+
+                                else if (esc=='4') {
+                                    validarNomeMaterial(nomeMaterial);
+
+                                    lerCnpjEst(cnpj);
+
+                                    validarQuant(quant);
+
+                                    strcpy(aux->nomeDoMaterial,nomeMaterial);
+                                    strcpy(aux->cnpj,cnpj);
+                                    strcpy(aux->quant,quant); 
+                                }
+
+                                else {
+                                    printf("Opção inválida!\n");
+                                
+                                }
+
+                                esc = telAtlEst();
+                            }
+  
+                            fseek(fp, -1*sizeof(Estoque), SEEK_CUR);
+                            fwrite(aux, sizeof(Estoque), 1, fp);
+
+                            printf("\nMaterial atualizado com sucesso!\n");
+                        }
+
+                        else {
+                            printf("\nCancelado!\n");
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        else {
+            printf("\nErro com arquivo\n");
+
+        }
+        free(aux);
+    }
+
+    fclose(fp);
+    free(est);
+}
+
+char telAtlEst(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                 = = = = = Atualizar = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Nome                                                 ===\n");
+    printf("===                 2. Cnpj                                                 ===\n");
+    printf("===                 3. Quantidade                                           ===\n");
+    printf("===                 4. Atualizar tudo                                       ===\n");
+    printf("===                 0. Sair                                                 ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
+
 }
 
 void materiaisEstoque(void) {
