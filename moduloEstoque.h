@@ -5,7 +5,7 @@ struct estoque {
     char nomeDoMaterial[100];
     char codigo[9];
     char cnpj[15];
-    char quant[10];
+    float quant;
     int ativo;
 
 };
