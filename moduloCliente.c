@@ -317,7 +317,17 @@ void validarEmail(char *email) {
 
 void editarCliente(void) {
 
-    char cpf[13];
+    FILE* fp;
+    Cliente* clt;
+    Cliente* aux;
+    char cpf[30];
+    int tam;
+    char aux2[20];
+    int achou = 0;
+    char nomeCliente[100];
+    char numero[30];
+    char email[100];
+    char esc;
 
     system ( " clear||cls " );
     printf("\n");
@@ -328,11 +338,138 @@ void editarCliente(void) {
     printf("===============================================================================\n");
 
     printf("CPF do cliente: ");
-    fgets(cpf, 13, stdin);
+    fgets(cpf, 30, stdin);
 
+    tam = strlen(cpf);
+    cpf[tam - 1] = '\0';
+
+    clt = acharClt(cpf);
+     
+    if (clt == NULL) {
+
+        printf("Cliente não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (Cliente*) malloc(sizeof(Cliente));
+        fp = fopen("arqCliente.dat", "r+b");
+
+        if (access("arqCliente.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível atualizar!\n");
+                
+            }
+
+            else {
+
+                while(fread(aux, sizeof(Cliente), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->cpf, cpf) == 0) && (aux->ativo != 0)) {
+                        achou = 1;
+                        exibCliente(aux);
+
+                        printf("\nDeseja realmente atualizar?1 para sim, 0 para não.\n");
+                        fgets(aux2, 20, stdin);
+                        
+                        tam = strlen(aux2);
+                        aux2[tam - 1] = '\0';
+
+                        if (strcmp(aux2, "1\0") == 0) {
+
+                            esc = telAtl();
+
+                            while (esc!='0') {
+
+                                if (esc=='1') {
+                                    validarNomeCliente(nomeCliente);
+                                    strcpy(aux->nomeDoCliente,nomeCliente);
+
+                                }
+
+                                else if (esc=='2') {
+                                    validarNumeroCelular(numero);
+                                    strcpy(aux->numero,numero);
+
+                                }
+
+                                else if (esc=='3') {
+                                    validarEmail(email);
+                                    strcpy(aux->email,email); 
+
+                                }
+
+                                else if (esc=='4') {
+                                    validarNomeCliente(nomeCliente);
+
+                                    validarNumeroCelular(numero);
+
+                                    validarEmail(email);
+
+                                    strcpy(aux->nomeDoCliente,nomeCliente);
+                                    strcpy(aux->numero,numero);
+                                    strcpy(aux->email,email); 
+                                }
+
+                                else {
+                                    printf("Opção inválida!\n");
+                                
+                                }
+
+                                esc = telAtl();
+                            }
+  
+                            fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
+                            fwrite(aux, sizeof(Cliente), 1, fp);
+
+                            printf("\nCliente atualizado com sucesso!\n");
+                        }
+
+                        else {
+                            printf("\nCancelado!\n");
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        else {
+            printf("\nErro com arquivo\n");
+
+        }
+        free(aux);
+    }
+
+    fclose(fp);
+    free(clt);
+}
+
+char telAtl(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===                 = = = = = Atualizar = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===                 1. Nome                                                 ===\n");
+    printf("===                 2. Telefone                                             ===\n");
+    printf("===                 3. Email                                                ===\n");
+    printf("===                 4. Atualizar tudo                                       ===\n");
+    printf("===                 0. Sair                                                 ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 
 }
 
