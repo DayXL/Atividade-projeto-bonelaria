@@ -26,7 +26,7 @@ int validarCPF(char *cpf);
 void validarNumeroCelular(char *numero);
 void validarEmail(char *email);
 void salArqClt(Cliente* clt);
-void lerArqClt(void);
+void lerArqClt(int num);
 void exibCliente(Cliente *clt);
 Cliente* acharClt(char *cpf);
 char telAtlClt(void);
