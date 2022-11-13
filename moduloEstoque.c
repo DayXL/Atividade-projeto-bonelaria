@@ -341,7 +341,13 @@ void validarQuant(char *quant) {
 
 void excluirMaterial(void) {
 
-    char material[100];
+    FILE* fp;
+    Estoque* est;
+    Estoque* aux;
+    char codigo[30];
+    int tam;
+    char aux2[20];
+    int achou = 0;
 
     system ( " clear||cls " );
     printf("\n");
@@ -351,13 +357,78 @@ void excluirMaterial(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
 
-    printf("Nome do material: ");
-    fgets(material, 100, stdin);
+    printf("Código do material: ");
+    fgets(codigo, 30, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(codigo);
+    codigo[tam - 1] = '\0';
 
+    est = acharEst(codigo);
+     
+    if (est == NULL) {
+
+        printf("Material não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (Estoque*) malloc(sizeof(Estoque));
+        fp = fopen("arqEstoq.dat", "r+b");
+
+        if (access("arqEstoq.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível deletar!\n");
+
+            }
+
+            else {
+
+                while(fread(aux, sizeof(Estoque), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->codigo, codigo) == 0) && (aux->ativo != 0)) {
+
+                        achou = 1;
+                        exibEstoque(aux);
+
+                        printf("\nDeseja realmente deletar?1 para sim, 0 para não.\n");
+                        fgets(aux2, 20, stdin);
+                        
+                        tam = strlen(aux2);
+                        aux2[tam - 1] = '\0';
+
+                        if (strcmp(aux2, "1\0") == 0) {
+                            aux->ativo = 0;
+
+                            fseek(fp, -1*sizeof(Estoque), SEEK_CUR);
+                            fwrite(aux, sizeof(Estoque), 1, fp);
+
+                            printf("\nMaterial excluído com sucesso!\n");
+                        }
+
+                        else {
+                            printf("\nCancelado!\n");
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        else {
+            printf("\nErro com arquivo\n");
+
+        }
+
+        free(aux);
+    }
+
+    fclose(fp);
+    free(est);
 }
 
 void materiaisEstoque(void) {
