@@ -379,7 +379,7 @@ void editarCliente(void) {
 
                         if (strcmp(aux2, "1\0") == 0) {
 
-                            esc = telAtl();
+                            esc = telAtlClt();
 
                             while (esc!='0') {
 
@@ -418,7 +418,7 @@ void editarCliente(void) {
                                 
                                 }
 
-                                esc = telAtl();
+                                esc = telAtlClt();
                             }
   
                             fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
@@ -450,7 +450,7 @@ void editarCliente(void) {
     free(clt);
 }
 
-char telAtl(void) {
+char telAtlClt(void) {
     system ( " clear||cls " );
     printf("\n");
     printf("===============================================================================\n");
