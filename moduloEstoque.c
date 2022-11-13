@@ -615,7 +615,7 @@ void materiaisEstoque(void) {
 
 void pesquisarMateriaisEstoque(void) {
     Estoque* est;
-    char material[100];
+    char codigo[100];
     int tam;
 
     system ( " clear||cls " );
@@ -627,13 +627,13 @@ void pesquisarMateriaisEstoque(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
 
-    printf("Nome material: ");
-    fgets(material, 100, stdin);
+    printf("Código material: ");
+    fgets(codigo, 30, stdin);
 
-    tam = strlen(material);
-    material[tam - 1] = '\0';
+    tam = strlen(codigo);
+    codigo[tam - 1] = '\0';
 
-    est = acharEst(material);
+    est = acharEst(codigo);
      
     if (est == NULL) {
         printf("Material não cadastrado! ");
@@ -650,8 +650,15 @@ void pesquisarMateriaisEstoque(void) {
 }
 
 void comprarMateriais(void) {
-
-    char material[100];
+    FILE* fp;
+    Estoque* est;
+    Estoque* aux;
+    char codigo[30];
+    char quant[30];
+    int tam;
+    int achou = 0;
+    float estocado;
+    float novoValor = 0;
 
     system ( " clear||cls " );
     printf("\n");
@@ -662,11 +669,63 @@ void comprarMateriais(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
 
-    printf("Nome material: ");
-    fgets(material, 100, stdin);
+    printf("Código do material: ");
+    fgets(codigo, 30, stdin);
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+    tam = strlen(codigo);
+    codigo[tam - 1] = '\0';
+
+    est = acharEst(codigo);
+     
+    if (est == NULL) {
+        printf("Material não cadastrado! ");
+
+    }
+
+    else {
+
+        aux = (Estoque*) malloc(sizeof(Estoque));
+        fp = fopen("arqEstoq.dat", "r+b");
+
+        if (access("arqEstoq.dat", F_OK) != -1) {
+
+            if (fp == NULL) {
+                printf("Não foi possível atualizar!\n");
+                
+            }
+
+            else {
+
+                while(fread(aux, sizeof(Estoque), 1, fp) && (achou == 0)) {
+
+                    if ((strcmp(aux->codigo, codigo) == 0) && (aux->ativo != 0)) {
+                        achou = 1;
+                        exibEstoque(aux);
+
+                        printf("\n");
+                        validarQuant(quant);
+
+                        estocado = aux->quant;
+
+                        novoValor = estocado + atof(quant);
+
+                        aux->quant = novoValor;
+
+                        fseek(fp, -1*sizeof(Estoque), SEEK_CUR);
+                        fwrite(aux, sizeof(Estoque), 1, fp);
+
+                        exibEstoque(aux);
+                        printf("\nRegistrado com sucesso!\n");
+
+                    }
+                }
+            }
+        }
+
+        free(aux);
+        fclose(fp);
+    }
+
+    free(est);
 
 }
