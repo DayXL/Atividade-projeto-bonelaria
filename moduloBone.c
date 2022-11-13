@@ -198,8 +198,8 @@ void telaBone(void) {
         cadastrarModelo(nomeModelo,uniPorMetro,uniPorTubo);
 
         strcpy(bcp->nomeBonChap, nomeModelo);
-        strcpy(bcp->uniPorMetro, uniPorMetro);
-        strcpy(bcp->uniPorTubo, uniPorTubo);
+        bcp->uniPorMetro = atof(uniPorMetro);
+        bcp->uniPorTubo = atof(uniPorTubo);
         bcp->ativo = 1;
 
         salArqBonChap(bcp);
@@ -288,10 +288,10 @@ void exibBoneChap(BoneChap *bcp) {
     printf("%s" ,bcp->codigo);
     printf("\n");
     printf("Quantidade por metro: ");
-    printf("%s" ,bcp->uniPorMetro);
+    printf("%f" ,bcp->uniPorMetro);
     printf("\n");
     printf("Quantidade por tubo de linha: ");
-    printf("%s" ,bcp->uniPorTubo);
+    printf("%f" ,bcp->uniPorTubo);
     printf("\n");
 
 }
@@ -544,8 +544,8 @@ void telaChapeu(void) {
         cadastrarModelo(nomeModelo,uniPorMetro,uniPorTubo);
 
         strcpy(bcp->nomeBonChap, nomeModelo);
-        strcpy(bcp->uniPorMetro, uniPorMetro);
-        strcpy(bcp->uniPorTubo, uniPorTubo);
+        bcp->uniPorMetro = atof(uniPorMetro);
+        bcp->uniPorTubo = atof(uniPorTubo);
         bcp->ativo = 1;
 
         salArqBonChap(bcp);
@@ -731,13 +731,13 @@ void editarModelo(void) {
 
                                 else if (esc=='2') {
                                     validarUniPorMetro(uniPorMetro);
-                                    strcpy(aux->uniPorMetro,uniPorMetro);
+                                    aux->uniPorMetro = atof(uniPorMetro);
 
                                 }
 
                                 else if (esc=='3') {
                                     validarUniPorTubo(uniPorTubo);
-                                    strcpy(aux->uniPorTubo,uniPorTubo);
+                                    aux->uniPorTubo= atof(uniPorTubo);
 
                                 }
 
@@ -749,8 +749,8 @@ void editarModelo(void) {
                                     validarUniPorTubo(uniPorTubo);
 
                                     strcpy(aux->nomeBonChap,nomeModelo);
-                                    strcpy(aux->uniPorMetro,uniPorMetro);
-                                    strcpy(aux->uniPorTubo,uniPorTubo); 
+                                    aux->uniPorMetro = atof(uniPorMetro);
+                                    aux->uniPorTubo= atof(uniPorTubo); 
                                 }
 
                                 else {
