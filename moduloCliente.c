@@ -3,9 +3,12 @@
 #include <string.h>
 #include <unistd.h>
 #include "moduloCliente.h"
+#include "moduloBone.h"
 #include "funcoesAux.h"
 
 typedef struct cliente Cliente;
+typedef struct pedidoCliente PedidoCliente;
+typedef struct boneChap BoneChap;
 
 void moduloCliente(void) {
 
@@ -603,10 +606,11 @@ void pesquisarCliente(void) {
 
 void pedidoCliente(void) {
 
-    char nomeCliente[100];
-    char cpf[13];
-    char nomeModelo[11];
-    char quantidade[11];
+    BoneChap* bcp;
+    Cliente* clt;
+    char cpf[30];
+    char codigo[30];
+    int tam;
 
     system ( " clear||cls " );
     printf("\n");
@@ -616,21 +620,157 @@ void pedidoCliente(void) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
 
-
-    printf("Nome do cliente: ");
-    fgets(nomeCliente, 100, stdin);
-
     printf("CPF(somente números): ");
-    fgets(cpf, 13, stdin);
+    fgets(cpf, 30, stdin);
 
-    printf("Nome do modelo: ");
-    fgets(nomeModelo, 11, stdin);
+    tam = strlen(cpf);
+    cpf[tam - 1] = '\0';
 
-    printf("Quantidade: ");
-    fgets(quantidade, 11, stdin);
+    clt = acharClt(cpf);
+     
+    if (clt == NULL) {
 
-    printf("===                                                                         ===\n");
-    printf("===============================================================================\n");
-    printf("\n");
+        printf("\nCliente não cadastrado!\n ");
+
+    }
+
+    else {
+        bcp = selecionarModelo(codigo);
+
+        if (bcp == NULL) {
+            printf("\nCancelado!\n ");
+
+        }
+
+        else {
+            printf("\nModelo escolhido: \n");
+            exibBoneChap(bcp);
+
+        }
+
+    }
+
+    free(clt);
+    free(bcp);
+
+}
+
+void lerArqBcpDif(char num) {
+    
+    FILE *fp;
+    BoneChap *bcp;
+
+    if (access("arqBoneChap.dat", F_OK) != -1) {
+
+        fp = fopen("arqBoneChap.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            bcp = (BoneChap*) malloc(sizeof(BoneChap));
+
+            while (fread(bcp, sizeof(BoneChap), 1, fp)) {
+
+                if ((bcp->ativo == 1) && (bcp->codigo[0] == num)) {   
+                    exibBoneChap(bcp);
+
+                }
+            }
+
+            free(bcp);
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+BoneChap* selecionarModelo(char *codigo) {
+
+    BoneChap* bcp;
+    char esc;
+    int num = 0;
+    int tam;
+
+    do {
+        esc = escolherModelo();
+
+        if (esc=='1') {
+            esc = '0';
+            num = 1;
+
+        }
+
+        else if (esc=='2') {
+            esc = '0';
+            num = 2;
+        }
+
+        else {
+            printf("Opção inválida!\n");
+
+        }
+
+
+    } while (esc != '0');
+
+    if (num == 1) {
+        printf("\nBonés disponíveis: \n");
+        lerArqBcpDif('1');
+
+        printf("\nDigite o código do boné desejado: \n");
+        fgets(codigo, 30, stdin);
+
+        tam = strlen(codigo);
+        codigo[tam - 1] = '\0';
+
+        bcp = acharMdl(codigo);
+        
+        if (bcp == NULL) {
+            printf("Modelo não cadastrado! ");
+
+        }
+
+        else {
+            return bcp;
+
+        }
+
+    }
+
+    else if (num == 2) {
+        printf("\nChapéus disponíveis: \n");
+        lerArqBcpDif('0');
+
+        printf("\nDigite o código do chapéu desejado: \n");
+
+        tam = strlen(codigo);
+        codigo[tam - 1] = '\0';
+
+        bcp = acharMdl(codigo);
+        
+        if (bcp == NULL) {
+            printf("Modelo não cadastrado! ");
+
+        }
+
+        else {
+            return bcp;
+
+        }
+
+    }
+
+    else {
+        printf("\nCancelado!\n");
+
+    }
+
+    return NULL;
 
 }
