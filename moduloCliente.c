@@ -4,11 +4,13 @@
 #include <unistd.h>
 #include "moduloCliente.h"
 #include "moduloBone.h"
+#include "moduloEstoque.h"
 #include "funcoesAux.h"
 
 typedef struct cliente Cliente;
 typedef struct pedidoCliente PedidoCliente;
 typedef struct boneChap BoneChap;
+typedef struct estoque Estoque;
 
 void moduloCliente(void) {
 
@@ -608,8 +610,10 @@ void pedidoCliente(void) {
 
     BoneChap* bcp;
     Cliente* clt;
+    char tec[20];
     char cpf[30];
     char codigo[30];
+    char quant[20];
     int tam;
 
     system ( " clear||cls " );
@@ -645,6 +649,15 @@ void pedidoCliente(void) {
         else {
             printf("\nModelo escolhido: \n");
             exibBoneChap(bcp);
+
+            lerQuant(quant);
+
+            printf("\nTecidos disponíveis: \n");
+            acharTec();
+
+            selecionarCor(tec);
+
+            verMtlDisp(bcp, atof(quant));
 
         }
 
@@ -772,5 +785,163 @@ BoneChap* selecionarModelo(char *codigo) {
     }
 
     return NULL;
+
+}
+
+void lerQuant(char *quant) {
+    int tam;
+
+    do {
+
+        printf("Qual a quantidade: ");
+        fgets(quant, 20, stdin);
+
+        tam = strlen(quant);
+        quant[tam - 1] = '\0';
+
+
+    } while ((tam == 1) || !(validarNumInteiro(quant)));
+
+}
+
+void verMtlDisp(BoneChap* bcp, float quant) {
+
+    if (bcp->codigo[0] == '1') {
+        if (bcp->codigo[1] == '1') {
+            acharMtlPelNom("BOTAO", 4);
+
+        }
+
+        if (bcp->codigo[2] == '1') {
+            acharMtlPelNom("TELA", 3);
+
+        }
+
+        if ((bcp->codigo[3] == '0') && (bcp->codigo[4] == '1')) {
+            acharMtlPelNom("REGULADOR DE FIVELA", 17);
+
+        }
+
+        if ((bcp->codigo[3] == '1') && (bcp->codigo[4] == '0')) {
+            acharMtlPelNom("REGULADOR DE PLASTICO", 20);
+
+        }
+
+        if ((bcp->codigo[3] == '1') && (bcp->codigo[4] == '1')) {
+            acharMtlPelNom("REGULADOR DE VELCRO", 18);
+
+        }
+        
+    }
+
+    else {
+
+        if (bcp->codigo[1] == '3') {
+            acharMtlPelNom("CORDAO", 4);
+
+        }
+
+        if (bcp->codigo[2] == '4') {
+           acharMtlPelNom("TECIDO", 3);
+
+        }
+
+
+    }
+}
+
+void acharTec(void) {
+    FILE *fp;
+    Estoque *est;
+
+    if (access("arqEstoq.dat", F_OK) != -1) {
+
+        fp = fopen("arqEstoq.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            est = (Estoque*) malloc(sizeof(Estoque));
+
+            while (fread(est, sizeof(Estoque), 1, fp)) {
+
+                if ((est->ativo == 1) && (strncmp("TECIDO", est->nomeDoMaterial, 5) == 0)) {    
+                    exibEstoque(est);
+
+                }
+            }
+            
+            free(est);
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void acharMtlPelNom(char* nome, int tam) {
+    FILE *fp;
+    Estoque *est;
+
+    if (access("arqEstoq.dat", F_OK) != -1) {
+
+        fp = fopen("arqEstoq.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            est = (Estoque*) malloc(sizeof(Estoque));
+
+            while (fread(est, sizeof(Estoque), 1, fp)) {
+
+                if ((est->ativo == 1) && (strncmp(nome, est->nomeDoMaterial, tam) == 0)) {    
+                    exibEstoque(est);
+
+                }
+            }
+            
+            free(est);
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void selecionarCor(char *tec) {
+
+    Estoque* est;
+    int tam;
+
+    printf("\nDigite o código da cor desejada: \n");
+    fgets(tec, 30, stdin);
+
+    tam = strlen(tec);
+    tec[tam - 1] = '\0';
+
+    est = acharEst(tec);
+        
+    if (est == NULL) {
+        printf("\nTecido não cadastrado!\n ");
+
+    }
+
+    else {
+        strcpy(tec, est->codigo);
+        printf("\nTecido escolhido:\n ");
+
+        exibEstoque(est);
+
+    }
+
+    free(est);
 
 }
