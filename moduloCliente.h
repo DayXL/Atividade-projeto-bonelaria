@@ -48,5 +48,5 @@ void lerArqBcpDif(char num);
 void lerQuant(char *quant);
 void verMtlDisp(BoneChap* bcp, float quant);
 void acharTec(void);
-void selecionarCor(char *tec);
-void acharMtlPelNom(char* nome, int tam);
+int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor);
+Estoque* acharMtlPelNom(char* nome, int tam);
