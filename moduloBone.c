@@ -348,7 +348,6 @@ void validarEsc(char tipo, char *detalhes) {
             detalhes[1] = '3';
             printf("Você escolheu Chapéu normal!");
             printf("\n");
-            break;
 
         }
 
@@ -373,7 +372,6 @@ void validarEsc(char tipo, char *detalhes) {
 
             printf("Você escolheu boné todo liso!");
             printf("\n");
-            break;
 
         }
 
