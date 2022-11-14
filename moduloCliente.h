@@ -46,7 +46,7 @@ char telAtlClt(void);
 BoneChap* selecionarModelo(char *codigo);
 void lerArqBcpDif(char num);
 void lerQuant(char *quant);
-void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux);
+int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux);
 void acharTec(void);
 int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor);
 Estoque* acharMtlPelNom(char* nome, int tam);
