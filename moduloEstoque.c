@@ -271,11 +271,8 @@ int lerCodMat(char *codigo) {
         tam = strlen(codigo);
         codigo[tam - 1] = '\0';
 
-        printf("Tou aqui");
-
     } while ((tam != 9) || !validarNumInteiro(codigo));
 
-    printf("Hello");
     est = acharEst(codigo);
 
     if (est != NULL) {
