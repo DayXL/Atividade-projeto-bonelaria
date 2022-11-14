@@ -28,7 +28,7 @@ void validarUniPorMetro(char *uniPorMetro);
 void validarUniPorTubo(char *uniPorTubo);
 void telaBone(void);
 void telaChapeu(void);
-char* validarEsc(char tipo);
+void validarEsc(char tipo, char *detalhes);
 int gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp);
 int gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp);
 void lerArqBcp(int num);
