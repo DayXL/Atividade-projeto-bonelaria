@@ -610,11 +610,13 @@ void pedidoCliente(void) {
 
     BoneChap* bcp;
     Cliente* clt;
-    char tec[20];
     char cpf[30];
     char codigo[30];
     char quant[20];
+    char aux[45] = "AUX";
     int tam;
+    int perm;
+    float novoValor[4] = {-1,-1,-1,-1};
 
     system ( " clear||cls " );
     printf("\n");
@@ -655,9 +657,17 @@ void pedidoCliente(void) {
             printf("\nTecidos disponíveis: \n");
             acharTec();
 
-            selecionarCor(tec);
+            perm = selecionarCor(aux, atof(quant), bcp, novoValor);
 
-            verMtlDisp(bcp, atof(quant));
+            if (perm == 1) {
+                verMtlDisp(bcp, atof(quant));
+
+            }
+
+            else {
+                printf("\nO pedido não pode ser concluído! \n");
+
+            }
 
         }
 
@@ -806,29 +816,49 @@ void lerQuant(char *quant) {
 
 void verMtlDisp(BoneChap* bcp, float quant) {
 
+    Estoque* est;
+
     if (bcp->codigo[0] == '1') {
         if (bcp->codigo[1] == '1') {
-            acharMtlPelNom("BOTAO", 4);
+            est = acharMtlPelNom("BOTAO", 4);
+
+            if (est == NULL) {
+                printf("\nSem botão no estoque!\n");
+
+            }
+
+            else {
+                if (est->quant > quant) {
+
+
+                }
+
+                else {
+                    printf("\nBotão insuficiente!\n");
+
+                }
+
+            }
 
         }
 
         if (bcp->codigo[2] == '1') {
-            acharMtlPelNom("TELA", 3);
+            est = acharMtlPelNom("TELA", 3);
 
         }
 
         if ((bcp->codigo[3] == '0') && (bcp->codigo[4] == '1')) {
-            acharMtlPelNom("REGULADOR DE FIVELA", 17);
+            est = acharMtlPelNom("REGULADOR DE FIVELA", 17);
 
         }
 
         if ((bcp->codigo[3] == '1') && (bcp->codigo[4] == '0')) {
-            acharMtlPelNom("REGULADOR DE PLASTICO", 20);
+            est = acharMtlPelNom("REGULADOR DE PLASTICO", 20);
 
         }
 
         if ((bcp->codigo[3] == '1') && (bcp->codigo[4] == '1')) {
-            acharMtlPelNom("REGULADOR DE VELCRO", 18);
+            est = acharMtlPelNom("REGULADOR DE VELCRO", 18);
 
         }
         
@@ -837,12 +867,12 @@ void verMtlDisp(BoneChap* bcp, float quant) {
     else {
 
         if (bcp->codigo[1] == '3') {
-            acharMtlPelNom("CORDAO", 4);
+            est = acharMtlPelNom("CORDAO", 4);
 
         }
 
         if (bcp->codigo[2] == '4') {
-           acharMtlPelNom("TECIDO", 3);
+           est = acharMtlPelNom("TECIDO", 3);
 
         }
 
@@ -883,7 +913,7 @@ void acharTec(void) {
 
 }
 
-void acharMtlPelNom(char* nome, int tam) {
+Estoque* acharMtlPelNom(char* nome, int tam) {
     FILE *fp;
     Estoque *est;
 
@@ -903,23 +933,28 @@ void acharMtlPelNom(char* nome, int tam) {
             while (fread(est, sizeof(Estoque), 1, fp)) {
 
                 if ((est->ativo == 1) && (strncmp(nome, est->nomeDoMaterial, tam) == 0)) {    
-                    exibEstoque(est);
+                    fclose(fp);
+                    return est;
 
                 }
             }
             
-            free(est);
         }
 
         fclose(fp);
+
     }
+
+    return NULL;
 
 }
 
-void selecionarCor(char *tec) {
+int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor) {
 
     Estoque* est;
     int tam;
+    char tec[30];
+    int num;
 
     printf("\nDigite o código da cor desejada: \n");
     fgets(tec, 30, stdin);
@@ -940,8 +975,29 @@ void selecionarCor(char *tec) {
 
         exibEstoque(est);
 
+        if (((quant / bcp->uniPorMetro) + 1) <= est->quant) {
+            int i = 0;
+            int achou = 0;
+
+            while (i < 5 && achou == 0) {
+
+                if (novoValor[i] == -1) {
+                    achou = 1;
+                    novoValor[i] = (est->quant) - ((quant / bcp->uniPorMetro) + 1);
+                    strcat(aux, est->codigo);
+                }
+
+            }
+
+            num = 1;
+        }
+        else {
+            printf("\nTecido escolhido insuficiente no estoque!\n");
+            num = 0;
+        }
     }
 
     free(est);
+    return num;
 
 }
