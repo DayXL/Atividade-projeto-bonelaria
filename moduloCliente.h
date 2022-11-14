@@ -49,4 +49,4 @@ void lerQuant(char *quant);
 void verMtlDisp(BoneChap* bcp, float quant);
 void acharTec(void);
 void selecionarCor(char *tec);
-//Estoque* acharMtlPelNom(char* nome, int tam);
+void acharMtlPelNom(char* nome, int tam);
