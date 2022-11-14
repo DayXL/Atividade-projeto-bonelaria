@@ -616,6 +616,7 @@ void pedidoCliente(void) {
     char aux[45] = "AUX";
     int tam;
     int perm;
+    int perm2;
     float novoValor[5] = {-1,-1,-1,-1,-1};
 
     system ( " clear||cls " );
@@ -660,7 +661,17 @@ void pedidoCliente(void) {
             perm = selecionarCor(aux, atof(quant), bcp, novoValor);
 
             if (perm == 1) {
-                verMtlDisp(bcp, atof(quant), novoValor,aux);
+                perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
+
+                if (perm2 == 1) {
+                   printf("Confirmar pedido");
+
+                }
+
+                else {
+                    printf("\nO pedido não pode ser concluído por falta de materiais! \n");
+
+                }
 
             }
 
@@ -814,7 +825,7 @@ void lerQuant(char *quant) {
 
 }
 
-void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
+int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
     Estoque* est;
 
@@ -824,6 +835,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
         if (est == NULL) {
             printf("\nSem Aba no estoque!\n");
+            return 0;
 
         }
 
@@ -835,6 +847,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
             else {
                 printf("\nAba insuficiente!\n");
+                return 0;
 
             }
         }
@@ -844,6 +857,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
             if (est == NULL) {
                 printf("\nSem botão no estoque!\n");
+                return 0;
 
             }
 
@@ -855,6 +869,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
                 else {
                     printf("\nBotão insuficiente!\n");
+                    return 0;
 
                 }
 
@@ -867,6 +882,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
             if (est == NULL) {
                 printf("\nSem tela no estoque!\n");
+                return 0;
 
             }
 
@@ -878,6 +894,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
                 else {
                     printf("\nTela insuficiente!\n");
+                    return 0;
 
                 }
 
@@ -889,6 +906,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
             if (est == NULL) {
                 printf("\nSem regulador de fivela no estoque!\n");
+                return 0;
 
             }
 
@@ -900,6 +918,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
                 else {
                     printf("\nRegulador de fivela insuficiente!\n");
+                    return 0;
 
                 }
 
@@ -912,6 +931,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
             if (est == NULL) {
                 printf("\nSem regulador de plástico no estoque!\n");
+                return 0;
 
             }
 
@@ -923,6 +943,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
                 else {
                     printf("\nRegulador de plástico insuficiente!\n");
+                    return 0;
 
                 }
 
@@ -935,6 +956,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
             if (est == NULL) {
                 printf("\nSem regulador de velcro no estoque!\n");
+                return 0;
 
             }
 
@@ -946,6 +968,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
                 else {
                     printf("\nRegulador de velcro insuficiente!\n");
+                    return 0;
 
                 }
 
@@ -962,6 +985,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
             if (est == NULL) {
                 printf("\nSem cordão no estoque!\n");
+                return 0;
 
             }
 
@@ -973,6 +997,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
                 else {
                     printf("\nCordão insuficiente!\n");
+                    return 0;
 
                 }
 
@@ -980,12 +1005,12 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
         }   
 
-
         if (bcp->codigo[2] == '4') {
            est = acharMtlPelNom("PROTECAO", 3);
 
            if (est == NULL) {
-                printf("\nTSem proteção no estoque!\n");
+                printf("\nSem proteção no estoque!\n");
+                return 0;
 
             }
 
@@ -997,6 +1022,7 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
                 else {
                     printf("\nProteção insuficiente!\n");
+                    return 0;
 
                 }
 
@@ -1004,12 +1030,10 @@ void verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
         }
 
-
     }
 
-    printf("%s", aux);
-
     free(est);
+    return 1;
 }
 
 void acharTec(void) {
