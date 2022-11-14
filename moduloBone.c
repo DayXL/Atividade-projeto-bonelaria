@@ -156,7 +156,7 @@ void telaBone(void) {
     BoneChap* bcp;
     bcp = (BoneChap*) malloc(sizeof(BoneChap));
 
-    char *detalhes;
+    char detalhes[4] = "000";
     int tam;
     int jaCad;
     char nomeModelo[100];
@@ -184,7 +184,7 @@ void telaBone(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    detalhes = validarEsc('1');
+    validarEsc('1', detalhes);
     tam = strlen(detalhes);
 
     jaCad = gerarCodigoBone(detalhes, tam, '1', bcp);
@@ -296,147 +296,93 @@ void exibBoneChap(BoneChap *bcp) {
 
 }
 
-char* validarEsc(char tipo) {
-    int a = 1;
+void validarEsc(char tipo, char *detalhes) {
     int tam;
     char aux[5];
-    int aux2 = 0;
-    char detalhes[4] = "000";
-    char *ponDet;
 
     do {
 
-        do {
+        printf("Escolha: ");
+        fgets(aux, 5, stdin);
 
-            do {
+        tam = strlen(aux);
+        aux[tam - 1] = '\0';
 
-                printf("Escolha: ");
-                fgets(aux, 5, stdin);
+        if ((strcmp(aux, "1\0") == 0) && (tipo == '1')) {
+            detalhes[0] = aux[0];
+            printf("Você escolheu Botão!");
+            printf("\n");
 
-                if ((aux[0] == '1') && (tipo == '1')) {
-                    detalhes[0] = aux[0];
-                    printf("Você escolheu Botão!");
-                    printf("\n");
+        }
 
-                }
+        else if ((strcmp(aux, "1\0") == 0) && (tipo == '0')) {
+            detalhes[0] = aux[0];
+            printf("Você escolheu Cordão!");
+            printf("\n");
 
-                else if ((aux[0] == '1') && (tipo == '0')) {
-                    detalhes[0] = aux[0];
-                    printf("Você escolheu Cordão!");
-                    printf("\n");
+        }
 
-                }
+        else if ((strcmp(aux, "2\0") == 0) && (tipo == '1')) {
+            detalhes[1] = aux[0];
+            printf("Você escolheu Tela!");
+            printf("\n");
 
-                else if ((aux[0] == '2') && (tipo == '1')) {
-                    detalhes[1] = aux[0];
-                    printf("Você escolheu Tela!");
-                    printf("\n");
+        }
 
-                }
+        else if ((strcmp(aux, "2\0") == 0) && (tipo == '0')) {
+            detalhes[1] = aux[0];
+            printf("Você escolheu Proteção!");
+            printf("\n");
 
-                else if ((aux[0] == '2') && (tipo == '0')) {
-                    detalhes[1] = aux[0];
-                    printf("Você escolheu Proteção!");
-                    printf("\n");
+        }
 
-                }
+        else if ((strcmp(aux, "3\0") == 0) && (tipo == '1')) {
+            detalhes[2] = aux[0];
+            printf("Você escolheu Fivela!");
+            printf("\n");
 
-                else if ((aux[0] == '3') && (tipo == '1')) {
-                    detalhes[2] = aux[0];
-                    printf("Você escolheu Fivela!");
-                    printf("\n");
+        }
 
-                }
+        else if ((strcmp(aux, "3\0") == 0) && (tipo == '0')) {
+            detalhes[0] = '3';
+            detalhes[1] = '3';
+            printf("Você escolheu Chapéu normal!");
+            printf("\n");
+            break;
 
-                else if ((aux[0] == '3') && (tipo == '0')) {
-                    detalhes[0] = '3';
-                    detalhes[1] = '3';
-                    printf("Você escolheu Chapéu normal!");
-                    printf("\n");
-                    break;
+        }
 
-                }
+        else if ((strcmp(aux, "4\0") == 0)) {
+            detalhes[2] = aux[0];
+            printf("Você escolheu Velcro!");
+            printf("\n");
 
-                else if (aux[0] == '4') {
-                    detalhes[2] = aux[0];
-                    printf("Você escolheu Velcro!");
-                    printf("\n");
+        }
 
-                }
+        else if ((strcmp(aux, "5\0") == 0)) {
+            detalhes[2] = aux[0];
+            printf("Você escolheu Plástico!");
+            printf("\n");
 
-                else if (aux[0] == '5') {
-                    detalhes[2] = aux[0];
-                    printf("Você escolheu Plástico!");
-                    printf("\n");
+        }
 
-                }
+        else if ((strcmp(aux, "6\0") == 0)) {
+            detalhes[0] = '6';
+            detalhes[1] = '6';
+            detalhes[2] = '6';
 
-                else if (aux[0] == '6') {
-                    detalhes[0] = '6';
-                    detalhes[1] = '6';
-                    detalhes[2] = '6';
-
-                    printf("Você escolheu boné todo liso!");
-                    printf("\n");
-                    break;
-
-                }
-
-                else if (aux[0] == '0') {
-                    printf("Encerrando escolha!");
-                    printf("\n");
-                    break;
-
-                }
-
-                else {
-                    printf("Você digitou algo inválido!");
-                    printf("\n");
-                }
-
-                aux2 = aux2 + 1;
-
-            } while (aux2 < 9);
-
-            tam = strlen(detalhes);
-            detalhes[tam - 1] = '\0';
-
-        } while ((tam == 1) || !validarNumInteiro(detalhes));
-
-
-        if (tipo == '1') {
-            int i = 0;
-
-            while (detalhes[i] != '\0') {
-                a = ((detalhes[i] >= '1') && (detalhes[i] <= '6')) ? 0 : 1;
-
-                i = i + 1;
-
-            }
+            printf("Você escolheu boné todo liso!");
+            printf("\n");
+            break;
 
         }
 
         else {
-            int i = 0;
-
-            while ((detalhes[i] != '\0') && (a == 1)) {
-                a = ((detalhes[i] >= '1') && (detalhes[i] <= '3')) ? 0 : 1;
-
-                i = i + 1;
-
-            }
-
+            printf("Você digitou algo inválido!");
+            printf("\n");
         }
 
-    } while (a);
-
-    //Reservando o espaço necessário para armazenar no ponteiro
-    ponDet = (char*) malloc((tam + 1) * sizeof(char));
-
-    //Colocando oq quero no ponteiro
-    strcpy(ponDet, detalhes);
-
-    return ponDet;
+    } while (aux[0] != '0');
 
 }
 
@@ -452,6 +398,7 @@ int gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
     }
 
     for (int i = 0; i < tam; i++) {
+        printf("%d", i);
         if (esc[i] == '1') {
             codigo[1] = '1';
 
@@ -463,6 +410,7 @@ int gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
         }
 
         else if (esc[i] == '3') {
+            printf("a");
             codigo[3]= '0';
             codigo[4]= '1';
 
@@ -505,7 +453,7 @@ void telaChapeu(void) {
     BoneChap* bcp;
     bcp = (BoneChap*) malloc(sizeof(BoneChap));
 
-    char *detalhes;
+    char detalhes[4] = "000";
     int tam;
     int jaCad;
     char nomeModelo[100];
@@ -530,7 +478,7 @@ void telaChapeu(void) {
     printf("===============================================================================\n");
     printf("\n");
 
-    detalhes = validarEsc('0');
+    validarEsc('0', detalhes);
     tam = strlen(detalhes);
 
     jaCad = gerarCodigoChapeu(detalhes, tam, '0',bcp);
