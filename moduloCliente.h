@@ -16,7 +16,7 @@ struct cliente {
 
 struct pedidoCliente {
 
-    int pedido;
+    char pedido[20];
     char cpf[12];
     char codigo[6];
     float quant;
@@ -54,3 +54,4 @@ void alterValor(float *novoValor, char *aux, int quant, Estoque* est);
 void salArqPedClt(PedidoCliente* pedClt);
 void lerArqPedClt(void);
 void exibPedido(PedidoCliente *pedClt);
+char* gerarIdPed(void);
