@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 #include "moduloCliente.h"
 #include "moduloBone.h"
 #include "moduloEstoque.h"
@@ -687,7 +688,7 @@ void pedidoCliente(void) {
                         i = i + 8;
                     }
 
-                    pedClt->pedido = 1;
+                    strcpy(pedClt->pedido,gerarIdPed());
                     strcpy(pedClt->cpf,cpf);
                     strcpy(pedClt->codigo,bcp->codigo);
                     pedClt->quant = atof(quant);
@@ -1127,8 +1128,6 @@ int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor, char 
 
     exibEstoque(est);
 
-    printf("aqui");
-
     if (((quant / bcp->uniPorMetro) + 1) <= est->quant) {
 
         novoValor[0] = (est->quant) - ((quant / bcp->uniPorMetro) + 1);
@@ -1235,7 +1234,7 @@ void exibPedido(PedidoCliente *pedClt) {
     
     printf("\n");
     printf("Número do pedido: ");
-    printf("%d" ,pedClt->pedido);
+    printf("%s" ,pedClt->pedido);
     printf("\n");
     printf("CPF do cliente: ");
     printf("%s" ,pedClt->cpf);
@@ -1249,5 +1248,21 @@ void exibPedido(PedidoCliente *pedClt) {
     printf("Cor: ");
     printf("%s" ,pedClt->cor);
     printf("\n");
+
+}
+
+char* gerarIdPed(void) {
+
+    char* data = (char*) malloc(20 * sizeof(char));
+
+    time_t tempo = time(NULL);
+
+    struct tm* t = localtime(&tempo);
+
+    strftime(data, 50, "%d%m%y%H%M%S", t);
+
+    // dia, mes, ano, horas, minutos, segundo
+
+    return data;
 
 }
