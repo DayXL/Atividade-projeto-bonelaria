@@ -27,3 +27,4 @@ void lerArqEst(int num);
 void exibEstoque(Estoque *est);
 Estoque* acharEst(char *nome);
 char telAtlEst(void);
+void descontarMtl(char *codigo, float quant);
