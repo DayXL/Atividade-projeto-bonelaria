@@ -61,7 +61,7 @@ char verMenuRelatorio(void) {
     printf("===                 2. Relatório Fornecedor                                 ===\n");
     printf("===                 3. Relatório cliente                                    ===\n");
     printf("===                 4. Relatório estoque                                    ===\n");
-    printf("===                 4. Relatório pedidos                                    ===\n");
+    printf("===                 5. Relatório pedidos                                    ===\n");
     printf("===                 0. Voltar ao menu principal                             ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
