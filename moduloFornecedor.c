@@ -515,10 +515,10 @@ void excluirFornecedor(void) {
 
         }
 
+        fclose(fp);
         free(aux);
     }
 
-    fclose(fp);
     free(fnc);
 
 }
