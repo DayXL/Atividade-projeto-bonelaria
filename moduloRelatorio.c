@@ -33,6 +33,11 @@ void moduloRelatorio(void) {
 
         }
 
+        else if (esc=='5') {
+            relatorioPedido();
+
+        }
+
         else {
             printf("Opção inválida!\n");
         
@@ -93,5 +98,12 @@ void relatorioEstoque(void) {
     system ( " clear||cls " );
 
     lerArqEst(1);
+
+}
+
+void relatorioPedido(void) {
+    system ( " clear||cls " );
+
+    lerArqPedClt();
 
 }
