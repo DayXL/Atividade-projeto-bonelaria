@@ -5,3 +5,4 @@ void relatorioBone(void);
 void relatorioFornecedor(void);
 void relatorioCliente(void);
 void relatorioEstoque(void);
+void relatorioPedido(void);
