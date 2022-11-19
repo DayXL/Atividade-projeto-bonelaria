@@ -352,19 +352,19 @@ void editarCliente(void) {
      
     if (clt == NULL) {
 
-        printf("Cliente não cadastrado! ");
+        printf("\nCliente não cadastrado! \n");
 
     }
 
     else {
 
-        aux = (Cliente*) malloc(sizeof(Cliente));
-        fp = fopen("arqCliente.dat", "r+b");
-
         if (access("arqCliente.dat", F_OK) != -1) {
 
+            aux = (Cliente*) malloc(sizeof(Cliente));
+            fp = fopen("arqCliente.dat", "r+b");
+
             if (fp == NULL) {
-                printf("Não foi possível atualizar!\n");
+                printf("\nNão foi possível atualizar!\n");
                 
             }
 
@@ -442,16 +442,19 @@ void editarCliente(void) {
                 }
 
             }
+
+            free(aux);
+            fclose(fp);
+
         }
 
         else {
             printf("\nErro com arquivo\n");
 
         }
-        free(aux);
+
     }
 
-    fclose(fp);
     free(clt);
 }
 
