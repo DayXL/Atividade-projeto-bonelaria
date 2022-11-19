@@ -52,3 +52,5 @@ int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor, char 
 Estoque* acharMtlPelNom(char* nome, int tam);
 void alterValor(float *novoValor, char *aux, int quant, Estoque* est);
 void salArqPedClt(PedidoCliente* pedClt);
+void lerArqPedClt(void);
+void exibPedido(PedidoCliente *pedClt);
