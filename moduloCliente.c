@@ -1224,3 +1224,24 @@ void lerArqPedClt(void) {
     }
 
 }
+
+void exibPedido(PedidoCliente *pedClt) {
+    
+    printf("\n");
+    printf("Número do pedido: ");
+    printf("%d" ,pedClt->pedido);
+    printf("\n");
+    printf("CPF do cliente: ");
+    printf("%s" ,pedClt->cpf);
+    printf("\n");
+    printf("Código do boné: ");
+    printf("%s" ,pedClt->codigo);
+    printf("\n");
+    printf("Quantidade: ");
+    printf("%f" ,pedClt->quant);
+    printf("\n");
+    printf("Cor: ");
+    printf("%s" ,pedClt->cor);
+    printf("\n");
+
+}
