@@ -18,7 +18,7 @@ void pedidoCliente(void);
 int lerArqBcpDif(char num);
 void lerQuant(char *quant);
 int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux);
-void acharTec(void);
+int acharTec(void);
 int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor, char * cor);
 Estoque* acharMtlPelNom(char* nome, int tam);
 void alterValor(float *novoValor, char *aux, int quant, Estoque* est);
