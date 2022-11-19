@@ -78,6 +78,7 @@ void pedidoCliente(void) {
     int tam;
     int perm;
     int perm2;
+    int aux3;
     float novoValor[5] = {-1,-1,-1,-1,-1};
     char esc[20];
 
@@ -113,60 +114,67 @@ void pedidoCliente(void) {
             lerQuant(quant);
 
             printf("\nTecidos disponíveis: \n");
-            acharTec();
+            aux3 = acharTec();
 
-            perm = selecionarCor(aux, atof(quant), bcp, novoValor, cor);
+            if (aux3 != 0) {
+                perm = selecionarCor(aux, atof(quant), bcp, novoValor, cor);
 
-            if (perm == 1) {
-                perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
+                if (perm == 1) {
+                    perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
 
-                if (perm2 == 1) {
-                    printf("\nDeseja fechar o pedido?1 para sim, 0 para não.\n");
-                    fgets(esc, 20, stdin);
-                            
-                    tam = strlen(esc);
-                    esc[tam - 1] = '\0';
+                    if (perm2 == 1) {
+                        printf("\nDeseja fechar o pedido?1 para sim, 0 para não.\n");
+                        fgets(esc, 20, stdin);
+                                
+                        tam = strlen(esc);
+                        esc[tam - 1] = '\0';
 
-                    if (strcmp(esc, "1\0") == 0) {
-                        printf("\nFechando pedido ... \n");
+                        if (strcmp(esc, "1\0") == 0) {
+                            printf("\nFechando pedido ... \n");
 
-                        int i = 0;
-                        int j = 0;
+                            int i = 0;
+                            int j = 0;
 
-                        while (i < 35) {
-                            char aux2[9] = {aux[i], aux[i + 1], aux[i + 2], aux[i + 3], aux[i + 4], aux[i + 5], aux[i + 6], aux[i + 7]}; 
-                            descontarMtl(aux2, novoValor[j]);
+                            while (i < 35) {
+                                char aux2[9] = {aux[i], aux[i + 1], aux[i + 2], aux[i + 3], aux[i + 4], aux[i + 5], aux[i + 6], aux[i + 7]}; 
+                                descontarMtl(aux2, novoValor[j]);
 
-                            j = j + 1;
-                            i = i + 8;
+                                j = j + 1;
+                                i = i + 8;
+                            }
+
+                            strcpy(pedClt->pedido,gerarIdPed());
+                            strcpy(pedClt->cpf,cpf);
+                            strcpy(pedClt->codigo,bcp->codigo);
+                            pedClt->quant = atof(quant);
+                            strcpy(pedClt->cor,cor);
+
+                            salArqPedClt(pedClt);
+
                         }
 
-                        strcpy(pedClt->pedido,gerarIdPed());
-                        strcpy(pedClt->cpf,cpf);
-                        strcpy(pedClt->codigo,bcp->codigo);
-                        pedClt->quant = atof(quant);
-                        strcpy(pedClt->cor,cor);
+                        else {
+                            printf("\nPedido cancelado! \n");
 
-                        salArqPedClt(pedClt);
+                        }   
 
                     }
 
                     else {
-                        printf("\nPedido cancelado! \n");
+                        printf("\nO pedido não pode ser concluído por falta de materiais! \n");
 
-                    }   
+                    }
 
                 }
 
                 else {
-                    printf("\nO pedido não pode ser concluído por falta de materiais! \n");
+                    printf("\nO pedido não pode ser concluído! \n");
 
                 }
-
             }
 
             else {
-                printf("\nO pedido não pode ser concluído! \n");
+                printf("\nNenhum tecido no estoque! \n");
 
             }
 
@@ -510,9 +518,10 @@ int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
     return 1;
 }
 
-void acharTec(void) {
+int acharTec(void) {
     FILE *fp;
     Estoque *est;
+    int i = 0;
 
     if (access("arqEstoq.dat", F_OK) != -1) {
 
@@ -528,11 +537,14 @@ void acharTec(void) {
             est = (Estoque*) malloc(sizeof(Estoque));
 
             while (fread(est, sizeof(Estoque), 1, fp)) {
-
+                
                 if ((est->ativo == 1) && (strncmp("TECIDO", est->nomeDoMaterial, 5) == 0)) {    
                     exibEstoque(est);
 
                 }
+
+                i = i + 1;
+
             }
             
             free(est);
@@ -541,6 +553,7 @@ void acharTec(void) {
         fclose(fp);
     }
 
+    return i;
 }
 
 Estoque* acharMtlPelNom(char* nome, int tam) {
