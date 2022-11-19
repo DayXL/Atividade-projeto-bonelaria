@@ -314,7 +314,7 @@ void editarFornecedor(void) {
      
     if (fnc == NULL) {
 
-        printf("Fornecedor não cadastrado! ");
+        printf("\nFornecedor não cadastrado!\n ");
 
     }
 
@@ -461,19 +461,19 @@ void excluirFornecedor(void) {
      
     if (fnc == NULL) {
 
-        printf("Fornecedor não cadastrado! ");
+        printf("\nFornecedor não cadastrado!\n");
 
     }
 
     else {
 
-        aux = (Fornecedor*) malloc(sizeof(Fornecedor));
-        fp = fopen("arqFornecedor.dat", "r+b");
-
         if (access("arqFornecedor.dat", F_OK) != -1) {
+            
+            aux = (Fornecedor*) malloc(sizeof(Fornecedor));
+            fp = fopen("arqFornecedor.dat", "r+b");
 
             if (fp == NULL) {
-                printf("Não foi possível deletar!\n");
+                printf("\nNão foi possível deletar!\n");
 
             }
 
@@ -511,6 +511,10 @@ void excluirFornecedor(void) {
                 }
 
             }
+
+            fclose(fp);
+            free(aux);
+
         }
 
         else {
@@ -518,8 +522,6 @@ void excluirFornecedor(void) {
 
         }
 
-        fclose(fp);
-        free(aux);
     }
 
     free(fnc);
