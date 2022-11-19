@@ -427,10 +427,10 @@ void excluirMaterial(void) {
 
         }
 
+        fclose(fp);
         free(aux);
     }
 
-    fclose(fp);
     free(est);
 }
 
@@ -725,4 +725,44 @@ void comprarMateriais(void) {
 
     free(est);
 
+}
+
+void descontarMtl(char *codigo, float quant) {
+
+    FILE* fp;
+    Estoque* aux;
+    int achou = 0;
+
+    if (access("arqEstoq.dat", F_OK) != -1) {
+
+        aux = (Estoque*) malloc(sizeof(Estoque));
+        fp = fopen("arqEstoq.dat", "r+b");
+
+        if (fp == NULL) {
+            printf("Não foi possível descontar!\n");
+                
+        }
+
+        else {
+
+            while(fread(aux, sizeof(Estoque), 1, fp) && (achou == 0)) {
+
+                if ((strcmp(aux->codigo, codigo) == 0) && (aux->ativo != 0)) {
+                    achou = 1;
+
+                    aux->quant = quant;
+
+                    fseek(fp, -1*sizeof(Estoque), SEEK_CUR);
+                    fwrite(aux, sizeof(Estoque), 1, fp);
+
+
+                }
+            }
+
+        }
+
+    }
+
+    free(aux);
+    fclose(fp);
 }
