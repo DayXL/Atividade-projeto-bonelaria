@@ -25,7 +25,7 @@ void moduloPedido(void) {
         }
 
         else if (esc=='2') {
-            printf("\nPesquisar pedido\n");
+            pesquisarPedido();
 
         }
 
@@ -773,4 +773,39 @@ PedidoCliente* acharPed(char *pedido) {
     }
 
     return NULL;
+}
+
+void pesquisarPedido(void) {
+    PedidoCliente* pedClt;
+    char codigo[50];
+    int tam;
+
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===               = = = = = Pesquisar pedido = = = = =                      ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+
+    printf("Código do pedido: ");
+    fgets(codigo, 50, stdin);
+
+    tam = strlen(codigo);
+    codigo[tam - 1] = '\0';
+
+    pedClt = acharPed(codigo);
+     
+    if (pedClt == NULL) {
+        printf("Cliente não cadastrado! ");
+
+    }
+
+    else {
+        exibPedido(pedClt);
+
+    }
+
+    free(pedClt);
+
 }
