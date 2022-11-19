@@ -633,16 +633,16 @@ void editarModelo(void) {
      
     if (bcp == NULL) {
 
-        printf("Modelo não cadastrado! ");
+        printf("\nModelo não cadastrado!\n");
 
     }
 
     else {
 
-        aux = (BoneChap*) malloc(sizeof(BoneChap));
-        fp = fopen("arqBoneChap.dat", "r+b");
-
         if (access("arqBoneChap.dat", F_OK) != -1) {
+
+            aux = (BoneChap*) malloc(sizeof(BoneChap));
+            fp = fopen("arqBoneChap.dat", "r+b");
 
             if (fp == NULL) {
                 printf("Não foi possível atualizar!\n");
@@ -723,16 +723,19 @@ void editarModelo(void) {
                 }
 
             }
+
+            free(aux);
+            fclose(fp);
         }
 
         else {
             printf("\nErro com arquivo\n");
 
         }
-        free(aux);
+
     }
 
-    fclose(fp);
+
     free(bcp);
 
 }
