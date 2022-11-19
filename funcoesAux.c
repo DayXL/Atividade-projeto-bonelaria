@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "funcoesAux.h"
 
 void passarEnter(void) {
@@ -365,4 +366,20 @@ void escolheVerificadoCNPJ(int *cnpj) {
 
     cnpj[13] = resto;
 
+}
+
+char* pasMaisc(char *nome) {
+
+    int i = 0;
+    int tam = strlen(nome);
+    char* nomeMaisc = (char*) malloc(tam * sizeof(char));
+
+    while (nome[i] != '\0') {  
+        nomeMaisc[i] = toupper(nome[i]);
+
+        i = i + 1;
+
+    }
+
+    return nomeMaisc;
 }
