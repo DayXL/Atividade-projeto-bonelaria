@@ -613,7 +613,7 @@ void pedidoCliente(void) {
     char cpf[30];
     char codigo[30];
     char quant[20];
-    char aux[45] = "AUX";
+    char aux[45];
     int tam;
     int perm;
     int perm2;
@@ -872,7 +872,7 @@ int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
             }
         }
         
-        if ((strcmp(bcp->codigo, "01") == 0)) {
+        if ((strcmp(regul, "01") == 0)) {
             
             est = acharMtlPelNom("REGULADOR DE FIVELA", 17);
 
@@ -898,7 +898,7 @@ int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
         }
 
-        else if ((strcmp(bcp->codigo, "10") == 0)) {
+        else if ((strcmp(regul, "10") == 0)) {
             est = acharMtlPelNom("REGULADOR DE PLASTICO", 20);
 
             if (est == NULL) {
@@ -923,7 +923,7 @@ int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
         }
         
-        else if ((strcmp(bcp->codigo, "11") == 0)) {
+        else if ((strcmp(regul, "11") == 0)) {
             est = acharMtlPelNom("REGULADOR DE VELCRO", 18);
 
             if (est == NULL) {
@@ -1110,7 +1110,7 @@ int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor) {
             if (novoValor[i] == -1) {
                 achou = 1;
                 novoValor[i] = (est->quant) - ((quant / bcp->uniPorMetro) + 1);
-                strcat(aux, est->codigo);
+                strcpy(aux, est->codigo);
             }
 
         }
