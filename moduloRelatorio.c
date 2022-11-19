@@ -6,6 +6,7 @@
 #include "moduloFornecedor.h"
 #include "moduloBone.h"
 #include "moduloEstoque.h"
+#include "moduloPedido.h"
 
 void moduloRelatorio(void) {
 
