@@ -757,23 +757,17 @@ BoneChap* selecionarModelo(char *codigo) {
         printf("\nBonés disponíveis: \n");
         lerArqBcpDif('1');
 
-        printf("\nDigite o código do boné desejado: \n");
-        fgets(codigo, 30, stdin);
+        do {
 
-        tam = strlen(codigo);
-        codigo[tam - 1] = '\0';
+            printf("\nDigite o código do boné desejado: \n");
+            fgets(codigo, 30, stdin);
 
-        bcp = acharMdl(codigo);
+            tam = strlen(codigo);
+            codigo[tam - 1] = '\0';
+
+            bcp = acharMdl(codigo);
         
-        if (bcp == NULL) {
-            printf("Modelo não cadastrado! ");
-
-        }
-
-        else {
-            return bcp;
-
-        }
+        } while (bcp == NULL); 
 
     }
 
@@ -805,7 +799,7 @@ BoneChap* selecionarModelo(char *codigo) {
 
     }
 
-    return NULL;
+    return bcp;
 
 }
 
