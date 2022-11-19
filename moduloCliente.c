@@ -666,6 +666,7 @@ void pedidoCliente(void) {
 
                 if (strcmp(esc, "1\0") == 0) {
                     printf("\nFechando pedido ... \n");
+                    printf("%s",aux);
 
                 }
 
@@ -797,6 +798,7 @@ void lerQuant(char *quant) {
 int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
     Estoque* est;
+    char regul[3] = {bcp->codigo[3], bcp->codigo[4]};
 
     if (bcp->codigo[0] == '1') {
 
@@ -869,8 +871,9 @@ int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
             }
         }
-
-        if ((bcp->codigo[3] == '0') && (bcp->codigo[4] == '1')) {
+        
+        if ((strcmp(bcp->codigo, "01") == 0)) {
+            
             est = acharMtlPelNom("REGULADOR DE FIVELA", 17);
 
             if (est == NULL) {
@@ -895,7 +898,7 @@ int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
         }
 
-        else if ((bcp->codigo[3] == '1') && (bcp->codigo[4] == '0')) {
+        else if ((strcmp(bcp->codigo, "10") == 0)) {
             est = acharMtlPelNom("REGULADOR DE PLASTICO", 20);
 
             if (est == NULL) {
@@ -919,8 +922,8 @@ int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
             }
 
         }
-
-        else if ((bcp->codigo[3] == '1') && (bcp->codigo[4] == '1')) {
+        
+        else if ((strcmp(bcp->codigo, "11") == 0)) {
             est = acharMtlPelNom("REGULADOR DE VELCRO", 18);
 
             if (est == NULL) {
