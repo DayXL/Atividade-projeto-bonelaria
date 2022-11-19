@@ -12,3 +12,4 @@ void escolheVerificadoCpf(int *cpf);
 int verificarEmail(char *email, int tam);
 void gerarCnpj(void);
 void escolheVerificadoCNPJ(int *cnpj);
+char* pasMaisc(char *nome);
