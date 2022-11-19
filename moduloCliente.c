@@ -1212,7 +1212,7 @@ void lerArqPedClt(void) {
 
             while (fread(pedClt, sizeof(PedidoCliente), 1, fp)) {
 
-                exibPedClit(clt);
+                exibPedido(pedClt);
 
             }
 
