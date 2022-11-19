@@ -740,3 +740,37 @@ char escolha(void) {
     return esc;
 
 }
+
+PedidoCliente* acharPed(char *pedido) {
+    FILE* fp;
+    PedidoCliente* pedClt;
+
+    if (access("arqPedClt.dat", F_OK) != -1) {
+        fp = fopen("arqPedClt.dat", "rb");
+
+        if (fp == NULL) {
+            printf("Ocorreu um erro na abertura do arquivo!\n");
+
+        }
+
+        else {
+
+            pedClt = (PedidoCliente*) malloc(sizeof(PedidoCliente));
+
+            while(fread(pedClt, sizeof(PedidoCliente), 1, fp)) {
+
+                if ((strcmp(pedClt->pedido, pedido) == 0)) {
+                    fclose(fp);
+                    return pedClt;
+
+                } 
+
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+    return NULL;
+}
