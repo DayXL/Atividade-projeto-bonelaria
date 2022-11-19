@@ -105,67 +105,75 @@ void pedidoCliente(void) {
     else {
         bcp = selecionarModelo(codigo);
 
-        printf("\nModelo escolhido: \n");
-        exibBoneChap(bcp);
+        if (bcp != NULL) {
 
-        lerQuant(quant);
+            printf("\nModelo escolhido: \n");
+            exibBoneChap(bcp);
 
-        printf("\nTecidos disponíveis: \n");
-        acharTec();
+            lerQuant(quant);
 
-        perm = selecionarCor(aux, atof(quant), bcp, novoValor, cor);
+            printf("\nTecidos disponíveis: \n");
+            acharTec();
 
-        if (perm == 1) {
-            perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
+            perm = selecionarCor(aux, atof(quant), bcp, novoValor, cor);
 
-            if (perm2 == 1) {
-                printf("\nDeseja fechar o pedido?1 para sim, 0 para não.\n");
-                fgets(esc, 20, stdin);
-                        
-                tam = strlen(esc);
-                esc[tam - 1] = '\0';
+            if (perm == 1) {
+                perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
 
-                if (strcmp(esc, "1\0") == 0) {
-                    printf("\nFechando pedido ... \n");
+                if (perm2 == 1) {
+                    printf("\nDeseja fechar o pedido?1 para sim, 0 para não.\n");
+                    fgets(esc, 20, stdin);
+                            
+                    tam = strlen(esc);
+                    esc[tam - 1] = '\0';
 
-                    int i = 0;
-                    int j = 0;
+                    if (strcmp(esc, "1\0") == 0) {
+                        printf("\nFechando pedido ... \n");
 
-                    while (i < 35) {
-                        char aux2[9] = {aux[i], aux[i + 1], aux[i + 2], aux[i + 3], aux[i + 4], aux[i + 5], aux[i + 6], aux[i + 7]}; 
-                        descontarMtl(aux2, novoValor[j]);
+                        int i = 0;
+                        int j = 0;
 
-                        j = j + 1;
-                        i = i + 8;
+                        while (i < 35) {
+                            char aux2[9] = {aux[i], aux[i + 1], aux[i + 2], aux[i + 3], aux[i + 4], aux[i + 5], aux[i + 6], aux[i + 7]}; 
+                            descontarMtl(aux2, novoValor[j]);
+
+                            j = j + 1;
+                            i = i + 8;
+                        }
+
+                        strcpy(pedClt->pedido,gerarIdPed());
+                        strcpy(pedClt->cpf,cpf);
+                        strcpy(pedClt->codigo,bcp->codigo);
+                        pedClt->quant = atof(quant);
+                        strcpy(pedClt->cor,cor);
+
+                        salArqPedClt(pedClt);
+
                     }
 
-                    strcpy(pedClt->pedido,gerarIdPed());
-                    strcpy(pedClt->cpf,cpf);
-                    strcpy(pedClt->codigo,bcp->codigo);
-                    pedClt->quant = atof(quant);
-                    strcpy(pedClt->cor,cor);
+                    else {
+                        printf("\nPedido cancelado! \n");
 
-                    salArqPedClt(pedClt);
+                    }   
 
                 }
 
                 else {
-                    printf("\nPedido cancelado! \n");
+                    printf("\nO pedido não pode ser concluído por falta de materiais! \n");
 
-                }   
+                }
 
             }
 
             else {
-                printf("\nO pedido não pode ser concluído por falta de materiais! \n");
+                printf("\nO pedido não pode ser concluído! \n");
 
             }
 
         }
 
         else {
-            printf("\nO pedido não pode ser concluído! \n");
-
+            printf("\nCadastre novos modelos! \n");
         }
 
         free(bcp);
@@ -177,10 +185,11 @@ void pedidoCliente(void) {
 
 }
 
-void lerArqBcpDif(char num) {
+int lerArqBcpDif(char num) {
     
     FILE *fp;
     BoneChap *bcp;
+    int i = 0;
 
     if (access("arqBoneChap.dat", F_OK) != -1) {
 
@@ -200,6 +209,8 @@ void lerArqBcpDif(char num) {
                 if ((bcp->ativo == 1) && (bcp->codigo[0] == num)) {   
                     exibBoneChap(bcp);
 
+                    i = i + 1;
+
                 }
             }
 
@@ -210,6 +221,8 @@ void lerArqBcpDif(char num) {
         fclose(fp);
     }
 
+    return i;
+
 }
 
 BoneChap* selecionarModelo(char *codigo) {
@@ -217,6 +230,7 @@ BoneChap* selecionarModelo(char *codigo) {
     BoneChap* bcp;
     char esc;
     int tam;
+    int aux;
 
     do {
         esc = escolha();
@@ -224,14 +238,14 @@ BoneChap* selecionarModelo(char *codigo) {
         if (esc == '1') {
             esc = '0';
             printf("\nBonés disponíveis: \n");
-            lerArqBcpDif('1');
+            aux = lerArqBcpDif('1');
 
         }
 
         else if (esc == '2') {
             //esc = '0';
             //printf("\nChapéus disponíveis: \n");
-            //lerArqBcpDif('0');
+            //aux = lerArqBcpDif('0');
             printf("\nSem fabricação de chapéu no momento!\n");
             passarEnter();
 
@@ -244,7 +258,8 @@ BoneChap* selecionarModelo(char *codigo) {
 
     } while (esc != '0');
 
-    do {
+    if (aux != 0) {
+        do {
 
         printf("\nDigite o código: \n");
         fgets(codigo, 30, stdin);
@@ -254,7 +269,14 @@ BoneChap* selecionarModelo(char *codigo) {
 
         bcp = acharMdl(codigo);
         
-    } while (bcp == NULL); 
+        } while (bcp == NULL); 
+
+    }
+    
+    else {
+        return NULL; 
+
+    }
 
     return bcp;
 }
