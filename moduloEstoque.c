@@ -196,6 +196,7 @@ void exibEstoque(Estoque *est) {
     printf("%f" ,est->quant);
     printf("\n");
 
+    printf("ou aqui");
 }
 
 void cadastrarMateriais(void) {
