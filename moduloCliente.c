@@ -636,7 +636,6 @@ void pedidoCliente(void) {
     clt = acharClt(cpf);
      
     if (clt == NULL) {
-
         printf("\nCliente não cadastrado!\n ");
 
     }
@@ -644,48 +643,41 @@ void pedidoCliente(void) {
     else {
         bcp = selecionarModelo(codigo);
 
-        if (bcp == NULL) {
-            printf("\nCancelado!\n ");
+        printf("\nModelo escolhido: \n");
+        exibBoneChap(bcp);
 
-        }
+        lerQuant(quant);
 
-        else {
-            printf("\nModelo escolhido: \n");
-            exibBoneChap(bcp);
+        printf("\nTecidos disponíveis: \n");
+        acharTec();
 
-            lerQuant(quant);
+        perm = selecionarCor(aux, atof(quant), bcp, novoValor);
 
-            printf("\nTecidos disponíveis: \n");
-            acharTec();
+        if (perm == 1) {
+            perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
 
-            perm = selecionarCor(aux, atof(quant), bcp, novoValor);
-
-            if (perm == 1) {
-                perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
-
-                if (perm2 == 1) {
-                   printf("Confirmar pedido");
-
-                }
-
-                else {
-                    printf("\nO pedido não pode ser concluído por falta de materiais! \n");
-
-                }
+            if (perm2 == 1) {
+                printf("Confirmar pedido");
 
             }
 
             else {
-                printf("\nO pedido não pode ser concluído! \n");
+                printf("\nO pedido não pode ser concluído por falta de materiais! \n");
 
             }
 
         }
 
+        else {
+            printf("\nO pedido não pode ser concluído! \n");
+
+        }
+
+        free(bcp);
+
     }
 
     free(clt);
-    free(bcp);
 
 }
 
@@ -728,21 +720,25 @@ BoneChap* selecionarModelo(char *codigo) {
 
     BoneChap* bcp;
     char esc;
-    int num = 0;
     int tam;
 
     do {
         esc = escolherModelo();
 
-        if (esc=='1') {
+        if (esc == '1') {
             esc = '0';
-            num = 1;
+            printf("\nBonés disponíveis: \n");
+            lerArqBcpDif('1');
 
         }
 
-        else if (esc=='2') {
-            esc = '0';
-            num = 2;
+        else if (esc == '2') {
+            //esc = '0';
+            //printf("\nChapéus disponíveis: \n");
+            //lerArqBcpDif('0');
+            printf("\nSem fabricação de chapéu no momento!\n");
+            passarEnter();
+
         }
 
         else {
@@ -750,57 +746,21 @@ BoneChap* selecionarModelo(char *codigo) {
 
         }
 
-
     } while (esc != '0');
 
-    if (num == 1) {
-        printf("\nBonés disponíveis: \n");
-        lerArqBcpDif('1');
+    do {
 
-        do {
-
-            printf("\nDigite o código do boné desejado: \n");
-            fgets(codigo, 30, stdin);
-
-            tam = strlen(codigo);
-            codigo[tam - 1] = '\0';
-
-            bcp = acharMdl(codigo);
-        
-        } while (bcp == NULL); 
-
-    }
-
-    else if (num == 2) {
-        printf("\nChapéus disponíveis: \n");
-        lerArqBcpDif('0');
-
-        printf("\nDigite o código do chapéu desejado: \n");
+        printf("\nDigite o código: \n");
+        fgets(codigo, 30, stdin);
 
         tam = strlen(codigo);
         codigo[tam - 1] = '\0';
 
         bcp = acharMdl(codigo);
         
-        if (bcp == NULL) {
-            printf("Modelo não cadastrado! ");
-
-        }
-
-        else {
-            return bcp;
-
-        }
-
-    }
-
-    else {
-        printf("\nCancelado!\n");
-
-    }
+    } while (bcp == NULL); 
 
     return bcp;
-
 }
 
 void lerQuant(char *quant) {
@@ -1100,51 +1060,50 @@ Estoque* acharMtlPelNom(char* nome, int tam) {
 }
 
 int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor) {
-
     Estoque* est;
     int tam;
     char tec[30];
     int num;
 
-    printf("\nDigite o código da cor desejada: \n");
-    fgets(tec, 30, stdin);
+    do {
 
-    tam = strlen(tec);
-    tec[tam - 1] = '\0';
+        printf("\nDigite o código da cor desejada: \n");
+        fgets(tec, 30, stdin);
 
-    est = acharEst(tec);
-        
-    if (est == NULL) {
-        printf("\nTecido não cadastrado!\n ");
+        tam = strlen(tec);
+        tec[tam - 1] = '\0';
 
+        est = acharEst(tec);
+
+    } while (est == NULL);
+
+    printf("\nTecido escolhido:\n ");
+
+    exibEstoque(est);
+
+    printf("aqui");
+
+    if (((quant / bcp->uniPorMetro) + 1) <= est->quant) {
+        int i = 0;
+        int achou = 0;
+
+        while (i < 6 && achou == 0) {
+            i = i + 1;
+            if (novoValor[i] == -1) {
+                achou = 1;
+                novoValor[i] = (est->quant) - ((quant / bcp->uniPorMetro) + 1);
+                strcat(aux, est->codigo);
+            }
+
+        }
+
+        num = 1;
     }
 
     else {
-        strcpy(tec, est->codigo);
-        printf("\nTecido escolhido:\n ");
+        printf("\nTecido escolhido insuficiente no estoque!\n");
+        num = 0;
 
-        exibEstoque(est);
-
-        if (((quant / bcp->uniPorMetro) + 1) <= est->quant) {
-            int i = 0;
-            int achou = 0;
-
-            while (i < 6 && achou == 0) {
-                i = i + 1;
-                if (novoValor[i] == -1) {
-                    achou = 1;
-                    novoValor[i] = (est->quant) - ((quant / bcp->uniPorMetro) + 1);
-                    strcat(aux, est->codigo);
-                }
-
-            }
-
-            num = 1;
-        }
-        else {
-            printf("\nTecido escolhido insuficiente no estoque!\n");
-            num = 0;
-        }
     }
 
     free(est);
