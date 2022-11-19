@@ -798,10 +798,10 @@ void excluirModelo(void) {
 
     else {
 
-        aux = (BoneChap*) malloc(sizeof(BoneChap));
-        fp = fopen("arqBoneChap.dat", "r+b");
-
         if (access("arqBoneChap.dat", F_OK) != -1) {
+
+            aux = (BoneChap*) malloc(sizeof(BoneChap));
+            fp = fopen("arqBoneChap.dat", "r+b");
 
             if (fp == NULL) {
                 printf("Não foi possível deletar!\n");
@@ -842,6 +842,10 @@ void excluirModelo(void) {
                 }
 
             }
+
+            free(aux);
+            fclose(fp);
+
         }
 
         else {
@@ -849,12 +853,9 @@ void excluirModelo(void) {
 
         }
 
-        free(aux);
     }
 
-    fclose(fp);
     free(bcp);
-
 }
 
 void pesquisarModelo(void) {
