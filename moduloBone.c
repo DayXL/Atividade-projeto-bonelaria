@@ -176,8 +176,8 @@ void telaBone(void) {
     printf("===                 1. Botão                                                ===\n");
     printf("===                 2. Tela                                                 ===\n");
     printf("===                 3. Regulador de Fivela                                  ===\n");
-    printf("===                 4. Regulador de Velcro                                  ===\n");
-    printf("===                 5. Regulador de Plástico                                ===\n");
+    printf("===                 4. Regulador de Plástico                                ===\n");
+    printf("===                 5. Regulador de Velcro                                  ===\n");
     printf("===                 6. Sem nada                                             ===\n");
     printf("===                 0. Encerrar                                             ===\n");
     printf("===                                                                         ===\n");
