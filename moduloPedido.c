@@ -48,9 +48,11 @@ char verMenuPedido(void) {
     printf("===                                                                         ===\n");
     printf("===              = = = = = Realizar pedido = = = = =                        ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 1. Fazer pedido                                         ===\n");
-    printf("===                 2. Pesquisar pedido                                     ===\n");
-    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Fazer pedido                                            ===\n");
+    printf("===              2. Pesquisar pedido                                        ===\n");
+    printf("===              0. Voltar ao menu principal                                ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");

@@ -52,11 +52,13 @@ char verMenuCliente(void) {
     printf("===                                                                         ===\n");
     printf("===              = = = = = Menu Cliente = = = = =                           ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 1. Cadastrar cliente                                    ===\n");
-    printf("===                 2. Editar cliente                                       ===\n");
-    printf("===                 3. Excluir cliente                                      ===\n");
-    printf("===                 4. Pesquisar cliente                                    ===\n");
-    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Cadastrar cliente                                       ===\n");
+    printf("===              2. Editar cliente                                          ===\n");
+    printf("===              3. Excluir cliente                                         ===\n");
+    printf("===              4. Pesquisar cliente                                       ===\n");
+    printf("===              0. Voltar ao menu principal                                ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -201,6 +203,7 @@ void cadastrarCliente(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===               = = = = = Cadastrar cliente = = = = =                     ===\n");
+    printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     
@@ -453,6 +456,8 @@ char telAtlClt(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                 = = = = = Atualizar = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                 1. Nome                                                 ===\n");
     printf("===                 2. Telefone                                             ===\n");

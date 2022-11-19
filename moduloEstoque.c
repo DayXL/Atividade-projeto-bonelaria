@@ -64,6 +64,8 @@ char verMenuEstoque(void) {
     printf("===                                                                         ===\n");
     printf("===               = = = = = Menu Estoque = = = = =                          ===\n");
     printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
     printf("===                 1. Cadastrar material                                   ===\n");
     printf("===                 2. Deletar material                                     ===\n");
     printf("===                 3. Ver materiais em estoque                             ===\n");
@@ -605,6 +607,8 @@ char telAtlEst(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                 = = = = = Atualizar = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                 1. Nome                                                 ===\n");
     printf("===                 2. Cnpj                                                 ===\n");

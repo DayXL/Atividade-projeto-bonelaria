@@ -52,11 +52,13 @@ char verMenuFornecedor(void) {
     printf("===                                                                         ===\n");
     printf("===              = = = = = Menu Fornecedor = = = = =                        ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 1. Cadastrar fornecedor                                 ===\n");
-    printf("===                 2. Editar fornecedor                                    ===\n");
-    printf("===                 3. Excluir fornecedor                                   ===\n");
-    printf("===                 4. Pesquisar fornecedor                                 ===\n");
-    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Cadastrar fornecedor                                    ===\n");
+    printf("===              2. Editar fornecedor                                       ===\n");
+    printf("===              3. Excluir fornecedor                                      ===\n");
+    printf("===              4. Pesquisar fornecedor                                    ===\n");
+    printf("===              0. Voltar ao menu principal                                ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
@@ -418,6 +420,8 @@ char telAtlFnc(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                 = = = = = Atualizar = = = = =                           ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===                 1. Nome                                                 ===\n");
     printf("===                 2. Email                                                ===\n");

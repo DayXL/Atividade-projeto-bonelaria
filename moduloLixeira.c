@@ -53,11 +53,13 @@ char verMenuLix(void) {
     printf("===                                                                         ===\n");
     printf("===              = = = = = Menu Lixeira = = = = =                           ===\n");
     printf("===                                                                         ===\n");
-    printf("===                 1. Lixo Boné                                            ===\n");
-    printf("===                 2. Lixo Fornecedor                                      ===\n");
-    printf("===                 3. Lixo cliente                                         ===\n");
-    printf("===                 4. Lixo estoque                                         ===\n");
-    printf("===                 0. Voltar ao menu principal                             ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Lixo Boné                                               ===\n");
+    printf("===              2. Lixo Fornecedor                                         ===\n");
+    printf("===              3. Lixo cliente                                            ===\n");
+    printf("===              4. Lixo estoque                                            ===\n");
+    printf("===              0. Voltar ao menu principal                                ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
