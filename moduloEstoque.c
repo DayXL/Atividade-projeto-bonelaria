@@ -468,7 +468,7 @@ void editarMaterial(void) {
     est = acharEst(codigo);
      
     if (est == NULL) {
-        printf("Material não cadastrado! ");
+        printf("\nMaterial não cadastrado!\n");
 
     }
 
@@ -480,7 +480,7 @@ void editarMaterial(void) {
             fp = fopen("arqEstoq.dat", "r+b");
 
             if (fp == NULL) {
-                printf("Não foi possível atualizar!\n");
+                printf("\nNão foi possível atualizar!\n");
                 
             }
 
@@ -572,7 +572,7 @@ void editarMaterial(void) {
 
             free(aux);
             fclose(fp);
-            
+
         }
 
         else {
@@ -680,16 +680,16 @@ void comprarMateriais(void) {
     est = acharEst(codigo);
      
     if (est == NULL) {
-        printf("Material não cadastrado! ");
+        printf("\nMaterial não cadastrado!\n ");
 
     }
 
     else {
 
-        aux = (Estoque*) malloc(sizeof(Estoque));
-        fp = fopen("arqEstoq.dat", "r+b");
-
         if (access("arqEstoq.dat", F_OK) != -1) {
+
+            aux = (Estoque*) malloc(sizeof(Estoque));
+            fp = fopen("arqEstoq.dat", "r+b");
 
             if (fp == NULL) {
                 printf("Não foi possível atualizar!\n");
@@ -722,10 +722,12 @@ void comprarMateriais(void) {
                     }
                 }
             }
+
+            free(aux);
+            fclose(fp);
+
         }
 
-        free(aux);
-        fclose(fp);
     }
 
     free(est);
