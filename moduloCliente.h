@@ -19,8 +19,8 @@ struct pedidoCliente {
     char pedido;
     char cpf[12];
     char codigo[6];
-    float quant[12];
-    char detalhes[100];
+    float quant;
+    char cor[9];
 
 };
 
