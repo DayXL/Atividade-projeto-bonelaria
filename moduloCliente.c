@@ -618,6 +618,7 @@ void pedidoCliente(void) {
     int perm;
     int perm2;
     float novoValor[5] = {-1,-1,-1,-1,-1};
+    char esc[20];
 
     system ( " clear||cls " );
     printf("\n");
@@ -657,7 +658,21 @@ void pedidoCliente(void) {
             perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
 
             if (perm2 == 1) {
-                printf("Confirmar pedido");
+                printf("\nDeseja fechar o pedido?1 para sim, 0 para não.\n");
+                fgets(esc, 20, stdin);
+                        
+                tam = strlen(esc);
+                esc[tam - 1] = '\0';
+
+                if (strcmp(esc, "1\0") == 0) {
+                    printf("\nFechando pedido ... \n");
+
+                }
+
+                else {
+                    printf("\nPedido cancelado! \n");
+
+                }   
 
             }
 
