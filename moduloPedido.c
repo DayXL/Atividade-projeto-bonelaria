@@ -219,7 +219,7 @@ BoneChap* selecionarModelo(char *codigo) {
     int tam;
 
     do {
-        esc = escolherModelo();
+        esc = escolha();
 
         if (esc == '1') {
             esc = '0';
@@ -715,5 +715,28 @@ char* gerarIdPed(void) {
     // dia, mes, ano, horas, minutos, segundo
 
     return data;
+
+}
+
+char escolha(void) {
+
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Cadastrar modelo = = = = =                       ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Boné                                                    ===\n");
+    printf("===              2. Chapéu                                                  ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 
 }
