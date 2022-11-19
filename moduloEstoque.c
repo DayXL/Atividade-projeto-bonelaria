@@ -238,13 +238,16 @@ void cadastrarMateriais(void) {
 
             validarQuant(quant);
 
+            char* nomeMais = pasMaisc(nomeMaterial);
+
             strcpy(est->codigo, codigo);
             strcpy(est->cnpj, cnpj);
-            strcpy(est->nomeDoMaterial, nomeMaterial);
+            strcpy(est->nomeDoMaterial, nomeMais);
             est->quant = atof(quant);
             est->ativo = 1;
 
             salArqEst(est);
+            free(nomeMais);
 
             printf("\nMaterial cadastrado com sucesso!\n");
         
@@ -505,8 +508,15 @@ void editarMaterial(void) {
                             while (esc!='0') {
 
                                 if (esc=='1') {
+
                                     validarNomeMaterial(nomeMaterial);
-                                    strcpy(aux->nomeDoMaterial,nomeMaterial);
+
+                                    char* nomeMais = pasMaisc(nomeMaterial);
+
+                                    printf("%s", nomeMais);
+                                    strcpy(aux->nomeDoMaterial,nomeMais);
+
+                                    free(nomeMais);
 
                                 }
 
@@ -540,9 +550,13 @@ void editarMaterial(void) {
 
                                     validarQuant(quant);
 
-                                    strcpy(aux->nomeDoMaterial,nomeMaterial);
+                                    char* nomeMais = pasMaisc(nomeMaterial);
+
+                                    strcpy(aux->nomeDoMaterial,nomeMais);
                                     strcpy(aux->cnpj,cnpj);
                                     aux->quant = atof(quant);
+
+                                    free(nomeMais);
                                 }
 
                                 else {
