@@ -6,6 +6,7 @@
 #include "moduloFornecedor.h"   //Junte os arquivos -> gcc -o Hat *.o
 #include "moduloCliente.h"
 #include "moduloEstoque.h"  //teste
+#include "moduloPedido.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
 #include "moduloLixeira.h"
@@ -41,16 +42,21 @@ int main(void) {
         }
 
         else if (esc=='5') {
-            moduloRelatorio();
+            moduloPedido();
 
         }
 
         else if (esc=='6') {
-            verMenuSobre();
+            moduloRelatorio();
 
         }
 
         else if (esc=='7') {
+            verMenuSobre();
+
+        }
+
+        else if (esc=='8') {
             moduloLixeira();
 
         }
@@ -82,9 +88,10 @@ char verMenuPrincipal(void) {
     printf("===                 2. Módulo Fornecedor                                    ===\n");
     printf("===                 3. Módulo Cliente                                       ===\n");
     printf("===                 4. Módulo Estoque                                       ===\n");
-    printf("===                 5. Relatórios                                           ===\n");
-    printf("===                 6. Menu Sobre                                           ===\n");
-    printf("===                 7. Lixeira                                              ===\n");
+    printf("===                 5. Módulo pedido                                        ===\n");
+    printf("===                 6. Relatórios                                           ===\n");
+    printf("===                 7. Menu Sobre                                           ===\n");
+    printf("===                 8. Lixeira                                              ===\n");
     printf("===                 0. Sair                                                 ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
