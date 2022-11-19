@@ -27,4 +27,6 @@ void lerArqPedClt(void);
 void exibPedido(PedidoCliente *pedClt);
 char* gerarIdPed(void);
 BoneChap* selecionarModelo(char *codigo);
+char escolha(void);
+
 
