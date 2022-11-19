@@ -398,7 +398,6 @@ int gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
     }
 
     for (int i = 0; i < tam; i++) {
-        printf("%d", i);
         if (esc[i] == '1') {
             codigo[1] = '1';
 
