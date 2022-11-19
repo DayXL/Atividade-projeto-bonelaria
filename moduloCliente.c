@@ -610,10 +610,13 @@ void pedidoCliente(void) {
 
     BoneChap* bcp;
     Cliente* clt;
+    PedidoCliente* pedClt;
+    pedClt = (PedidoCliente*) malloc(sizeof(PedidoCliente));
     char cpf[30];
     char codigo[30];
     char quant[20];
     char aux[45];
+    char cor[30];
     int tam;
     int perm;
     int perm2;
@@ -652,7 +655,7 @@ void pedidoCliente(void) {
         printf("\nTecidos disponíveis: \n");
         acharTec();
 
-        perm = selecionarCor(aux, atof(quant), bcp, novoValor);
+        perm = selecionarCor(aux, atof(quant), bcp, novoValor, cor);
 
         if (perm == 1) {
             perm2 = verMtlDisp(bcp, atof(quant), novoValor,aux);
@@ -666,7 +669,25 @@ void pedidoCliente(void) {
 
                 if (strcmp(esc, "1\0") == 0) {
                     printf("\nFechando pedido ... \n");
-                    printf("%s",aux);
+
+                    int i = 0;
+                    int j = 0;
+
+                    while (i < 35) {
+                        char aux2[9] = {aux[i], aux[i + 1], aux[i + 2], aux[i + 3], aux[i + 4], aux[i + 5], aux[i + 6], aux[i + 7]}; 
+                        descontarMtl(aux2, novoValor[j]);
+
+                        j = j + 1;
+                        i = i + 8;
+                    }
+
+                    pedClt->pedido = 1;
+                    strcpy(pedClt->cpf,cpf);
+                    strcpy(pedClt->codigo,bcp->codigo);
+                    pedClt->quant = atof(quant);
+                    strcpy(pedClt->cor,cor);
+
+                    salArqPedClt(pedClt);
 
                 }
 
@@ -693,6 +714,7 @@ void pedidoCliente(void) {
 
     }
 
+    free(pedClt);
     free(clt);
 
 }
@@ -1077,7 +1099,7 @@ Estoque* acharMtlPelNom(char* nome, int tam) {
 
 }
 
-int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor) {
+int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor, char * cor) {
     Estoque* est;
     int tam;
     char tec[30];
@@ -1102,20 +1124,13 @@ int selecionarCor(char *aux, float quant, BoneChap* bcp, float *novoValor) {
     printf("aqui");
 
     if (((quant / bcp->uniPorMetro) + 1) <= est->quant) {
-        int i = 0;
-        int achou = 0;
 
-        while (i < 6 && achou == 0) {
-            i = i + 1;
-            if (novoValor[i] == -1) {
-                achou = 1;
-                novoValor[i] = (est->quant) - ((quant / bcp->uniPorMetro) + 1);
-                strcpy(aux, est->codigo);
-            }
-
-        }
-
+        novoValor[0] = (est->quant) - ((quant / bcp->uniPorMetro) + 1);
+        strcpy(aux, est->codigo);
+        strcpy(cor, est->nomeDoMaterial);
+    
         num = 1;
+
     }
 
     else {
@@ -1143,5 +1158,36 @@ void alterValor(float *novoValor, char *aux, int quant, Estoque* est) {
         }
 
     }
+
+}
+
+void salArqPedClt(PedidoCliente* pedClt) {
+    FILE *fp;
+
+    fp = fopen("arqPedClt.dat","ab");
+
+    if (fp == NULL) {
+
+        printf("Arquivo inexistente!\n");
+        printf("Criando novo arquivo!");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+            fwrite(pedClt, sizeof(PedidoCliente), 1, fp);
+
+        }
+
+    }
+
+    else {
+        fwrite(pedClt, sizeof(PedidoCliente), 1, fp);
+
+    }
+
+    fclose(fp);
 
 }
