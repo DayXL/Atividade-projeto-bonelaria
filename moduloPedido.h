@@ -15,7 +15,7 @@ struct pedidoCliente {
 void moduloPedido(void);
 char verMenuPedido(void);
 void pedidoCliente(void);
-void lerArqBcpDif(char num);
+int lerArqBcpDif(char num);
 void lerQuant(char *quant);
 int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux);
 void acharTec(void);
