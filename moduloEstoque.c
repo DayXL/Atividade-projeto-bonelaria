@@ -370,16 +370,16 @@ void excluirMaterial(void) {
      
     if (est == NULL) {
 
-        printf("Material não cadastrado! ");
+        printf("\nMaterial não cadastrado!\n ");
 
     }
 
     else {
 
-        aux = (Estoque*) malloc(sizeof(Estoque));
-        fp = fopen("arqEstoq.dat", "r+b");
-
         if (access("arqEstoq.dat", F_OK) != -1) {
+
+            aux = (Estoque*) malloc(sizeof(Estoque));
+            fp = fopen("arqEstoq.dat", "r+b");
 
             if (fp == NULL) {
                 printf("Não foi possível deletar!\n");
@@ -420,6 +420,10 @@ void excluirMaterial(void) {
                 }
 
             }
+
+            fclose(fp);
+            free(aux);
+
         }
 
         else {
@@ -427,8 +431,6 @@ void excluirMaterial(void) {
 
         }
 
-        fclose(fp);
-        free(aux);
     }
 
     free(est);
@@ -472,10 +474,10 @@ void editarMaterial(void) {
 
     else {
 
-        aux = (Estoque*) malloc(sizeof(Estoque));
-        fp = fopen("arqEstoq.dat", "r+b");
-
         if (access("arqEstoq.dat", F_OK) != -1) {
+
+            aux = (Estoque*) malloc(sizeof(Estoque));
+            fp = fopen("arqEstoq.dat", "r+b");
 
             if (fp == NULL) {
                 printf("Não foi possível atualizar!\n");
@@ -567,16 +569,19 @@ void editarMaterial(void) {
                 }
 
             }
+
+            free(aux);
+            fclose(fp);
+            
         }
 
         else {
             printf("\nErro com arquivo\n");
 
         }
-        free(aux);
+        
     }
 
-    fclose(fp);
     free(est);
 }
 
