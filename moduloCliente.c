@@ -515,10 +515,11 @@ void excluirCliente(void) {
 
     else {
 
-        aux = (Cliente*) malloc(sizeof(Cliente));
-        fp = fopen("arqCliente.dat", "r+b");
-
         if (access("arqCliente.dat", F_OK) != -1) {
+
+            aux = (Cliente*) malloc(sizeof(Cliente));
+            fp = fopen("arqCliente.dat", "r+b");
+
 
             if (fp == NULL) {
                 printf("Não foi possível deletar!\n");
@@ -559,6 +560,10 @@ void excluirCliente(void) {
                 }
 
             }
+
+            free(aux);
+            fclose(fp);
+            
         }
 
         else {
@@ -566,10 +571,8 @@ void excluirCliente(void) {
 
         }
 
-        free(aux);
     }
 
-    fclose(fp);
     free(clt);
 
 }
