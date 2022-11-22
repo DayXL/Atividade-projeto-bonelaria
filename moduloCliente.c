@@ -170,19 +170,23 @@ Cliente* acharClt(char *cpf) {
 }
 
 void exibCliente(Cliente *clt) {
-    
-    printf("\n");
-    printf("Nome do Cliente: ");
+
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("== Nome do Cliente: ");
     printf("%s" ,clt->nomeDoCliente);
     printf("\n");
-    printf("CPF: ");
+    printf("== CPF: ");
     printf("%s" ,clt->cpf);
     printf("\n");
-    printf("Número: ");
+    printf("== Número: ");
     printf("%s" ,clt->numero);
     printf("\n");
-    printf("Email: ");
+    printf("== Email: ");
     printf("%s" ,clt->email);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
     printf("\n");
 
 }
