@@ -282,18 +282,22 @@ BoneChap* acharMdl(char *codigo) {
 
 void exibBoneChap(BoneChap *bcp) {
     
-    printf("\n");
-    printf("Nome do Modelo: ");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("== Nome do Modelo: ");
     printf("%s" ,bcp->nomeBonChap);
     printf("\n");
-    printf("Código: ");
+    printf("== Código: ");
     printf("%s" ,bcp->codigo);
     printf("\n");
-    printf("Quantidade por metro: ");
+    printf("== Quantidade por metro: ");
     printf("%f" ,bcp->uniPorMetro);
     printf("\n");
-    printf("Quantidade por tubo de linha: ");
+    printf("== Quantidade por tubo de linha: ");
     printf("%f" ,bcp->uniPorTubo);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
     printf("\n");
 
 }
