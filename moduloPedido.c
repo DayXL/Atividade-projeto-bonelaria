@@ -718,21 +718,26 @@ void lerArqPedClt(void) {
 
 void exibPedido(PedidoCliente *pedClt) {
     
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
     printf("\n");
-    printf("Número do pedido: ");
+    printf("== Número do pedido: ");
     printf("%s" ,pedClt->pedido);
     printf("\n");
-    printf("CPF do cliente: ");
+    printf("== CPF do cliente: ");
     printf("%s" ,pedClt->cpf);
     printf("\n");
-    printf("Código do boné: ");
+    printf("== Código do boné: ");
     printf("%s" ,pedClt->codigo);
     printf("\n");
-    printf("Quantidade: ");
+    printf("== Quantidade: ");
     printf("%f" ,pedClt->quant);
     printf("\n");
-    printf("Cor: ");
+    printf("== Cor: ");
     printf("%s" ,pedClt->cor);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
     printf("\n");
 
 }
