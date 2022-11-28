@@ -167,16 +167,21 @@ Fornecedor* acharFnc(char *cnpj) {
 }
 
 void exibFornecedor(Fornecedor *fnc) {
-    
+
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
     printf("\n");
-    printf("Nome do Fornecedor: ");
+    printf("== Nome do Fornecedor: ");
     printf("%s" ,fnc->nomeFornecedor);
     printf("\n");
-    printf("CNPJ: ");
+    printf("== CNPJ: ");
     printf("%s" ,fnc->cnpj);
     printf("\n");
-    printf("Email: ");
+    printf("== Email: ");
     printf("%s" ,fnc->email);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
     printf("\n");
 
 }
