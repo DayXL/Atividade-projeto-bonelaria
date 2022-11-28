@@ -75,11 +75,16 @@ void controleRelMdl(void) {
         }
 
         else if (esc=='4') {
-            printf("EM BREVE");
+            arqMdlMaMe(0);
 
         }
 
         else if (esc=='5') {
+            arqMdlMaMe(1);
+
+        }
+
+        else if (esc=='6') {
             printf("EM BREVE");
 
         }
@@ -276,7 +281,8 @@ char verMenReltMdl(void) {
     printf("===              2. Bonés                                                   ===\n");
     printf("===              3. Chapéus                                                 ===\n");
     printf("===              4. Gasta mais tecido                                       ===\n");
-    printf("===              5. Mais vendidos                                           ===\n");
+    printf("===              5. Gasta menos tecido                                      ===\n");
+    printf("===              6. Mais vendidos                                           ===\n");
     printf("===              0. Voltar ao menu relatórios                               ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -1160,5 +1166,153 @@ void acharPedClt(char *cpf) {
 
         fclose(fp);
     }
+
+}
+
+void arqMdlMaMe(int num) {
+    FILE *fp;
+    BoneChap *bcp;
+	BoneChapDin* novoMdl;
+	BoneChapDin* lista;
+    int tam;
+
+	if (access("arqBoneChap.dat", F_OK) != -1) {
+
+        fp = fopen("arqBoneChap.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            lista = NULL;
+
+            bcp = (BoneChap*) malloc(sizeof(BoneChap));
+
+            while(fread(bcp, sizeof(BoneChap), 1, fp)) {
+                
+                if (bcp->ativo == 1) {
+                    //Para o nome
+                    novoMdl = (BoneChapDin*) malloc(sizeof(BoneChapDin));
+
+                    tam = strlen(bcp->nomeBonChap) + 1;
+
+                    novoMdl->nomeBonChap = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoMdl->nomeBonChap, bcp->nomeBonChap);
+
+                    //Para o codigo
+                    tam = strlen(bcp->codigo) + 1;
+
+                    novoMdl->codigo = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoMdl->codigo, bcp->codigo);
+
+                    //Para unidadepor metro
+                    novoMdl->uniPorMetro = bcp->uniPorMetro;
+
+                    //Para unidadepor linha
+                    novoMdl->uniPorTubo = bcp->uniPorTubo;
+
+                    if (num == 1) {
+                        if (lista == NULL) {
+                            lista = novoMdl;
+                            novoMdl->prox = NULL;
+                        } 
+
+                        else if (novoMdl->uniPorMetro > lista->uniPorMetro) {
+                            novoMdl->prox = lista;
+                            lista = novoMdl;
+                        } 
+
+                        else {
+                            BoneChapDin* anter = lista;
+                            BoneChapDin* atual = lista->prox;
+
+                            while ((atual != NULL) && atual->uniPorMetro > novoMdl->uniPorMetro) {
+                                anter = atual;
+                                atual = atual->prox;
+                            }
+
+                            anter->prox = novoMdl;
+                            novoMdl->prox = atual;
+
+                        }
+                    }
+
+                    else {
+                        if (lista == NULL) {
+                            lista = novoMdl;
+                            novoMdl->prox = NULL;
+                        } 
+
+                        else if (novoMdl->uniPorMetro < lista->uniPorMetro) {
+                            novoMdl->prox = lista;
+                            lista = novoMdl;
+                        } 
+
+                        else {
+                            BoneChapDin* anter = lista;
+                            BoneChapDin* atual = lista->prox;
+
+                            while ((atual != NULL) && atual->uniPorMetro < novoMdl->uniPorMetro) {
+                                anter = atual;
+                                atual = atual->prox;
+                            }
+
+                            anter->prox = novoMdl;
+                            novoMdl->prox = atual;
+
+                        }
+
+                    }
+                }
+            }
+
+            free(bcp);
+
+            novoMdl = lista;
+            while (novoMdl != NULL) {
+
+                exibBcpDin(novoMdl);
+                novoMdl = novoMdl->prox;
+
+            }
+
+            novoMdl = lista;
+            while (lista != NULL) {
+                lista = lista->prox;
+                free(novoMdl->nomeBonChap);
+                free(novoMdl->codigo);
+                free(novoMdl);
+                novoMdl = lista;
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void exibBcpDin(BoneChapDin *bcp) {
+    
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("== Nome do Modelo: ");
+    printf("%s" ,bcp->nomeBonChap);
+    printf("\n");
+    printf("== Código: ");
+    printf("%s" ,bcp->codigo);
+    printf("\n");
+    printf("== Quantidade por metro: ");
+    printf("%f" ,bcp->uniPorMetro);
+    printf("\n");
+    printf("== Quantidade por tubo de linha: ");
+    printf("%f" ,bcp->uniPorTubo);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
