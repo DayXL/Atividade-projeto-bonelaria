@@ -220,11 +220,14 @@ void cadastrarFornecedor(void) {
 
         validarEmail2(email);
 
-        strcpy(fnc->nomeFornecedor,nomeFornecedor);
+        char* nomeMais = pasMaisc(nomeFornecedor);
+
+        strcpy(fnc->nomeFornecedor,nomeMais);
         strcpy(fnc->cnpj,cnpj);
         strcpy(fnc->email,email);
         fnc->ativo = 1;
 
+        free(nomeMais);
         salArqFnc(fnc);
 
         printf("\nFornecedor cadastrado com sucesso!\n");
