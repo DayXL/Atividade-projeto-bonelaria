@@ -374,8 +374,18 @@ char* pasMaisc(char *nome) {
     int tam = strlen(nome);
     char* nomeMaisc = (char*) malloc(tam * sizeof(char));
 
-    while (nome[i] != '\0') {  
-        nomeMaisc[i] = toupper(nome[i]);
+    strcpy(nomeMaisc, nome);
+
+    while (nome[i] != '\0') { 
+        if (((nome[i] >= 'a') && (nome[i] <= 'z'))) {
+            nomeMaisc[i] = toupper(nome[i]);
+
+        }
+
+        else {
+            nomeMaisc[i] = nome[i];
+
+        }
 
         i = i + 1;
 
@@ -383,3 +393,4 @@ char* pasMaisc(char *nome) {
 
     return nomeMaisc;
 }
+
