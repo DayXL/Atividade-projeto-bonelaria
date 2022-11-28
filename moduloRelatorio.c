@@ -112,6 +112,11 @@ void controleRelClt(void) {
 
         }
 
+        else if (esc=='3') {
+            arqPedPorClt();
+
+        }
+
         else {
             printf("Opção inválida!\n");
         
@@ -295,6 +300,7 @@ char verMenReltClt(void) {
     printf("===                                                                         ===\n");
     printf("===              1. Todos os clientes ativos                                ===\n");
     printf("===              2. Clientes por ordem alfabética                           ===\n");
+    printf("===              3. Pedidos por cliente                                     ===\n");
     printf("===              0. Voltar ao menu relatórios                               ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -1081,5 +1087,78 @@ void exibPedDin(PedidoClienteDin *pedClt) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+}
+
+void arqPedPorClt (void) {
+    FILE *fp;
+    Cliente *clt;
+    
+    if (access("arqCliente.dat", F_OK) != -1) {
+
+        fp = fopen("arqCliente.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            clt = (Cliente*) malloc(sizeof(Cliente));
+
+            while (fread(clt, sizeof(Cliente), 1, fp)) {
+
+                if (clt->ativo == 1) {
+                    printf("\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+
+                    exibCliente(clt);
+
+                    acharPedClt(clt->cpf);
+                    
+                    printf("\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+
+                }
+            }
+            free(clt);
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void acharPedClt(char *cpf) {
+    
+    FILE *fp;
+    PedidoCliente *pedClt;
+    
+    if (access("arqPedClt.dat", F_OK) != -1) {
+
+        fp = fopen("arqPedClt.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            pedClt = (PedidoCliente*) malloc(sizeof(PedidoCliente));
+
+            while (fread(pedClt, sizeof(PedidoCliente), 1, fp)) {
+
+                if ((strcmp(cpf, pedClt->cpf) == 0)) {
+                    exibPedido(pedClt);
+                }
+            }
+
+            free(pedClt);
+
+        }
+
+        fclose(fp);
+    }
 
 }
