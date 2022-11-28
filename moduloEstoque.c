@@ -307,7 +307,7 @@ void validarNomeMaterial(char *nomeMaterial) {
         tam = strlen(nomeMaterial);
         nomeMaterial[tam - 1] = '\0';
 
-    } while ((tam == 1) || !validarPalavra(nomeMaterial));
+    } while ((tam <=3 ) || !validarPalavra(nomeMaterial));
 
 }
 
