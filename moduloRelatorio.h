@@ -1,5 +1,6 @@
 typedef struct clienteDin ClienteDin;
 typedef struct estoqueDin EstoqueDin;
+typedef struct fornecedorDin FornecedorDin;
 
 struct clienteDin {
 
@@ -21,6 +22,15 @@ struct estoqueDin {
 
 };
 
+struct fornecedorDin {
+
+    char* nomeFornecedor;
+    char* cnpj;
+    char *email;
+    FornecedorDin* prox;
+
+};
+
 void moduloRelatorio(void);
 char verMenuRelatorio(void);
 void relatorioPedido(void);
@@ -38,3 +48,5 @@ void arqEstOrdAlf(void);
 void exibEstDin(EstoqueDin *est);
 void controleRelFnc(void);
 char verMenReltFnc(void);
+void arqFncOrdAlf(void);
+void exibFncDin(FornecedorDin *fnc);
