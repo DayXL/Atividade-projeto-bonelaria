@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 #include "moduloRelatorio.h"
 #include "funcoesAux.h"
 #include "moduloCliente.h"
@@ -63,7 +65,7 @@ void controleRelClt(void) {
         }
 
         else if (esc=='2') {
-            printf("Ordem");
+            arqCltOrdAlf();
 
         }
 
@@ -153,5 +155,135 @@ void relatorioPedido(void) {
     system ( " clear||cls " );
 
     lerArqPedClt();
+
+}
+
+void arqCltOrdAlf(void) {
+    FILE *fp;
+    Cliente *clt;
+	ClienteDin* novoClt;
+	ClienteDin* lista;
+    int tam;
+
+	if (access("arqCliente.dat", F_OK) != -1) {
+
+        fp = fopen("arqCliente.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            lista = NULL;
+
+            clt = (Cliente*) malloc(sizeof(Cliente));
+
+            while(fread(clt, sizeof(Cliente), 1, fp)) {
+                
+                if (clt->ativo == 1) {
+                    //Para o nome
+                    novoClt = (ClienteDin*) malloc(sizeof(ClienteDin));
+
+                    tam = strlen(clt->nomeDoCliente) + 1;
+
+                    novoClt->nomeDoCliente = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoClt->nomeDoCliente, clt->nomeDoCliente);
+
+                    //Para o cpf
+                    tam = strlen(clt->cpf) + 1;
+
+                    novoClt->cpf = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoClt->cpf, clt->cpf);
+
+                    //Para o numero
+                    tam = strlen(clt->numero) + 1;
+
+                    novoClt->numero = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoClt->numero, clt->numero);
+
+                    //Para o email
+                    tam = strlen(clt->email) + 1;
+
+                    novoClt->email = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoClt->email, clt->email);
+
+
+                    if (lista == NULL) {
+                        lista = novoClt;
+                        novoClt->prox = NULL;
+                    } 
+
+                    else if (strcmp(novoClt->nomeDoCliente,lista->nomeDoCliente) < 0) {
+                        novoClt->prox = lista;
+                        lista = novoClt;
+                    } 
+
+                    else {
+                        ClienteDin* anter = lista;
+                        ClienteDin* atual = lista->prox;
+
+                        while ((atual != NULL) && strcmp(atual->nomeDoCliente,novoClt->nomeDoCliente) < 0) {
+                            anter = atual;
+                            atual = atual->prox;
+                        }
+
+                        anter->prox = novoClt;
+                        novoClt->prox = atual;
+
+                    }
+                }
+            }
+
+            free(clt);
+
+            // Exibindo a lista de palavras
+            novoClt = lista;
+            while (novoClt != NULL) {
+
+                exibCltDin(novoClt);
+                novoClt = novoClt->prox;
+
+            }
+
+            // Limpando a memória
+            novoClt = lista;
+            while (lista != NULL) {
+                lista = lista->prox;
+                free(novoClt->nomeDoCliente);
+                free(novoClt->cpf);
+                free(novoClt->numero);
+                free(novoClt->email);
+                free(novoClt);
+                novoClt = lista;
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void exibCltDin(ClienteDin *clt) {
+
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("== Nome do Cliente: ");
+    printf("%s" ,clt->nomeDoCliente);
+    printf("\n");
+    printf("== CPF: ");
+    printf("%s" ,clt->cpf);
+    printf("\n");
+    printf("== Número: ");
+    printf("%s" ,clt->numero);
+    printf("\n");
+    printf("== Email: ");
+    printf("%s" ,clt->email);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
