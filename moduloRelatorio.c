@@ -25,7 +25,7 @@ void moduloRelatorio(void) {
         }
 
         else if (esc=='3') {
-            relatorioCliente();
+            controleRelClt();
 
         }
 
@@ -47,6 +47,34 @@ void moduloRelatorio(void) {
         passarEnter();
 
         esc = verMenuRelatorio();
+    }
+
+}
+
+void controleRelClt(void) {
+
+    char esc = verMenReltClt();
+
+    while (esc!='0') {
+
+        if (esc=='1') {
+            lerArqClt(1);
+
+        }
+
+        else if (esc=='2') {
+            printf("Ordem");
+
+        }
+
+        else {
+            printf("Opção inválida!\n");
+        
+        }
+
+        passarEnter();
+
+        esc = verMenReltClt();
     }
 
 }
@@ -91,10 +119,26 @@ void relatorioFornecedor(void) {
 
 }
 
-void relatorioCliente(void) {
+char verMenReltClt(void) {
     system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Relatórios Clientes = = = = =                    ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Todos os clientes ativos                                ===\n");
+    printf("===              2. Clientes por ordem alfabética                           ===\n");
+    printf("===              0. Voltar ao menu relatórios                               ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
-    lerArqClt(1);
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 
 }
 
