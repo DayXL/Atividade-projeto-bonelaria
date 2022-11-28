@@ -33,7 +33,6 @@ struct fornecedorDin {
 
 void moduloRelatorio(void);
 char verMenuRelatorio(void);
-void relatorioPedido(void);
 void controleRelClt(void);
 char verMenReltClt(void);
 void arqCltOrdAlf(void);
@@ -50,3 +49,5 @@ void controleRelFnc(void);
 char verMenReltFnc(void);
 void arqFncOrdAlf(void);
 void exibFncDin(FornecedorDin *fnc);
+void controleRelPed(void);
+char verMenReltPed(void);
