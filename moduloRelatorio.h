@@ -1,4 +1,5 @@
 typedef struct clienteDin ClienteDin;
+typedef struct estoqueDin EstoqueDin;
 
 struct clienteDin {
 
@@ -6,8 +7,17 @@ struct clienteDin {
     char* cpf;
     char* numero;
     char* email;
-    int ativo;
     ClienteDin* prox;
+
+};
+
+struct estoqueDin {
+
+    char* nomeDoMaterial;
+    char* codigo;
+    char* cnpj;
+    float quant;
+    EstoqueDin* prox;
 
 };
 
@@ -24,3 +34,5 @@ void controleRelMdl(void);
 char verMenReltMdl(void);
 void controleRelEst(void);
 char verMenReltEst(void);
+void arqEstMaMe(void);
+void exibEstDin(EstoqueDin *est);
