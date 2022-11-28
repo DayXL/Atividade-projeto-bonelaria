@@ -151,7 +151,7 @@ void controleRelFnc(void) {
         }
 
         else if (esc=='3') {
-            printf("material");
+            arqEstPorFnc();
 
         }
 
@@ -1314,5 +1314,78 @@ void exibBcpDin(BoneChapDin *bcp) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+}
+
+void arqEstPorFnc (void) {
+    FILE *fp;
+    Fornecedor *fnc;
+    
+    if (access("arqFornecedor.dat", F_OK) != -1) {
+
+        fp = fopen("arqFornecedor.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
+
+            while (fread(fnc, sizeof(Fornecedor), 1, fp)) {
+
+                if (fnc->ativo == 1) {
+                    printf("\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+
+                    exibFornecedor(fnc);
+
+                    acharEstFnc(fnc->cnpj);
+                    
+                    printf("\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+
+                }
+            }
+            free(fnc);
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void acharEstFnc(char *cnpj) {
+    
+    FILE *fp;
+    Estoque *est;
+    
+    if (access("arqEstoq.dat", F_OK) != -1) {
+
+        fp = fopen("arqEstoq.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            est = (Estoque*) malloc(sizeof(Estoque));
+
+            while (fread(est, sizeof(Estoque), 1, fp)) {
+
+                if ((strcmp(cnpj, est->cnpj) == 0)) {
+                    exibEstoque(est);
+                }
+            }
+
+            free(est);
+
+        }
+
+        fclose(fp);
+    }
 
 }
