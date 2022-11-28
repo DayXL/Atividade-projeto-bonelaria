@@ -136,12 +136,12 @@ void controleRelEst(void) {
         }
 
         else if (esc=='2') {
-            printf("EM BREVE");
+            arqEstMaMe(0);
 
         }
 
         else if (esc=='3') {
-            arqEstMaMe();
+            arqEstMaMe(1);
 
         }
 
@@ -444,7 +444,7 @@ void lerArqBncp(char num) {
 
 }
 
-void arqEstMaMe(void) {
+void arqEstMaMe(int num) {
     FILE *fp;
     Estoque *est;
 	EstoqueDin* novoEst;
@@ -492,27 +492,56 @@ void arqEstMaMe(void) {
                     //Para quantidade
                     novoEst->quant = est->quant;
 
-                    if (lista == NULL) {
-                        lista = novoEst;
-                        novoEst->prox = NULL;
-                    } 
+                    if (num == 1) {
+                        if (lista == NULL) {
+                            lista = novoEst;
+                            novoEst->prox = NULL;
+                        } 
 
-                    else if (novoEst->quant > lista->quant) {
-                        novoEst->prox = lista;
-                        lista = novoEst;
-                    } 
+                        else if (novoEst->quant > lista->quant) {
+                            novoEst->prox = lista;
+                            lista = novoEst;
+                        } 
+
+                        else {
+                            EstoqueDin* anter = lista;
+                            EstoqueDin* atual = lista->prox;
+
+                            while ((atual != NULL) && atual->quant > novoEst->quant) {
+                                anter = atual;
+                                atual = atual->prox;
+                            }
+
+                            anter->prox = novoEst;
+                            novoEst->prox = atual;
+
+                        }
+                    }
 
                     else {
-                        EstoqueDin* anter = lista;
-                        EstoqueDin* atual = lista->prox;
+                        if (lista == NULL) {
+                            lista = novoEst;
+                            novoEst->prox = NULL;
+                        } 
 
-                        while ((atual != NULL) && atual->quant > novoEst->quant) {
-                            anter = atual;
-                            atual = atual->prox;
+                        else if (novoEst->quant < lista->quant) {
+                            novoEst->prox = lista;
+                            lista = novoEst;
+                        } 
+
+                        else {
+                            EstoqueDin* anter = lista;
+                            EstoqueDin* atual = lista->prox;
+
+                            while ((atual != NULL) && atual->quant < novoEst->quant) {
+                                anter = atual;
+                                atual = atual->prox;
+                            }
+
+                            anter->prox = novoEst;
+                            novoEst->prox = atual;
+
                         }
-
-                        anter->prox = novoEst;
-                        novoEst->prox = atual;
 
                     }
                 }
