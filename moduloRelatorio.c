@@ -212,12 +212,12 @@ void controleRelPed(void) {
         }
 
         else if (esc=='3') {
-            printf("Maior quantidade\n");
+            arqPedMaMe(1);
 
         }
 
         else if (esc=='4') {
-            printf("Menor quantidade\n");
+            arqPedMaMe(0);
         }
 
         else {
@@ -916,6 +916,167 @@ void exibFncDin(FornecedorDin *fnc) {
     printf("\n");
     printf("== Email: ");
     printf("%s" ,fnc->email);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void arqPedMaMe(int num) {
+    FILE *fp;
+    PedidoCliente *ped;
+	PedidoClienteDin* novoPed;
+	PedidoClienteDin* lista;
+    int tam;
+
+	if (access("arqPedClt.dat", F_OK) != -1) {
+
+        fp = fopen("arqPedClt.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            lista = NULL;
+
+            ped = (PedidoCliente*) malloc(sizeof(PedidoCliente));
+
+            while(fread(ped, sizeof(PedidoCliente), 1, fp)) {
+
+                //Para o pedido
+                novoPed = (PedidoClienteDin*) malloc(sizeof(PedidoClienteDin));
+
+                tam = strlen(ped->pedido) + 1;
+
+                novoPed->pedido = (char*) malloc(tam*sizeof(char));
+                strcpy(novoPed->pedido, ped->pedido);
+
+                //Para o cpf
+                tam = strlen(ped->cpf) + 1;
+
+                novoPed->cpf = (char*) malloc(tam*sizeof(char));
+                strcpy(novoPed->cpf, ped->cpf);
+                
+                //Para o codigo
+                tam = strlen(ped->codigo) + 1;
+
+                novoPed->codigo = (char*) malloc(tam*sizeof(char));
+                strcpy(novoPed->codigo, ped->codigo);
+
+                //Para quantidade
+                novoPed->quant = ped->quant;
+
+                //Para a cor
+                tam = strlen(ped->cor) + 1;
+
+                novoPed->cor = (char*) malloc(tam*sizeof(char));
+                strcpy(novoPed->cor, ped->cor);
+
+                if (num == 1) {
+                    if (lista == NULL) {
+                        lista = novoPed;
+                        novoPed->prox = NULL;
+                    } 
+
+                    else if (novoPed->quant > lista->quant) {
+                        novoPed->prox = lista;
+                        lista = novoPed;
+                    } 
+
+                    else {
+                            PedidoClienteDin* anter = lista;
+                            PedidoClienteDin* atual = lista->prox;
+
+                        while ((atual != NULL) && atual->quant > novoPed->quant) {
+                            anter = atual;
+                            atual = atual->prox;
+                        }
+
+                        anter->prox = novoPed;
+                        novoPed->prox = atual;
+
+                    }
+                }
+
+                else {
+                    if (lista == NULL) {
+                        lista = novoPed;
+                        novoPed->prox = NULL;
+                    } 
+
+                    else if (novoPed->quant < lista->quant) {
+                        novoPed->prox = lista;
+                        lista = novoPed;
+                    } 
+
+                    else {
+                        PedidoClienteDin* anter = lista;
+                        PedidoClienteDin* atual = lista->prox;
+
+                        while ((atual != NULL) && atual->quant < novoPed->quant) {
+                            anter = atual;
+                            atual = atual->prox;
+                        }
+
+                        anter->prox = novoPed;
+                        novoPed->prox = atual;
+
+                    }
+
+                }
+            }
+
+            free(ped);
+
+            novoPed = lista;
+            while (novoPed != NULL) {
+
+                exibPedDin(novoPed);
+                novoPed = novoPed->prox;
+
+            }
+
+            novoPed = lista;
+            while (lista != NULL) {
+                lista = lista->prox;
+                free(novoPed->pedido);
+                free(novoPed->cpf);
+                free(novoPed->codigo);
+                free(novoPed->cor);
+                free(novoPed);
+                novoPed = lista;
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void exibPedDin(PedidoClienteDin *pedClt) {
+    
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("\n");
+    printf("== Número do pedido: ");
+    printf("%s" ,pedClt->pedido);
+    printf("\n");
+    printf("== CPF do cliente: ");
+    printf("%s" ,pedClt->cpf);
+    printf("\n");
+    printf("== Código do boné: ");
+    printf("%s" ,pedClt->codigo);
+    printf("\n");
+    printf("== Quantidade: ");
+    printf("%f" ,pedClt->quant);
+    printf("\n");
+    printf("== Cor: ");
+    printf("%s" ,pedClt->cor);
     printf("\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
