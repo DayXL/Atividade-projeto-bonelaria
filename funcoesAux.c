@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 #include "funcoesAux.h"
 
 void passarEnter(void) {
@@ -394,3 +395,18 @@ char* pasMaisc(char *nome) {
     return nomeMaisc;
 }
 
+char* verDiaMesAno(void) {
+
+    char* data = (char*) malloc(20 * sizeof(char));
+
+    time_t tempo = time(NULL);
+
+    struct tm* t = localtime(&tempo);
+
+    strftime(data, 50, "%d%m%y", t);
+
+    // dia, mes, ano
+
+    return data;
+
+}
