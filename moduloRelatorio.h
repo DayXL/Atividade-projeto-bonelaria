@@ -13,7 +13,6 @@ struct clienteDin {
 
 void moduloRelatorio(void);
 char verMenuRelatorio(void);
-void relatorioBone(void);
 void relatorioFornecedor(void);
 void relatorioEstoque(void);
 void relatorioPedido(void);
@@ -21,3 +20,6 @@ void controleRelClt(void);
 char verMenReltClt(void);
 void arqCltOrdAlf(void);
 void exibCltDin(ClienteDin *clt);
+void lerArqBncp(char num);
+void controleRelMdl(void);
+char verMenReltMdl(void);
