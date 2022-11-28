@@ -217,7 +217,7 @@ void controleRelPed(void) {
         }
 
         else if (esc=='2') {
-            printf("Por data\n");
+            controleData();
 
         }
 
@@ -239,6 +239,69 @@ void controleRelPed(void) {
 
         esc = verMenReltPed();
     }
+
+}
+
+void controleData(void) {
+
+    char esc = verMenuData();
+
+    while (esc!='0') {
+
+        if (esc=='1') {
+            printf("Último ano\n");
+
+        }
+
+        else if (esc=='2') {
+            printf("Última semana\n");
+
+        }
+
+        else if (esc=='3') {
+            printf("Último mês\n");
+
+        }
+
+        else if (esc=='4') {
+            printf("Entre datas\n");
+
+        }
+
+        else {
+            printf("Opção inválida!\n");
+        
+        }
+
+        passarEnter();
+
+        esc = verMenuData();
+    }
+
+}
+
+char verMenuData(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Pedidos - Datas = = = = =                        ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Último ano                                              ===\n");
+    printf("===              2. Última semana                                           ===\n");
+    printf("===              3. Último mês                                              ===\n");
+    printf("===              4. Entre datas                                             ===\n");
+    printf("===              0. Voltar ao menu principal                                ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 
 }
 
