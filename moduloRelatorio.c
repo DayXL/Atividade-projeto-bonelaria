@@ -17,7 +17,7 @@ void moduloRelatorio(void) {
     while (esc!='0') {
 
         if (esc=='1') {
-            relatorioBone();
+            controleRelMdl();
 
         }
 
@@ -49,6 +49,49 @@ void moduloRelatorio(void) {
         passarEnter();
 
         esc = verMenuRelatorio();
+    }
+
+}
+
+void controleRelMdl(void) {
+
+    char esc = verMenReltMdl();
+
+    while (esc!='0') {
+
+        if (esc=='1') {
+            lerArqBcp(1);
+
+        }
+
+        else if (esc=='2') {
+            lerArqBncp('1');
+
+        }
+
+        else if (esc=='3') {
+            lerArqBncp('0');
+
+        }
+
+        else if (esc=='4') {
+            printf("EM BREVE");
+
+        }
+
+        else if (esc=='5') {
+            printf("EM BREVE");
+
+        }
+
+        else {
+            printf("Opção inválida!\n");
+        
+        }
+
+        passarEnter();
+
+        esc = verMenReltMdl();
     }
 
 }
@@ -107,10 +150,29 @@ char verMenuRelatorio(void) {
 
 }
 
-void relatorioBone(void) {
+char verMenReltMdl(void) {
     system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Relatórios Modelos = = = = =                     ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Todos os modelos ativos                                 ===\n");
+    printf("===              2. Bonés                                                   ===\n");
+    printf("===              3. Chapéus                                                 ===\n");
+    printf("===              4. Gasta mais tecido                                       ===\n");
+    printf("===              5. Mais vendidos                                           ===\n");
+    printf("===              0. Voltar ao menu relatórios                               ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
-    lerArqBcp(1);
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 
 }
 
@@ -285,5 +347,43 @@ void exibCltDin(ClienteDin *clt) {
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
+
+}
+
+void lerArqBncp(char num) {
+    
+    FILE *fp;
+    BoneChap *bcp;
+    int i = 0;
+
+    if (access("arqBoneChap.dat", F_OK) != -1) {
+
+        fp = fopen("arqBoneChap.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            bcp = (BoneChap*) malloc(sizeof(BoneChap));
+
+            while (fread(bcp, sizeof(BoneChap), 1, fp)) {
+
+                if ((bcp->ativo == 1) && (bcp->codigo[0] == num)) {   
+                    exibBoneChap(bcp);
+
+                    i = i + 1;
+
+                }
+            }
+
+            free(bcp);
+
+        }
+
+        fclose(fp);
+    }
 
 }
