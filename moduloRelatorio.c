@@ -22,7 +22,7 @@ void moduloRelatorio(void) {
         }
 
         else if (esc=='2') {
-            relatorioFornecedor();
+            controleRelFnc();
 
         }
 
@@ -124,6 +124,39 @@ void controleRelClt(void) {
 
 }
 
+void controleRelFnc(void) {
+
+    char esc = verMenReltFnc();
+
+    while (esc!='0') {
+
+        if (esc=='1') {
+            lerArqFnc(1);
+
+        }
+
+        else if (esc=='2') {
+            printf("ordem");
+
+        }
+
+        else if (esc=='3') {
+            printf("material");
+
+        }
+
+        else {
+            printf("Opção inválida!\n");
+        
+        }
+
+        passarEnter();
+
+        esc = verMenReltFnc();
+    }
+
+}
+
 void controleRelEst(void) {
 
     char esc = verMenReltEst();
@@ -214,13 +247,6 @@ char verMenReltMdl(void) {
 
 }
 
-void relatorioFornecedor(void) {
-    system ( " clear||cls " );
-
-    lerArqFnc(1);
-
-}
-
 char verMenReltClt(void) {
     system ( " clear||cls " );
     printf("\n");
@@ -232,6 +258,30 @@ char verMenReltClt(void) {
     printf("===                                                                         ===\n");
     printf("===              1. Todos os clientes ativos                                ===\n");
     printf("===              2. Clientes por ordem alfabética                           ===\n");
+    printf("===              0. Voltar ao menu relatórios                               ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
+
+}
+
+char verMenReltFnc(void) {
+    system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Relatórios Fornecedor = = = = =                  ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Todos fornecedores                                      ===\n");
+    printf("===              2. Em ordem alfabética                                     ===\n");
+    printf("===              3. Fornecedor e seus materiais                             ===\n");
     printf("===              0. Voltar ao menu relatórios                               ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
