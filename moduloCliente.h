@@ -14,7 +14,6 @@ struct cliente {
 };
 
 
-
 //Assinaturas principais
 
 void moduloCliente(void);
