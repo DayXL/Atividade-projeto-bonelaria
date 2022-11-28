@@ -65,3 +65,5 @@ void controleRelPed(void);
 char verMenReltPed(void);
 void arqPedMaMe(int num);
 void exibPedDin(PedidoClienteDin *pedClt);
+void arqPedPorClt (void);
+void acharPedClt(char *cpf);
