@@ -184,6 +184,8 @@ Estoque* acharEst(char *codigo) {
 
 void exibEstoque(Estoque *est) {
 
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
     printf("\n");
     printf("Código do Material: ");
     printf("%s" ,est->codigo);
@@ -197,7 +199,10 @@ void exibEstoque(Estoque *est) {
     printf("Quantidade: ");
     printf("%f" ,est->quant);
     printf("\n");
-
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+    
 }
 
 void cadastrarMateriais(void) {
