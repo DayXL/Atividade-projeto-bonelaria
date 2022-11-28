@@ -23,7 +23,6 @@ struct estoqueDin {
 
 void moduloRelatorio(void);
 char verMenuRelatorio(void);
-void relatorioFornecedor(void);
 void relatorioPedido(void);
 void controleRelClt(void);
 char verMenReltClt(void);
@@ -37,3 +36,5 @@ char verMenReltEst(void);
 void arqEstMaMe(int num);
 void arqEstOrdAlf(void);
 void exibEstDin(EstoqueDin *est);
+void controleRelFnc(void);
+char verMenReltFnc(void);
