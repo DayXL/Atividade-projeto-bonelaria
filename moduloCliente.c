@@ -230,12 +230,15 @@ void cadastrarCliente(void) {
 
         validarEmail(email);
 
-        strcpy(clt->nomeDoCliente,nomeCliente);
+        char* nomeMais = pasMaisc(nomeCliente);
+
+        strcpy(clt->nomeDoCliente,nomeMais);
         strcpy(clt->cpf,cpf);
         strcpy(clt->numero,numero);
         strcpy(clt->email,email);
         clt->ativo = 1;
 
+        free(nomeMais);
         salArqClt(clt);
 
         printf("\nCliente cadastrado com sucesso!\n");
