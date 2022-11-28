@@ -136,7 +136,7 @@ void controleRelFnc(void) {
         }
 
         else if (esc=='2') {
-            printf("ordem");
+            arqFncOrdAlf();
 
         }
 
@@ -740,6 +740,127 @@ void exibEstDin(EstoqueDin *est) {
     printf("\n");
     printf("Quantidade: ");
     printf("%f" ,est->quant);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
+
+}
+
+void arqFncOrdAlf(void) {
+    FILE *fp;
+    Fornecedor *fnc;
+	FornecedorDin* novoFnc;
+	FornecedorDin* lista;
+    int tam;
+
+	if (access("arqFornecedor.dat", F_OK) != -1) {
+
+        fp = fopen("arqFornecedor.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            lista = NULL;
+
+            fnc = (Fornecedor*) malloc(sizeof(Fornecedor));
+
+            while(fread(fnc, sizeof(Fornecedor), 1, fp)) {
+                
+                if (fnc->ativo == 1) {
+                    //Para o nome
+                    novoFnc = (FornecedorDin*) malloc(sizeof(FornecedorDin));
+
+                    tam = strlen(fnc->nomeFornecedor) + 1;
+
+                    novoFnc->nomeFornecedor = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoFnc->nomeFornecedor, fnc->nomeFornecedor);
+
+                    //Para o cnpj
+                    tam = strlen(fnc->cnpj) + 1;
+
+                    novoFnc->cnpj = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoFnc->cnpj, fnc->cnpj);
+
+                    //Para o email
+                    tam = strlen(fnc->email) + 1;
+
+                    novoFnc->email = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoFnc->email, fnc->email);
+
+
+                    if (lista == NULL) {
+                        lista = novoFnc;
+                        novoFnc->prox = NULL;
+                    } 
+
+                    else if (strcmp(novoFnc->nomeFornecedor,lista->nomeFornecedor) < 0) {
+                        novoFnc->prox = lista;
+                        lista = novoFnc;
+                    } 
+
+                    else {
+                        FornecedorDin* anter = lista;
+                        FornecedorDin* atual = lista->prox;
+
+                        while ((atual != NULL) && strcmp(atual->nomeFornecedor,novoFnc->nomeFornecedor) < 0) {
+                            anter = atual;
+                            atual = atual->prox;
+                        }
+
+                        anter->prox = novoFnc;
+                        novoFnc->prox = atual;
+
+                    }
+                }
+            }
+
+            free(fnc);
+
+            // Exibindo a lista de palavras
+            novoFnc = lista;
+            while (novoFnc != NULL) {
+
+                exibFncDin(novoFnc);
+                novoFnc = novoFnc->prox;
+
+            }
+
+            // Limpando a memória
+            novoFnc = lista;
+            while (lista != NULL) {
+                lista = lista->prox;
+                free(novoFnc->nomeFornecedor);
+                free(novoFnc->cnpj);
+                free(novoFnc->email);
+                free(novoFnc);
+                novoFnc = lista;
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void exibFncDin(FornecedorDin *fnc) {
+
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("\n");
+    printf("== Nome do Fornecedor: ");
+    printf("%s" ,fnc->nomeFornecedor);
+    printf("\n");
+    printf("== CNPJ: ");
+    printf("%s" ,fnc->cnpj);
+    printf("\n");
+    printf("== Email: ");
+    printf("%s" ,fnc->email);
     printf("\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
