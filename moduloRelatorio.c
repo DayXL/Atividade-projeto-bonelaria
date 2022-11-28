@@ -37,7 +37,7 @@ void moduloRelatorio(void) {
         }
 
         else if (esc=='5') {
-            relatorioPedido();
+            controleRelPed();
 
         }
 
@@ -195,6 +195,43 @@ void controleRelEst(void) {
 
 }
 
+void controleRelPed(void) {
+
+    char esc = verMenReltPed();
+
+    while (esc!='0') {
+
+        if (esc=='1') {
+            lerArqPedClt();
+
+        }
+
+        else if (esc=='2') {
+            printf("Por data\n");
+
+        }
+
+        else if (esc=='3') {
+            printf("Maior quantidade\n");
+
+        }
+
+        else if (esc=='4') {
+            printf("Menor quantidade\n");
+        }
+
+        else {
+            printf("Opção inválida!\n");
+        
+        }
+
+        passarEnter();
+
+        esc = verMenReltPed();
+    }
+
+}
+
 char verMenuRelatorio(void) {
     system ( " clear||cls " );
     printf("\n");
@@ -319,10 +356,28 @@ char verMenReltEst(void) {
 
 }
 
-void relatorioPedido(void) {
+char verMenReltPed(void) {
     system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Relatórios Pedidos = = = = =                     ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Todos os pedidos                                        ===\n");
+    printf("===              2. Pedidos por datas                                       ===\n");
+    printf("===              3. Maior quantidade                                        ===\n");
+    printf("===              4. Menor quantidade                                        ===\n");
+    printf("===              0. Voltar ao menu relatórios                               ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
-    lerArqPedClt();
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 
 }
 
