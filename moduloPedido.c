@@ -143,12 +143,15 @@ void pedidoCliente(void) {
                                 i = i + 8;
                             }
 
-                            strcpy(pedClt->pedido,gerarIdPed());
+                            char * ped = gerarIdPed();
+
+                            strcpy(pedClt->pedido,ped);
                             strcpy(pedClt->cpf,cpf);
                             strcpy(pedClt->codigo,bcp->codigo);
                             pedClt->quant = atof(quant);
                             strcpy(pedClt->cor,cor);
 
+                            free(ped);
                             salArqPedClt(pedClt);
 
                         }
