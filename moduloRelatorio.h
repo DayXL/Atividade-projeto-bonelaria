@@ -82,3 +82,5 @@ void arqMdlMaMe(int num);
 void exibBcpDin(BoneChapDin *bcp); 
 void arqEstPorFnc (void);
 void acharEstFnc(char *cnpj);
+void controleData(void);
+char verMenuData(void);
