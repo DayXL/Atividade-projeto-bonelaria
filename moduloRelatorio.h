@@ -2,6 +2,7 @@ typedef struct clienteDin ClienteDin;
 typedef struct estoqueDin EstoqueDin;
 typedef struct fornecedorDin FornecedorDin;
 typedef struct pedidoClienteDin PedidoClienteDin;
+typedef struct boneChapDin BoneChapDin;
 
 struct clienteDin {
 
@@ -43,6 +44,16 @@ struct pedidoClienteDin {
 
 };
 
+struct boneChapDin {
+
+    char* nomeBonChap;
+    char* codigo;
+    float uniPorMetro;
+    float uniPorTubo;
+    BoneChapDin* prox;
+
+};
+
 void moduloRelatorio(void);
 char verMenuRelatorio(void);
 void controleRelClt(void);
@@ -67,3 +78,5 @@ void arqPedMaMe(int num);
 void exibPedDin(PedidoClienteDin *pedClt);
 void arqPedPorClt (void);
 void acharPedClt(char *cpf);
+void arqMdlMaMe(int num);
+void exibBcpDin(BoneChapDin *bcp); 
