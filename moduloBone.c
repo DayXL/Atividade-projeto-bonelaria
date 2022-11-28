@@ -199,11 +199,14 @@ void telaBone(void) {
     else {
         cadastrarModelo(nomeModelo,uniPorMetro,uniPorTubo);
 
-        strcpy(bcp->nomeBonChap, nomeModelo);
+        char* nomeMais = pasMaisc(nomeModelo);
+
+        strcpy(bcp->nomeBonChap, nomeMais);
         bcp->uniPorMetro = atof(uniPorMetro);
         bcp->uniPorTubo = atof(uniPorTubo);
         bcp->ativo = 1;
 
+        free(nomeMais);
         salArqBonChap(bcp);
 
         printf("Boné cadastrado com sucesso!");
@@ -493,12 +496,15 @@ void telaChapeu(void) {
 
     else {
         cadastrarModelo(nomeModelo,uniPorMetro,uniPorTubo);
+        
+        char* nomeMais = pasMaisc(nomeModelo);
 
-        strcpy(bcp->nomeBonChap, nomeModelo);
+        strcpy(bcp->nomeBonChap, nomeMais);
         bcp->uniPorMetro = atof(uniPorMetro);
         bcp->uniPorTubo = atof(uniPorTubo);
         bcp->ativo = 1;
 
+        free(nomeMais);
         salArqBonChap(bcp);
 
         printf("\nChapéu cadastrado com sucesso!\n");
