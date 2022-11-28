@@ -246,20 +246,23 @@ void controleData(void) {
 
     char esc = verMenuData();
 
+    char* data = verDiaMesAno();
+
     while (esc!='0') {
 
         if (esc=='1') {
             printf("Último ano\n");
+            pedDatas(data, 1);
 
         }
 
         else if (esc=='2') {
-            printf("Última semana\n");
+            pedDatas(data, 3);
 
         }
 
         else if (esc=='3') {
-            printf("Último mês\n");
+            pedDatas(data, 2);
 
         }
 
@@ -278,6 +281,8 @@ void controleData(void) {
         esc = verMenuData();
     }
 
+    free(data);
+
 }
 
 char verMenuData(void) {
@@ -290,7 +295,7 @@ char verMenuData(void) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===              1. Último ano                                              ===\n");
-    printf("===              2. Última semana                                           ===\n");
+    printf("===              2. Último dia                                              ===\n");
     printf("===              3. Último mês                                              ===\n");
     printf("===              4. Entre datas                                             ===\n");
     printf("===              0. Voltar ao menu principal                                ===\n");
@@ -1452,3 +1457,55 @@ void acharEstFnc(char *cnpj) {
     }
 
 }
+
+void pedDatas(char *data, int comp) {
+
+    FILE* fp;
+    PedidoCliente* pedClt;
+
+    if (access("arqPedClt.dat", F_OK) != -1) {
+        fp = fopen("arqPedClt.dat", "rb");
+
+        if (fp == NULL) {
+            printf("Ocorreu um erro na abertura do arquivo!\n");
+
+        }
+
+        else {
+
+            pedClt = (PedidoCliente*) malloc(sizeof(PedidoCliente));
+
+            while(fread(pedClt, sizeof(PedidoCliente), 1, fp)) {
+                //ano
+                if (comp == 1)  {
+                    if (data[4]== pedClt->pedido[4] && data[5] == pedClt->pedido[5]) {
+                        exibPedido(pedClt);
+
+                    } 
+                }
+                //mes
+                else if (comp == 2) {
+                    if (data[2]== pedClt->pedido[3] && data[2] == pedClt->pedido[3]) {
+                        exibPedido(pedClt);
+                        
+                    } 
+
+                }
+                //dia
+                else if (comp == 3) {
+                    if (data[0]== pedClt->pedido[0] && data[1] == pedClt->pedido[1]) {
+                        exibPedido(pedClt);
+                        
+                    } 
+                    
+                }
+
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
