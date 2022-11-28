@@ -32,7 +32,7 @@ void moduloRelatorio(void) {
         }
 
         else if (esc=='4') {
-            relatorioEstoque();
+            controleRelEst();
 
         }
 
@@ -124,6 +124,44 @@ void controleRelClt(void) {
 
 }
 
+void controleRelEst(void) {
+
+    char esc = verMenReltEst();
+
+    while (esc!='0') {
+
+        if (esc=='1') {
+            lerArqEst(1);
+
+        }
+
+        else if (esc=='2') {
+            printf("EM BREVE");
+
+        }
+
+        else if (esc=='3') {
+            printf("EM BREVE");
+
+        }
+
+        else if (esc=='4') {
+            printf("EM BREVE");
+
+        }
+
+        else {
+            printf("Opção inválida!\n");
+        
+        }
+
+        passarEnter();
+
+        esc = verMenReltEst();
+    }
+
+}
+
 char verMenuRelatorio(void) {
     system ( " clear||cls " );
     printf("\n");
@@ -206,10 +244,28 @@ char verMenReltClt(void) {
 
 }
 
-void relatorioEstoque(void) {
+char verMenReltEst(void) {
     system ( " clear||cls " );
+    printf("\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              = = = = = Relatórios Estoque = = = = =                     ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("===              1. Todo estoque                                            ===\n");
+    printf("===              2. Menos quantidade                                        ===\n");
+    printf("===              3. Mais quantidade                                         ===\n");
+    printf("===              4. Ordem alfabética                                        ===\n");
+    printf("===              0. Voltar ao menu relatórios                               ===\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
-    lerArqEst(1);
+    char esc;
+    esc = auxEscolha();
+
+    return esc;
 
 }
 
