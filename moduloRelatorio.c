@@ -146,7 +146,7 @@ void controleRelEst(void) {
         }
 
         else if (esc=='4') {
-            printf("EM BREVE");
+            arqEstOrdAlf();
 
         }
 
@@ -544,6 +544,106 @@ void arqEstMaMe(int num) {
                         }
 
                     }
+                }
+            }
+
+            free(est);
+
+            novoEst = lista;
+            while (novoEst != NULL) {
+
+                exibEstDin(novoEst);
+                novoEst = novoEst->prox;
+
+            }
+
+            novoEst = lista;
+            while (lista != NULL) {
+                lista = lista->prox;
+                free(novoEst->nomeDoMaterial);
+                free(novoEst->codigo);
+                free(novoEst->cnpj);
+                free(novoEst);
+                novoEst = lista;
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void arqEstOrdAlf(void) {
+    FILE *fp;
+    Estoque *est;
+	EstoqueDin* novoEst;
+	EstoqueDin* lista;
+    int tam;
+
+	if (access("arqEstoq.dat", F_OK) != -1) {
+
+        fp = fopen("arqEstoq.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            lista = NULL;
+
+            est = (Estoque*) malloc(sizeof(Estoque));
+
+            while(fread(est, sizeof(Estoque), 1, fp)) {
+                if (est->ativo == 1) {
+                    //Para o nome
+                    novoEst = (EstoqueDin*) malloc(sizeof(EstoqueDin));
+
+                    tam = strlen(est->nomeDoMaterial) + 1;
+
+                    novoEst->nomeDoMaterial = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoEst->nomeDoMaterial, est->nomeDoMaterial);
+
+                    //Para o codigo
+                    tam = strlen(est->codigo) + 1;
+
+                    novoEst->codigo = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoEst->codigo, est->codigo);
+
+                    //Para o cnpj
+                    tam = strlen(est->cnpj) + 1;
+
+                    novoEst->cnpj = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoEst->cnpj, est->cnpj);
+
+                    //Para quantidade
+                    novoEst->quant = est->quant;
+
+                    if (lista == NULL) {
+                        lista = novoEst;
+                        novoEst->prox = NULL;
+                    } 
+
+                    else if (strcmp(novoEst->nomeDoMaterial, lista->nomeDoMaterial) < 0) {
+                        novoEst->prox = lista;
+                        lista = novoEst;
+                    } 
+
+                    else {
+                        EstoqueDin* anter = lista;
+                        EstoqueDin* atual = lista->prox;
+
+                        while ((atual != NULL) && strcmp(atual->nomeDoMaterial, novoEst->nomeDoMaterial) < 0) {
+                            anter = atual;
+                            atual = atual->prox;
+                        }
+
+                        anter->prox = novoEst;
+                        novoEst->prox = atual;
+
+                    }        
                 }
             }
 
