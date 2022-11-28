@@ -80,3 +80,5 @@ void arqPedPorClt (void);
 void acharPedClt(char *cpf);
 void arqMdlMaMe(int num);
 void exibBcpDin(BoneChapDin *bcp); 
+void arqEstPorFnc (void);
+void acharEstFnc(char *cnpj);
