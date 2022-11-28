@@ -14,7 +14,6 @@ struct clienteDin {
 void moduloRelatorio(void);
 char verMenuRelatorio(void);
 void relatorioFornecedor(void);
-void relatorioEstoque(void);
 void relatorioPedido(void);
 void controleRelClt(void);
 char verMenReltClt(void);
@@ -23,3 +22,5 @@ void exibCltDin(ClienteDin *clt);
 void lerArqBncp(char num);
 void controleRelMdl(void);
 char verMenReltMdl(void);
+void controleRelEst(void);
+char verMenReltEst(void);
