@@ -35,4 +35,5 @@ char verMenReltMdl(void);
 void controleRelEst(void);
 char verMenReltEst(void);
 void arqEstMaMe(int num);
+void arqEstOrdAlf(void);
 void exibEstDin(EstoqueDin *est);
