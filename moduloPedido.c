@@ -262,6 +262,11 @@ BoneChap* selecionarModelo(char *codigo) {
 
         }
 
+        else if (esc == '0') {
+            aux = 0;
+
+        }
+
         else {
             printf("Opção inválida!\n");
 
@@ -767,12 +772,13 @@ char escolha(void) {
     printf("\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("===              = = = = = Cadastrar modelo = = = = =                       ===\n");
+    printf("===              = = = = = Escolher modelo = = = = =                        ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("===              1. Boné                                                    ===\n");
     printf("===              2. Chapéu                                                  ===\n");
+    printf("===              0. Cancelar                                                ===\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
     printf("\n");
