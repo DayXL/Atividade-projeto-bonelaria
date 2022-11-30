@@ -682,7 +682,10 @@ void editarModelo(void) {
 
                                 if (esc=='1') {
                                     validarNomeModelo(nomeModelo);
-                                    strcpy(aux->nomeBonChap,nomeModelo);
+
+                                    char* nomeMais = pasMaisc(nomeModelo);
+                                    strcpy(aux->nomeBonChap,nomeMais);
+                                    free(nomeMais);
 
                                 }
 
@@ -705,9 +708,12 @@ void editarModelo(void) {
 
                                     validarUniPorTubo(uniPorTubo);
 
-                                    strcpy(aux->nomeBonChap,nomeModelo);
+                                    char* nomeMais = pasMaisc(nomeModelo);
+
+                                    strcpy(aux->nomeBonChap,nomeMais);
                                     aux->uniPorMetro = atof(uniPorMetro);
                                     aux->uniPorTubo= atof(uniPorTubo); 
+                                    free(nomeMais);
                                 }
 
                                 else {
