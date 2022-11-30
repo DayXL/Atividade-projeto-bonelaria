@@ -362,7 +362,11 @@ void editarFornecedor(void) {
 
                                 if (esc=='1') {
                                     validarNomeFornecedor(nomeFornecedor);
-                                    strcpy(aux->nomeFornecedor,nomeFornecedor);
+
+                                    char* nomeMais = pasMaisc(nomeFornecedor);
+
+                                    strcpy(aux->nomeFornecedor,nomeMais);
+                                    free(nomeMais);
 
                                 }
 
@@ -377,8 +381,11 @@ void editarFornecedor(void) {
 
                                     validarEmail2(email);
 
-                                    strcpy(aux->nomeFornecedor,nomeFornecedor);
+                                    char* nomeMais = pasMaisc(nomeFornecedor);
+
+                                    strcpy(aux->nomeFornecedor,nomeMais);
                                     strcpy(aux->email,email); 
+                                    free(nomeMais);
                                 }
 
                                 else {
