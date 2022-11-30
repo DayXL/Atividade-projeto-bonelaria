@@ -389,7 +389,11 @@ void editarCliente(void) {
 
                                 if (esc=='1') {
                                     validarNomeCliente(nomeCliente);
-                                    strcpy(aux->nomeDoCliente,nomeCliente);
+
+                                    char* nomeMais = pasMaisc(nomeCliente);
+
+                                    strcpy(aux->nomeDoCliente,nomeMais);
+                                    free(nomeMais);
 
                                 }
 
@@ -412,9 +416,12 @@ void editarCliente(void) {
 
                                     validarEmail(email);
 
-                                    strcpy(aux->nomeDoCliente,nomeCliente);
+                                    char* nomeMais = pasMaisc(nomeCliente);
+
+                                    strcpy(aux->nomeDoCliente,nomeMais);
                                     strcpy(aux->numero,numero);
                                     strcpy(aux->email,email); 
+                                    free(nomeMais);
                                 }
 
                                 else {
