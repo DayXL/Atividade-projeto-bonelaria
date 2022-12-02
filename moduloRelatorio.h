@@ -4,6 +4,7 @@ typedef struct fornecedorDin FornecedorDin;
 typedef struct pedidoClienteDin PedidoClienteDin;
 typedef struct boneChapDin BoneChapDin;
 typedef struct dadosMdl DadosMdl;
+typedef struct boneChap BoneChap;
 
 struct clienteDin {
 
@@ -98,4 +99,5 @@ void pedDatas(char *data, int comp);
 void entreDatas(void);
 void lerArqPedCltEntDat(long int *diaMesAno1, long int *diaMesAno2);
 void exibMaisPed(void);
-void telaExibMaisPed(DadosMdl* mdl);
+void telaExibMaisPed(DadosMdl* mdl, BoneChap* bcp);
+void contMaisPed(DadosMdl* mdl);
