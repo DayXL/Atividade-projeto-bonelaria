@@ -1700,9 +1700,22 @@ void exibMaisPed(void) {
                         novoPed->prox = NULL;
                     } 
 
-                    else {
+                    else if (novoPed->quant > lista->quant) {
                         novoPed->prox = lista;
                         lista = novoPed;
+                    } 
+
+                    else {
+                        DadosMdl* anter = lista;
+                        DadosMdl* atual = lista->prox;
+
+                        while ((atual != NULL) && atual->quant > novoPed->quant) {
+                            anter = atual;
+                            atual = atual->prox;
+                        }
+
+                        anter->prox = novoPed;
+                        novoPed->prox = atual;
                     } 
                 }
 
