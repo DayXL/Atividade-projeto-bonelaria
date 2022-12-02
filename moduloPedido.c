@@ -846,7 +846,7 @@ void pesquisarPedido(void) {
     pedClt = acharPed(codigo);
      
     if (pedClt == NULL) {
-        printf("Cliente não cadastrado! ");
+        printf("Pedido não encontrado! ");
 
     }
 
