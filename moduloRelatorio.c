@@ -267,7 +267,7 @@ void controleData(void) {
         }
 
         else if (esc=='4') {
-            printf("Entre datas\n");
+            entreDatas();
 
         }
 
@@ -1509,3 +1509,7 @@ void pedDatas(char *data, int comp) {
 
 }
 
+void entreDatas(void) {
+    
+
+}
