@@ -85,7 +85,7 @@ void controleRelMdl(void) {
         }
 
         else if (esc=='6') {
-            printf("EM BREVE");
+            exibMaisPed();
 
         }
 
@@ -1641,5 +1641,94 @@ void lerArqPedCltEntDat(long int *diaMesAno1, long int *diaMesAno2) {
     free(dia);
     free(mes);
     free(ano);
+
+}
+
+void exibMaisPed(void) {
+    FILE *fp;
+    PedidoCliente *ped;
+	DadosMdl* novoPed;
+	DadosMdl* lista;
+    int tam;
+
+	if (access("arqPedClt.dat", F_OK) != -1) {
+
+        fp = fopen("arqPedClt.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            lista = NULL;
+
+            ped = (PedidoCliente*) malloc(sizeof(PedidoCliente));
+
+            while(fread(ped, sizeof(PedidoCliente), 1, fp)) {
+
+                //Para o pedido
+                novoPed = (DadosMdl*) malloc(sizeof(DadosMdl));
+                
+                //Para o codigo
+                tam = strlen(ped->codigo) + 1;
+
+                novoPed->codigo = (char*) malloc(tam*sizeof(char));
+                strcpy(novoPed->codigo, ped->codigo);
+
+                //Para quantidade
+                novoPed->quant = 1;
+
+                if (lista == NULL) {
+                    lista = novoPed;
+                    novoPed->prox = NULL;
+                } 
+
+                else {
+                    novoPed->prox = lista;
+                    lista = novoPed;
+                } 
+
+            }
+
+            free(ped);
+
+            novoPed = lista;
+            while (novoPed != NULL) {
+
+                telaExibMaisPed(novoPed);
+                novoPed = novoPed->prox;
+
+            }
+
+            novoPed = lista;
+            while (lista != NULL) {
+                lista = lista->prox;
+                free(novoPed->codigo);
+                free(novoPed);
+                novoPed = lista;
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void telaExibMaisPed(DadosMdl* mdl) {
+    printf("===============================================================================\n");
+    printf("===                                                                         ===\n");
+    printf("\n");
+    printf("== Código do Boné: ");
+    printf("%s" ,mdl->codigo);
+    printf("\n");
+    printf("== Quantos pedidos: ");
+    printf("%d" ,mdl->quant);
+    printf("\n");
+    printf("===                                                                         ===\n");
+    printf("===============================================================================\n");
+    printf("\n");
 
 }
