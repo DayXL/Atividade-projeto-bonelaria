@@ -1616,17 +1616,34 @@ void lerArqPedCltEntDat(long int *diaMesAno1, long int *diaMesAno2) {
                 vetDiaMesAnoPed[2] = charParaInt(ano);               
 
                 if ((vetDiaMesAnoPed[2] >= diaMesAno1[2]) && (vetDiaMesAnoPed[2] <= diaMesAno2[2])) {
+                    if ((vetDiaMesAnoPed[1] > diaMesAno1[1]) && (vetDiaMesAnoPed[1] < diaMesAno2[1])) {
+                        exibPedido(pedClt);
 
-                    if ((vetDiaMesAnoPed[1] >= diaMesAno1[1]) && (vetDiaMesAnoPed[1] <= diaMesAno2[1])) {
+                    }
 
+                    else if ((vetDiaMesAnoPed[1] == diaMesAno1[1]) && (vetDiaMesAnoPed[1] == diaMesAno2[1])) {
                         if ((vetDiaMesAnoPed[0] >= diaMesAno1[0]) && (vetDiaMesAnoPed[0] <= diaMesAno2[0])) {
+                            exibPedido(pedClt);
+                        }
+                    }   
+
+                    else if (vetDiaMesAnoPed[1] == diaMesAno1[1]) {
+                        if (vetDiaMesAnoPed[0] >= diaMesAno1[0]) {
                             exibPedido(pedClt);
 
                         }
 
                     }
 
-                }
+                    else if (vetDiaMesAnoPed[1] == diaMesAno2[1]) {
+                        if (vetDiaMesAnoPed[0] <= diaMesAno2[0]) {
+                            exibPedido(pedClt);
+
+                        }
+
+                    }
+
+                } 
 
 
             }
