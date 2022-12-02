@@ -410,3 +410,147 @@ char* verDiaMesAno(void) {
     return data;
 
 }
+
+int anoBissexto(long int ano) {
+    int a;
+
+    //Caso ele siga a expressão nos parenteses retornara 1, caso não, irá retorna 0.
+    a = (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0)) ? 1 : 0;
+
+    return a;
+
+}
+
+int dataValida(long int dia, long int mes, long int ano) {
+    int maiorDiaMes[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int maiorDia = 0;
+    int a;
+
+    if ((mes > 12) || (mes < 1)) {
+        return 0;
+
+    }
+
+    maiorDia = maiorDiaMes[mes - 1];
+
+    if ((mes == 2) && anoBissexto(ano)) {
+        maiorDia = maiorDia + 1;
+
+    }
+
+    a = ((dia > maiorDia) || (dia < 0)) ? 0 : 1;
+
+    return a;
+
+}
+
+long int charParaInt(char *num) {
+    long int soma = 0;
+    int tam = strlen(num);
+    int aux = tam - 1; 
+
+    if (tam == 1) {
+        return num[0] - '0';
+
+    }
+
+    for (int i = 0; i <= tam - 1; i++) {
+        
+        soma = soma + ((num[i] - '0') * poten(10, aux));
+
+        aux = aux - 1;
+
+    }
+
+    return soma;
+
+}
+
+long int poten(int num, int pot) {
+    long int soma = num;
+
+    if (pot == 0) {
+        return 1;
+    }
+
+    else if (pot == 1) {
+        return num;
+    }
+
+    for (int i = 2; i <= pot; i++ ) {
+        soma = soma * num;
+        
+    }
+
+    return soma;
+
+}
+
+int validarNumParData(char *numero) {
+    int i = 0;
+    int tam = strlen(numero);
+    int aux = 0;
+
+    if (tam != 8) {
+        return 0;
+
+    }
+
+    while (numero[i] != '\0') {
+        if ((numero[i] >= '0') && (numero[i] <= '9')) {
+            i = i + 1;
+
+        }
+
+        else if (numero[i] == '/') {
+            aux = aux + 1;
+
+            if ((i == 2) || (i == 5)) {
+                i = i + 1;
+
+            }
+
+            else {
+
+                return 0;
+            }
+
+        }
+
+        else {
+            return 0;
+
+        }
+
+    }
+
+    if (aux != 2) {
+        return 0;
+
+    }
+
+    return 1;
+
+}
+
+char* dividPal(char *pal, int del1, int del2) {
+    int tam = del2 - del1;
+    int aux = 0;
+
+    char* palavra = (char*) malloc((tam + 1)* sizeof(char));
+
+    palavra[0] = pal[del1];
+
+    for (int i = del1; i <= del2; i++) {
+        
+        palavra[aux] = pal[i];
+
+        aux = aux + 1;
+
+    }
+
+    palavra[tam + 1] = '\0';
+
+    return palavra;
+
+}
