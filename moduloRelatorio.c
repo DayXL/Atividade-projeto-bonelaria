@@ -1673,6 +1673,7 @@ void exibMaisPed(void) {
                 while (novoPed != NULL) {
                     if (strcmp(novoPed->codigo, ped->codigo) == 0) {
                         novoPed->quant = novoPed->quant + 1;
+                        novoPed->quantVend = novoPed->quantVend + ped->quant;
                         achou = 1;                  
 
                     }
@@ -1692,7 +1693,10 @@ void exibMaisPed(void) {
                     novoPed->codigo = (char*) malloc(tam*sizeof(char));
                     strcpy(novoPed->codigo, ped->codigo);
 
-                    //Para quantidade
+                    //Para quantidade vendida
+                    novoPed->quantVend = 1;
+
+                    //Para quantas vezes vendido
                     novoPed->quant = 1;
 
                     if (lista == NULL) {
@@ -1749,9 +1753,11 @@ void exibMaisPed(void) {
 void telaExibMaisPed(DadosMdl* mdl) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("\n");
     printf("== Código do Boné: ");
     printf("%s" ,mdl->codigo);
+    printf("\n");
+    printf("== Quantidade vendida: ");
+    printf("%f" ,mdl->quantVend);
     printf("\n");
     printf("== Quantos pedidos: ");
     printf("%d" ,mdl->quant);
