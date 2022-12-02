@@ -86,3 +86,4 @@ void controleData(void);
 char verMenuData(void);
 void pedDatas(char *data, int comp);
 void entreDatas(void);
+void lerArqPedCltEntDat(long int *diaMesAno1, long int *diaMesAno2);
