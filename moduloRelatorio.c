@@ -1667,28 +1667,44 @@ void exibMaisPed(void) {
             ped = (PedidoCliente*) malloc(sizeof(PedidoCliente));
 
             while(fread(ped, sizeof(PedidoCliente), 1, fp)) {
+                int achou = 0;
 
-                //Para o pedido
-                novoPed = (DadosMdl*) malloc(sizeof(DadosMdl));
-                
-                //Para o codigo
-                tam = strlen(ped->codigo) + 1;
+                novoPed = lista;
+                while (novoPed != NULL) {
+                    if (strcmp(novoPed->codigo, ped->codigo) == 0) {
+                        novoPed->quant = novoPed->quant + 1;
+                        achou = 1;                  
 
-                novoPed->codigo = (char*) malloc(tam*sizeof(char));
-                strcpy(novoPed->codigo, ped->codigo);
+                    }
 
-                //Para quantidade
-                novoPed->quant = 1;
+                    novoPed = novoPed->prox;
 
-                if (lista == NULL) {
-                    lista = novoPed;
-                    novoPed->prox = NULL;
-                } 
+                }
 
-                else {
-                    novoPed->prox = lista;
-                    lista = novoPed;
-                } 
+                if (achou == 0) {
+
+                    //Para o pedido
+                    novoPed = (DadosMdl*) malloc(sizeof(DadosMdl));
+                    
+                    //Para o codigo
+                    tam = strlen(ped->codigo) + 1;
+
+                    novoPed->codigo = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoPed->codigo, ped->codigo);
+
+                    //Para quantidade
+                    novoPed->quant = 1;
+
+                    if (lista == NULL) {
+                        lista = novoPed;
+                        novoPed->prox = NULL;
+                    } 
+
+                    else {
+                        novoPed->prox = lista;
+                        lista = novoPed;
+                    } 
+                }
 
             }
 
