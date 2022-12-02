@@ -1731,7 +1731,7 @@ void exibMaisPed(void) {
             novoPed = lista;
             while (novoPed != NULL) {
 
-                telaExibMaisPed(novoPed);
+                contMaisPed(novoPed);
                 novoPed = novoPed->prox;
 
             }
@@ -1751,11 +1751,38 @@ void exibMaisPed(void) {
 
 }
 
-void telaExibMaisPed(DadosMdl* mdl) {
+void contMaisPed(DadosMdl* mdl) {
+    BoneChap* bcp;
+
+    bcp = acharMdl(mdl->codigo);
+     
+    if (bcp == NULL) {
+        printf("===============================================================================\n");
+        printf("===                                                                         ===\n");
+        printf("== O Modelo %s não está mais cadastrado!\n", mdl->codigo);
+        printf("===                                                                         ===\n");
+        printf("===============================================================================\n");
+        printf("\n");
+
+    }
+
+    else {
+        telaExibMaisPed(mdl, bcp);
+
+    }
+
+    free(bcp);
+}
+
+
+void telaExibMaisPed(DadosMdl* mdl, BoneChap* bcp) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
     printf("== Código do Boné: ");
     printf("%s" ,mdl->codigo);
+    printf("\n");
+    printf("== Nome do Boné: ");
+    printf("%s" ,bcp->nomeBonChap);
     printf("\n");
     printf("== Quantidade vendida: ");
     printf("%f" ,mdl->quantVend);
