@@ -1510,6 +1510,136 @@ void pedDatas(char *data, int comp) {
 }
 
 void entreDatas(void) {
+    system ( " clear||cls " );
+
+    char data1[30];
+    char data2[30];
+    int aux = 0;
+    int tam;
+    char* dia;
+    char* mes;
+    char* ano;
+    long int vetDiaMesAno1[3];
+    long int vetDiaMesAno2[3];
+
+    do {
+
+        printf("\nDigite a primeira data: (dd/mm/aa) ");
+        fgets(data1, 30, stdin);
+
+        tam = strlen(data1);
+        data1[tam - 1] = '\0';
+
+        if (validarNumParData(data1) == 1) {
+            dia = dividPal(data1, 0, 1);
+            mes = dividPal(data1, 3, 4);
+            ano = dividPal(data1, 6, 7);
+
+            vetDiaMesAno1[0] = charParaInt(dia);
+            vetDiaMesAno1[1] = charParaInt(mes);
+            vetDiaMesAno1[2] = charParaInt(ano);
+
+            if (dataValida(vetDiaMesAno1[0], vetDiaMesAno1[1], vetDiaMesAno1[2]) == 1) {
+
+                aux = 1;
+            
+            }
+        }
+
+    } while (aux == 0);
+
+    do {
+
+        printf("\nDigite a segunda data: (dd/mm/ano) ");
+        fgets(data2, 30, stdin);
+
+        tam = strlen(data2);
+        data2[tam - 1] = '\0';
+
+        if (validarNumParData(data2) == 1) {
+            dia = dividPal(data2, 0, 1);
+            mes = dividPal(data2, 3, 4);
+            ano = dividPal(data2, 6, 7);
+
+            vetDiaMesAno2[0] = charParaInt(dia);
+            vetDiaMesAno2[1] = charParaInt(mes);
+            vetDiaMesAno2[2] = charParaInt(ano);
+
+            if (dataValida(vetDiaMesAno2[0], vetDiaMesAno2[1], vetDiaMesAno2[2]) == 1) {
+
+                aux = 1;
+            
+            }
+        }
+
+    } while (aux == 0);
+
+    lerArqPedCltEntDat(vetDiaMesAno1, vetDiaMesAno2);
+
+    free(dia);
+    free(mes);
+    free(ano);
+
+}
+
+void lerArqPedCltEntDat(long int *diaMesAno1, long int *diaMesAno2) {
     
+    FILE *fp;
+    PedidoCliente *pedClt;
+
+    char* dia;
+    char* mes;
+    char* ano;
+    long int vetDiaMesAnoPed[3];
+    
+    if (access("arqPedClt.dat", F_OK) != -1) {
+
+        fp = fopen("arqPedClt.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            pedClt = (PedidoCliente*) malloc(sizeof(PedidoCliente));
+
+            while (fread(pedClt, sizeof(PedidoCliente), 1, fp)) {
+
+                dia = dividPal(pedClt->pedido, 0, 1);
+                mes = dividPal(pedClt->pedido, 2, 3);
+                ano = dividPal(pedClt->pedido, 4, 5);
+            
+                vetDiaMesAnoPed[0] = charParaInt(dia);
+                vetDiaMesAnoPed[1] = charParaInt(mes);
+                vetDiaMesAnoPed[2] = charParaInt(ano);               
+
+                if ((vetDiaMesAnoPed[2] >= diaMesAno1[2]) && (vetDiaMesAnoPed[2] <= diaMesAno2[2])) {
+
+                    if ((vetDiaMesAnoPed[1] >= diaMesAno1[1]) && (vetDiaMesAnoPed[1] <= diaMesAno2[1])) {
+
+                        if ((vetDiaMesAnoPed[0] >= diaMesAno1[0]) && (vetDiaMesAnoPed[0] <= diaMesAno2[0])) {
+                            exibPedido(pedClt);
+
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+            free(pedClt);
+
+        }
+
+        fclose(fp);
+    }
+
+    free(dia);
+    free(mes);
+    free(ano);
 
 }
