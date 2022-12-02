@@ -3,6 +3,7 @@ typedef struct estoqueDin EstoqueDin;
 typedef struct fornecedorDin FornecedorDin;
 typedef struct pedidoClienteDin PedidoClienteDin;
 typedef struct boneChapDin BoneChapDin;
+typedef struct dadosMdl DadosMdl;
 
 struct clienteDin {
 
@@ -54,6 +55,14 @@ struct boneChapDin {
 
 };
 
+struct dadosMdl {
+
+    char* codigo;
+    int quant;
+    DadosMdl* prox;
+
+};
+
 void moduloRelatorio(void);
 char verMenuRelatorio(void);
 void controleRelClt(void);
@@ -87,3 +96,5 @@ char verMenuData(void);
 void pedDatas(char *data, int comp);
 void entreDatas(void);
 void lerArqPedCltEntDat(long int *diaMesAno1, long int *diaMesAno2);
+void exibMaisPed(void);
+void telaExibMaisPed(DadosMdl* mdl);
