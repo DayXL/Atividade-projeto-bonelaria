@@ -1548,6 +1548,8 @@ void entreDatas(void) {
 
     } while (aux == 0);
 
+    aux = 0;
+
     do {
 
         printf("\nDigite a segunda data: (dd/mm/ano) ");
@@ -1644,7 +1646,6 @@ void lerArqPedCltEntDat(long int *diaMesAno1, long int *diaMesAno2) {
                     }
 
                 } 
-
 
             }
 
