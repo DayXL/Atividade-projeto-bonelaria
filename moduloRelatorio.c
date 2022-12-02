@@ -1645,6 +1645,7 @@ void lerArqPedCltEntDat(long int *diaMesAno1, long int *diaMesAno2) {
 }
 
 void exibMaisPed(void) {
+    system ( " clear||cls " );
     FILE *fp;
     PedidoCliente *ped;
 	DadosMdl* novoPed;
@@ -1694,7 +1695,7 @@ void exibMaisPed(void) {
                     strcpy(novoPed->codigo, ped->codigo);
 
                     //Para quantidade vendida
-                    novoPed->quantVend = 1;
+                    novoPed->quantVend = ped->quant;
 
                     //Para quantas vezes vendido
                     novoPed->quant = 1;
