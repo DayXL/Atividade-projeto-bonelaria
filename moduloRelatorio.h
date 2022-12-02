@@ -58,6 +58,7 @@ struct boneChapDin {
 struct dadosMdl {
 
     char* codigo;
+    float quantVend;
     int quant;
     DadosMdl* prox;
 
