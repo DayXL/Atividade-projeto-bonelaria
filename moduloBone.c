@@ -436,6 +436,7 @@ int gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
 
     }
 
+    codigo[5] = '\0';
     aux = acharMdl(codigo);
 
     if (aux != NULL) {
@@ -526,16 +527,18 @@ int gerarCodigoChapeu (char *esc, int tam, char num, BoneChap *bcp) {
 
     for (int i = 0; i < tam; i++) {
         if (esc[i] == '1') {
-            codigo[4] = '1';
+            codigo[3] = '1';
 
         }
 
         else if (esc[i] == '2') {
-            codigo[5] = '1';
+            codigo[4] = '1';
 
         }
 
     }
+
+    codigo[5] = '\0';
 
     aux = acharMdl(codigo);
 
