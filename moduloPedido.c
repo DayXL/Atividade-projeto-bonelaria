@@ -241,13 +241,15 @@ BoneChap* selecionarModelo(char *codigo) {
     BoneChap* bcp;
     char esc;
     int tam;
-    int aux;
+    int aux = 0;
+    char aux2;
 
     do {
         esc = escolha();
 
         if (esc == '1') {
             esc = '0';
+            aux2 = '1';
             printf("\nBonés disponíveis: \n");
             aux = lerArqBcpDif('1');
 
@@ -255,6 +257,7 @@ BoneChap* selecionarModelo(char *codigo) {
 
         else if (esc == '2') {
             //esc = '0';
+            aux2 = '0';
             //printf("\nChapéus disponíveis: \n");
             //aux = lerArqBcpDif('0');
             printf("\nSem fabricação de chapéu no momento!\n");
@@ -285,7 +288,7 @@ BoneChap* selecionarModelo(char *codigo) {
 
         bcp = acharMdl(codigo);
         
-        } while (bcp == NULL); 
+        } while (bcp == NULL || bcp->codigo[0] != aux2); 
 
     }
     
