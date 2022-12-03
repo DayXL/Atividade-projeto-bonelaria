@@ -256,12 +256,12 @@ BoneChap* selecionarModelo(char *codigo) {
         }
 
         else if (esc == '2') {
-            //esc = '0';
+            esc = '0';
             aux2 = '0';
-            //printf("\nChapéus disponíveis: \n");
-            //aux = lerArqBcpDif('0');
-            printf("\nSem fabricação de chapéu no momento!\n");
-            passarEnter();
+            printf("\nChapéus disponíveis: \n");
+            aux = lerArqBcpDif('0');
+            //printf("\nSem fabricação de chapéu no momento!\n");
+            //passarEnter();
 
         }
 
@@ -525,7 +525,6 @@ int verMtlDisp(BoneChap* bcp, float quant, float *novoValor, char *aux) {
 
     }
 
-    free(est);
     return 1;
 }
 
