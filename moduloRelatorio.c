@@ -1792,7 +1792,6 @@ void contMaisPed(DadosMdl* mdl) {
     free(bcp);
 }
 
-
 void telaExibMaisPed(DadosMdl* mdl, BoneChap* bcp) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
