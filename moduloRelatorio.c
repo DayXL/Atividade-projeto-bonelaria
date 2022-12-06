@@ -1796,10 +1796,10 @@ void contMaisPed(DadosMdl* mdl) {
 void telaExibMaisPed(DadosMdl* mdl, BoneChap* bcp) {
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("== Código do Boné: ");
+    printf("== Código do Modelo: ");
     printf("%s" ,mdl->codigo);
     printf("\n");
-    printf("== Nome do Boné: ");
+    printf("== Nome: ");
     printf("%s" ,bcp->nomeBonChap);
     printf("\n");
     printf("== Quantidade vendida: ");
