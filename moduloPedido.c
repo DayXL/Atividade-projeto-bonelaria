@@ -151,6 +151,8 @@ void pedidoCliente(void) {
                             pedClt->quant = atof(quant);
                             strcpy(pedClt->cor,cor);
 
+                            printf("\nCódigo do pedido: %s\n", ped);
+
                             free(ped);
                             salArqPedClt(pedClt);
 
