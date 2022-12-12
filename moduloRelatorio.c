@@ -863,7 +863,6 @@ void exibEstDin(EstoqueDin *est) {
 
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("\n");
     printf("Código do Material: ");
     printf("%s" ,est->codigo);
     printf("\n");
