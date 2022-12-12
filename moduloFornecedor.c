@@ -170,7 +170,6 @@ void exibFornecedor(Fornecedor *fnc) {
 
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("\n");
     printf("== Nome do Fornecedor: ");
     printf("%s" ,fnc->nomeFornecedor);
     printf("\n");
