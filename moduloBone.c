@@ -209,7 +209,7 @@ void telaBone(void) {
         free(nomeMais);
         salArqBonChap(bcp);
 
-        printf("Boné cadastrado com sucesso!");
+        printf("\nBoné cadastrado com sucesso!\n");
     }
 
     free(bcp);
@@ -384,11 +384,6 @@ void validarEsc(char tipo, char *detalhes) {
 
         }
 
-        else {
-            printf("Você digitou algo inválido!");
-            printf("\n");
-        }
-
     } while (aux[0] != '0');
 
 }
@@ -416,7 +411,6 @@ int gerarCodigoBone(char *esc, int tam, char num, BoneChap *bcp) {
         }
 
         else if (esc[i] == '3') {
-            printf("a");
             codigo[3]= '0';
             codigo[4]= '1';
 
