@@ -732,7 +732,6 @@ void exibPedido(PedidoCliente *pedClt) {
     
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("\n");
     printf("== Número do pedido: ");
     printf("%s" ,pedClt->pedido);
     printf("\n");
