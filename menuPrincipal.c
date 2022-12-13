@@ -66,7 +66,7 @@ int main(void) {
         }
 
         else {
-            printf("Opção inválida!");
+            printf("\nOpção inválida!\n");
         
         }
 
@@ -76,7 +76,7 @@ int main(void) {
     }
         
 
-    printf("Programa finalizado!");
+    printf("\nPrograma finalizado!\n");
 
     return 0;
 }

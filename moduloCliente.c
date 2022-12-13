@@ -607,7 +607,7 @@ void pesquisarCliente(void) {
     clt = acharClt(cpf);
      
     if (clt == NULL) {
-        printf("Cliente não cadastrado! ");
+        printf("\nCliente não cadastrado!\n");
 
     }
 

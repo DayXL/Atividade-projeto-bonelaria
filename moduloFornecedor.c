@@ -568,7 +568,7 @@ void pesquisarFornecedor(void) {
     fnc = acharFnc(cnpj);
      
     if (fnc == NULL) {
-        printf("Fornecedor não cadastrado! ");
+        printf("\nFornecedor não cadastrado!\n");
 
     }
 

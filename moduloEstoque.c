@@ -660,7 +660,7 @@ void pesquisarMateriaisEstoque(void) {
     est = acharEst(codigo);
      
     if (est == NULL) {
-        printf("Material não cadastrado! ");
+        printf("\nMaterial não cadastrado!\n");
 
     }
 

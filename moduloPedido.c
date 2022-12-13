@@ -849,7 +849,7 @@ void pesquisarPedido(void) {
     pedClt = acharPed(codigo);
      
     if (pedClt == NULL) {
-        printf("Pedido não encontrado! ");
+        printf("\nPedido não encontrado!\n");
 
     }
 
