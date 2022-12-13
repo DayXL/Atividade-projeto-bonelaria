@@ -895,7 +895,7 @@ void pesquisarModelo(void) {
     bcp = acharMdl(codigo);
      
     if (bcp == NULL) {
-        printf("Modelo não cadastrado! ");
+        printf("\nModelo não cadastrado!\n");
 
     }
 
