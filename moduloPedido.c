@@ -742,7 +742,7 @@ void exibPedido(PedidoCliente *pedClt) {
     printf("%s" ,pedClt->codigo);
     printf("\n");
     printf("== Quantidade: ");
-    printf("%f" ,pedClt->quant);
+    printf("%.2f" ,pedClt->quant);
     printf("\n");
     printf("== Cor: ");
     printf("%s" ,pedClt->cor);

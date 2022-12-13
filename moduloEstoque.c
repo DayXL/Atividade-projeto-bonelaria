@@ -196,7 +196,7 @@ void exibEstoque(Estoque *est) {
     printf("%s" ,est->cnpj);
     printf("\n");
     printf("== Quantidade: ");
-    printf("%f" ,est->quant);
+    printf("%.2f" ,est->quant);
     printf("\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");

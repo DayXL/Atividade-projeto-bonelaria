@@ -294,10 +294,10 @@ void exibBoneChap(BoneChap *bcp) {
     printf("%s" ,bcp->codigo);
     printf("\n");
     printf("== Quantidade por metro: ");
-    printf("%f" ,bcp->uniPorMetro);
+    printf("%.2f" ,bcp->uniPorMetro);
     printf("\n");
     printf("== Quantidade por tubo de linha: ");
-    printf("%f" ,bcp->uniPorTubo);
+    printf("%.2f" ,bcp->uniPorTubo);
     printf("\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");

@@ -873,7 +873,7 @@ void exibEstDin(EstoqueDin *est) {
     printf("%s" ,est->cnpj);
     printf("\n");
     printf("== Quantidade: ");
-    printf("%f" ,est->quant);
+    printf("%.2f" ,est->quant);
     printf("\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -1151,7 +1151,7 @@ void exibPedDin(PedidoClienteDin *pedClt) {
     printf("%s" ,pedClt->codigo);
     printf("\n");
     printf("== Quantidade: ");
-    printf("%f" ,pedClt->quant);
+    printf("%.2f" ,pedClt->quant);
     printf("\n");
     printf("== Cor: ");
     printf("%s" ,pedClt->cor);
@@ -1372,10 +1372,10 @@ void exibBcpDin(BoneChapDin *bcp) {
     printf("%s" ,bcp->codigo);
     printf("\n");
     printf("== Quantidade por metro: ");
-    printf("%f" ,bcp->uniPorMetro);
+    printf("%.2f" ,bcp->uniPorMetro);
     printf("\n");
     printf("== Quantidade por tubo de linha: ");
-    printf("%f" ,bcp->uniPorTubo);
+    printf("%.2f" ,bcp->uniPorTubo);
     printf("\n");
     printf("===                                                                         ===\n");
     printf("===============================================================================\n");
@@ -1800,7 +1800,7 @@ void telaExibMaisPed(DadosMdl* mdl, BoneChap* bcp) {
     printf("%s" ,bcp->nomeBonChap);
     printf("\n");
     printf("== Quantidade vendida: ");
-    printf("%f" ,mdl->quantVend);
+    printf("%.2f" ,mdl->quantVend);
     printf("\n");
     printf("== Quantos pedidos: ");
     printf("%d" ,mdl->quant);
