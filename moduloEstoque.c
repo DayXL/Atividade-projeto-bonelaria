@@ -186,16 +186,16 @@ void exibEstoque(Estoque *est) {
 
     printf("===============================================================================\n");
     printf("===                                                                         ===\n");
-    printf("Código do Material: ");
+    printf("== Código do Material: ");
     printf("%s" ,est->codigo);
     printf("\n");
-    printf("Nome do Material: ");
+    printf("== Nome do Material: ");
     printf("%s" ,est->nomeDoMaterial);
     printf("\n");
-    printf("CNPJ do vendedor: ");
+    printf("== CNPJ do vendedor: ");
     printf("%s" ,est->cnpj);
     printf("\n");
-    printf("Quantidade: ");
+    printf("== Quantidade: ");
     printf("%f" ,est->quant);
     printf("\n");
     printf("===                                                                         ===\n");
